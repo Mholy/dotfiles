@@ -1,0 +1,43 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "homebrew/cask-versions"
+tap "twpayne/taps"
+
+brew "antigen"
+brew "git-flow-avh"
+brew "gnupg"
+brew "mas"
+brew "nmap"
+brew "node"
+brew "python"
+brew "rsync"
+brew "twpayne/taps/chezmoi"
+
+cask "amethyst"
+cask "bitwarden"
+cask "teamviewer"
+cask "tor-browser"
+cask "tunnelblick"
+cask "appcleaner"
+cask "carbon-copy-cloner"
+cask "clover-configurator"
+cask "cyberduck"
+cask "firefox"
+cask "firefox-developer-edition"
+cask "flux"
+cask "gitup"
+cask "intel-power-gadget"
+cask "sublime-text"
+cask "ubersicht"
+cask "vlc"
+cask "iterm2"
+cask "qbittorrent"
+
+mas "Amphetamine", id: 937984704
+mas "AudioBookBinder", id: 413969927
+mas "HazeOver", id: 430798174
+mas "Magnet", id: 441258766
+mas "Time Out", id: 402592703
+mas "Xcode", id: 497799835
