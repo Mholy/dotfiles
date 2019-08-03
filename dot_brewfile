@@ -14,6 +14,7 @@ brew "node"
 brew "python"
 brew "rsync"
 brew "twpayne/taps/chezmoi"
+brew "autojump"
 
 cask "amethyst"
 cask "bitwarden"
