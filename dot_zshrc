@@ -6,9 +6,11 @@ antigen use oh-my-zsh
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
 antigen bundle git
 antigen bundle sublime
-antigen bundle pass-zsh-completion
 antigen bundle command-not-found
 antigen bundle git-flow-completion
+antigen bundle taskwarrior
+antigen bundle osx
+antigen bundle autojump
 
 # Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting
