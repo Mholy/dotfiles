@@ -35,6 +35,7 @@ cask "vlc"
 cask "iterm2"
 cask "qbittorrent"
 cask "calibre"
+cask "joplin"
 
 mas "Amphetamine", id: 937984704
 mas "AudioBookBinder", id: 413969927
