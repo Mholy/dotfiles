@@ -39,6 +39,7 @@ cask "qbittorrent"
 cask "calibre"
 cask "joplin"
 cask "nextcloud"
+cask "visual-studio-code"
 
 mas "Amphetamine", id: 937984704
 mas "AudioBookBinder", id: 413969927
