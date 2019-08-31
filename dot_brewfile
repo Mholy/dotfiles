@@ -41,6 +41,7 @@ cask "joplin"
 cask "nextcloud"
 cask "visual-studio-code"
 cask "toggl"
+cask "malwarebytes"
 
 mas "Amphetamine", id: 937984704
 mas "AudioBookBinder", id: 413969927
