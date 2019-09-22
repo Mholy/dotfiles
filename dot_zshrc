@@ -5,12 +5,12 @@ antigen use oh-my-zsh
 
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
 antigen bundle git
-antigen bundle sublime
 antigen bundle command-not-found
 antigen bundle git-flow-avh
 antigen bundle taskwarrior
 antigen bundle osx
 antigen bundle autojump
+antigen bundle heroku
 
 # Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting
