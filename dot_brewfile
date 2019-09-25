@@ -36,7 +36,6 @@ cask "gitup"
 cask "intel-power-gadget"
 cask "sublime-text"
 cask "ubersicht"
-cask "vlc"
 cask "iterm2"
 cask "qbittorrent"
 cask "calibre"
@@ -44,6 +43,7 @@ cask "nextcloud"
 cask "visual-studio-code"
 cask "toggl"
 cask "malwarebytes"
+cask "iina"
 
 mas "Amphetamine", id: 937984704
 mas "AudioBookBinder", id: 413969927
