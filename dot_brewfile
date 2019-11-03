@@ -42,7 +42,6 @@ cask "calibre"
 cask "nextcloud"
 cask "visual-studio-code"
 cask "toggl"
-cask "malwarebytes"
 cask "iina"
 
 mas "Amphetamine", id: 937984704
