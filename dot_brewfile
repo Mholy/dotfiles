@@ -21,6 +21,7 @@ brew "joplin"
 brew "heroku"
 brew "heroku-node"
 brew "coreutils"
+brew "thefuck"
 
 cask "amethyst"
 cask "bitwarden"
@@ -43,6 +44,7 @@ cask "nextcloud"
 cask "visual-studio-code"
 cask "toggl"
 cask "iina"
+cask "musicbrainz-picard"
 
 mas "Amphetamine", id: 937984704
 mas "AudioBookBinder", id: 413969927
