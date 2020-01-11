@@ -5,18 +5,19 @@
 }
 
 toolbox {
-    background-color: #000 !important;
-    color: #AAAAAA;
+    /* background-color: #000 !important; */
+    /* color: #aaaaaa; */
 }
 
-:root:-moz-any([inFullscreen], [tabsintitlebar]) #TabsToolbar:not(:-moz-lwtheme) {
+:root:-moz-any([inFullscreen], [tabsintitlebar])
+    #TabsToolbar:not(:-moz-lwtheme) {
     -moz-appearance: none !important;
 }
 
 #TabsToolbar {
-    background-color: #000000 !important;
+    /* background-color: #000000 !important; */
     max-height: 35px !important;
-    height: 35px !important
+    height: 35px !important;
 }
 
 #nav-bar {
@@ -26,10 +27,10 @@ toolbox {
     margin-right: 10px !important;
     border-top: none !important;
     height: 35px;
-    background-color: black !important;
+    /* background-color: black !important; */
 }
 
-#main-window[sizemode="normal"]>#titlebar {
+#main-window[sizemode='normal'] > #titlebar {
     -moz-appearance: initial !important;
 }
 
@@ -51,8 +52,8 @@ toolbox {
     display: none !important;
 }
 
-#back-button>.toolbarbutton-icon,
-#forward-button>.toolbarbutton-icon {
+#back-button > .toolbarbutton-icon,
+#forward-button > .toolbarbutton-icon {
     transform: scale(0.9, 0.9) !important;
     margin-left: -2px !important;
     margin-right: -2px !important;
@@ -63,9 +64,9 @@ toolbox {
 }
 
 /* Bottom status panel */
-#statuspanel-label{
-    background: #333 !important;
-    color: white !important;
+#statuspanel-label {
+    /* background: #333 !important; */
+    /* color: white !important; */
     outline: none !important;
     border: none !important;
     border-radius: 0 !important;
@@ -102,7 +103,7 @@ toolbox {
 }
 
 /* URL Bar */
-#urlbar[focused="true"],
+#urlbar[focused='true'],
 #urlbar:hover,
 .searchbar-textbox:hover {
     box-shadow: 0 0 0 !important;
@@ -113,8 +114,8 @@ toolbox {
 .searchbar-textbox,
 #urlbar:hover,
 .searchbar-textbox:hover {
-    background: #333 !important;
-    color: white !important;
+    /* background: #333 !important; */
+    /* color: white !important; */
     padding: 0 10px !important;
     font-size: 1.1em !important;
     border-radius: 0 !important;
@@ -130,7 +131,7 @@ toolbox {
 ar-button,
 .autocomplete-history-dropmarker,
 .urlbar-history-dropmarker.urlbar-icon.chromeclass-toolbar-additional,
-#TabsToolbar .titlebar-placeholder[type="pre-tabs"],
+#TabsToolbar .titlebar-placeholder[type='pre-tabs'],
 #identity-icon-labels {
     display: none !important;
 }
@@ -139,45 +140,49 @@ ar-button,
 =            Tree Style Tab            =
 ======================================*/
 
-/* Sidebar min and max width removal */
-#sidebar {
-    max-width: none !important;
-    min-width: 0px !important;
+:root {
+    --thin-tab-width: 30px;
+}
+:root {
+    --wide-tab-width: 350px;
 }
 
 /* Hide splitter, when using Tree Style Tab. */
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]+#sidebar-splitter {
+#sidebar-box[sidebarcommand='treestyletab_piro_sakura_ne_jp-sidebar-action']
+    + #sidebar-splitter {
     display: none !important;
 }
-
 /* Hide sidebar header, when using Tree Style Tab. */
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+#sidebar-box[sidebarcommand='treestyletab_piro_sakura_ne_jp-sidebar-action']
+    #sidebar-header {
     visibility: collapse;
 }
 
 /* Shrink sidebar until hovered, when using Tree Style Tab. */
-:root {
-    --thin-tab-width: 30px;
-    --wide-tab-width: 200px;
-}
-
-#sidebar-box:not([sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]) {
+#sidebar-box:not([sidebarcommand='treestyletab_piro_sakura_ne_jp-sidebar-action']) {
     min-width: var(--wide-tab-width) !important;
     max-width: none !important;
 }
-
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] {
+#sidebar-box[sidebarcommand='treestyletab_piro_sakura_ne_jp-sidebar-action'] {
+    overflow: hidden !important;
     position: relative !important;
-    transition: all 100ms !important;
+    transition: all 200ms !important;
     min-width: var(--thin-tab-width) !important;
     max-width: var(--thin-tab-width) !important;
+    z-index: 1;
+    border-right: 1px solid black !important;
 }
-
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover {
+#sidebar-box[sidebarcommand='treestyletab_piro_sakura_ne_jp-sidebar-action']:hover,
+#sidebar-box[sidebarcommand='treestyletab_piro_sakura_ne_jp-sidebar-action']
+    #sidebar {
     transition: all 200ms !important;
     min-width: var(--wide-tab-width) !important;
     max-width: var(--wide-tab-width) !important;
-    margin-right: calc((var(--wide-tab-width) - var(--thin-tab-width)) * -1) !important;
+    margin-right: calc(
+        (var(--wide-tab-width) - var(--thin-tab-width)) * -1
+    ) !important;
+    z-index: 1;
+    border-right: 1px solid black !important;
 }
 
 /*=====  End of Tree Style Tab  ======*/
