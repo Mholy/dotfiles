@@ -1,3 +1,4 @@
+source ~/.aliases
 eval $(thefuck --alias)
 source /usr/local/share/antigen/antigen.zsh
 
