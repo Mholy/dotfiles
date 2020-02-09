@@ -1,23 +1,15 @@
-:root {
-    --tabs-border: transparent !important;
-    --toolbox-border-bottom-color: transparent !important;
-    --chrome-nav-bar-controls-border-color: transparent !important;
-}
-
-toolbox {
-    /* background-color: #000 !important; */
-    /* color: #aaaaaa; */
-}
-
-:root:-moz-any([inFullscreen], [tabsintitlebar])
-    #TabsToolbar:not(:-moz-lwtheme) {
-    -moz-appearance: none !important;
-}
-
 #TabsToolbar {
-    /* background-color: #000000 !important; */
     max-height: 35px !important;
     height: 35px !important;
+}
+
+#TabsToolbar >.titlebar-spacer,
+#TabsToolbar >.toolbar-items {
+    display: none !important;
+}
+
+#titlebar-secondary-buttonbox {
+    display: none !important;
 }
 
 #nav-bar {
@@ -26,114 +18,8 @@ toolbox {
     margin-left: 75px !important;
     margin-right: 10px !important;
     border-top: none !important;
-    height: 35px;
-    /* background-color: black !important; */
-}
-
-#main-window[sizemode='normal'] > #titlebar {
-    -moz-appearance: initial !important;
-}
-
-/* Hide tabs */
-#tabbrowser-tabs {
-    visibility: collapse !important;
-}
-
-#stop-reload-button,
-#home-button,
-#customizableui-special-spring1,
-#customizableui-special-spring2,
-#library-button,
-#downloads-button,
-#sidebar-button,
-.tabs-newtab-button,
-.urlbar-icon.urlbar-page-action,
-.titlebar-placeholder {
-    display: none !important;
-}
-
-#back-button > .toolbarbutton-icon,
-#forward-button > .toolbarbutton-icon {
-    transform: scale(0.9, 0.9) !important;
-    margin-left: -2px !important;
-    margin-right: -2px !important;
-}
-
-#nav-bar-overflow-button {
-    transform: scale(0.9, 0.9) !important;
-}
-
-/* Bottom status panel */
-#statuspanel-label {
-    /* background: #333 !important; */
-    /* color: white !important; */
-    outline: none !important;
-    border: none !important;
-    border-radius: 0 !important;
-}
-
-/* Menu */
-
-#appMenu-fxa-container,
-
-/* Sign in to Sync */
-
-#appMenu-fxa-container+toolbarseparator,
-
-#appMenuRestoreLastSession,
-
-#appMenu-zoom-controls,
-#appMenu-zoom-controls+toolbarseparator,
-#appMenu-edit-controls,
-#appMenu-edit-controls+toolbarseparator,
-#appMenu-library-button,
-#appMenu-customize-button,
-#appMenu-customize-button+toolbarseparator,
-#appMenu-open-file-button,
-#appMenu-save-file-button,
-#appMenu-find-button,
-#appMenu-more-button,
-
-/* URL Bar */
-#urlbar[focused="true"],
-#urlbar:hover,
-.searchbar-textbox:hover {
-    box-shadow: 0 0 0 !important;
-    /*     border: 0 solid transparent !important; */
-}
-
-/* URL Bar */
-#urlbar[focused='true'],
-#urlbar:hover,
-.searchbar-textbox:hover {
-    box-shadow: 0 0 0 !important;
-    border: 0 solid transparent !important;
-}
-
-#urlbar,
-.searchbar-textbox,
-#urlbar:hover,
-.searchbar-textbox:hover {
-    /* background: #333 !important; */
-    /* color: white !important; */
-    padding: 0 10px !important;
-    font-size: 1.1em !important;
-    border-radius: 0 !important;
-    outline: none !important;
-    box-shadow: 0 0 0;
-    border: 0 solid transparent !important;
-    -moz-appearance: none;
-    min-height: 30px !important;
-}
-
-#pageActionButton,
-#pocket-button-box,
-ar-button,
-.autocomplete-history-dropmarker,
-.urlbar-history-dropmarker.urlbar-icon.chromeclass-toolbar-additional,
-#TabsToolbar .titlebar-placeholder[type='pre-tabs'],
-#identity-icon-labels {
-    display: none !important;
+    height: 35px !important;
+    background-color: transparent !important;
 }
 
 /*======================================
