@@ -44,6 +44,7 @@ cask "font-fira-code"
 cask "joplin"
 cask "protonvpn"
 cask "spotify"
+cask "sublime-text"
 
 mas "Amphetamine", id: 937984704
 mas "AudioBookBinder", id: 413969927
