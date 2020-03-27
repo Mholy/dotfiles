@@ -45,6 +45,7 @@ cask "joplin"
 cask "protonvpn"
 cask "spotify"
 cask "sublime-text"
+cask "dozer"
 
 mas "Amphetamine", id: 937984704
 mas "AudioBookBinder", id: 413969927
