@@ -1,1 +1,2 @@
 alias usecode="export EDITOR="/usr/local/bin/code -w -n""
+alias usesubl="export EDITOR="/usr/local/bin/subl -w -n""
