@@ -1,3 +1,4 @@
 alias usecode="export EDITOR="/usr/local/bin/code -w -n""
 alias usesubl="export EDITOR="/usr/local/bin/subl -w -n""
 alias rs="rsync -axHAWXS --numeric-ids --info=progress2"
+alias scaffolder="npx scaff i --from-github ssh://git@gitea.eugeneleto.xyz/sea/scaffolder-templates.git"

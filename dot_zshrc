@@ -1,8 +1,12 @@
 autoload zmv
 export LC_ALL=en_US.UTF-8
+export GOPATH="${HOME}/.go"
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 source ~/.aliases
 eval $(thefuck --alias)
+eval "$(jira --completion-script-zsh)"
 source /usr/local/share/antigen/antigen.zsh
 
 # Load the oh-my-zsh's library.
