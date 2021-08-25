@@ -1,6 +1,5 @@
 [user]
-	name = Eugene Leto
-	email = mholy@protonmail.ch
+	useConfigOnly = true
 [core]
 	editor = vim
 
