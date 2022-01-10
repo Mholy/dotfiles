@@ -137,12 +137,18 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 # }}} End configuration added by Zim install
 
+autoload -U compinit; compinit
+
 export LC_ALL=en_US.UTF-8
-source ~/.aliases
 export EDITOR=vim
 
+source ~/.aliases
+
 # Autojump
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+export FPATH="$FPATH:/opt/local/share/zsh/site-functions/"
+if [ -f /opt/local/etc/profile.d/autojump.sh ]; then
+    . /opt/local/etc/profile.d/autojump.sh
+fi
 
 # C-F for sudo
 add_sudo (){
@@ -186,4 +192,5 @@ export NNN_PLUG='f:finder;o:fzopen;c:fzcd;h:fzhist;j:autojump'
 export GOPATH="${HOME}/.go"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
+# FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
