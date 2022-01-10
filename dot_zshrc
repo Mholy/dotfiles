@@ -1,3 +1,8 @@
+export LC_ALL=en_US.UTF-8
+export EDITOR=vim
+
+source ~/.aliases
+
 # Start configuration added by Zim install {{{
 #
 # User configuration sourced by interactive shells
@@ -137,15 +142,7 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 # }}} End configuration added by Zim install
 
-autoload -U compinit; compinit
-
-export LC_ALL=en_US.UTF-8
-export EDITOR=vim
-
-source ~/.aliases
-
 # Autojump
-export FPATH="$FPATH:/opt/local/share/zsh/site-functions/"
 if [ -f /opt/local/etc/profile.d/autojump.sh ]; then
     . /opt/local/etc/profile.d/autojump.sh
 fi
