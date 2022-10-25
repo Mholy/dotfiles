@@ -1,0 +1,10 @@
+pager = "bat"
+encryption = "age"
+[age]
+    identity = "~/key.txt"
+    recipient = "age19dwad3lymtpkqr5h5m2vsj4mx2a4mufyk7jhle8le0hkxq20adxszyn9vw"
+[diff]
+    pager = "delta --light"
+[merge]
+    command = "nvim"
+    args = ["-d", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Source {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]

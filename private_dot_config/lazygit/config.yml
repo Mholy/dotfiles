@@ -1,22 +1,38 @@
 gui:
+  mainPanelSplitMode: 'vertical'
   theme:
     lightTheme: true
     activeBorderColor:
-      - black
+      - blue
       - bold
     inactiveBorderColor:
-      - grey
+      - black
     optionsTextColor:
-      - blue
+      - black
     selectedLineBgColor:
       - reverse
     selectedRangeBgColor:
-      - blue
+      - reverse
     cherryPickedCommitBgColor:
-      - blue
+      - default
     cherryPickedCommitFgColor:
       - cyan
+    unstagedChangesColor:
+      - red
+    mouseEvents: false
+    showBottomLine: false
 git:
   paging:
     colorArg: always
-    pager: delta --light --paging=never
+    pager: delta --light --paging=never --side-by-side
+  log:
+    showGraph: 'always'
+os:
+  editCommand: 'vim'
+  editCommandTemplate: '{{editor}} +{{line}} {{filename}}'
+  openCommand: 'webstorm -l {{ling}} {{filename}}'
+update:
+  method: 'never'
+reporting: 'off'
+confirmOnQuit: false
+quitOnTopLevelReturn: false

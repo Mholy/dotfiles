@@ -1,0 +1,26 @@
+theme = "solarized_light"
+
+[editor]
+scrolloff   = 10
+line-number = "relative"
+auto-format = false
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.statusline]
+left   = ["mode", "spinner"]
+center = ["file-name"]
+right  = ["diagnostics", "selections", "position",  "file-type"]
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+render    = true
+character = "╎"
+
+[keys.normal]
+"C-space" = "file_picker"

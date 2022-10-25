@@ -39,3 +39,4 @@ zmodule zsh-users/zsh-history-substring-search
 
 zmodule exa
 zmodule fzf
+zmodule homebrew

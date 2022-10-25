@@ -1,7 +1,72 @@
 export LC_ALL=en_US.UTF-8
-export EDITOR=vim
-
+export EDITOR=nvim
 source ~/.aliases
+
+# Mac Ports
+export FPATH="$FPATH:/opt/local/share/zsh/site-functions/"
+
+# Autojump
+if [ -f /opt/local/etc/profile.d/autojump.sh ]; then
+    . /opt/local/etc/profile.d/autojump.sh
+fi
+
+# C-F for sudo
+add_sudo (){
+    BUFFER="sudo $BUFFER"
+    zle -w end-of-line
+}
+zle -N add_sudo
+bindkey "^f" add_sudo
+
+# NNN
+n ()
+{
+    # Block nesting of nnn in subshells
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # To cd on quit only on ^G, remove the "export" as in:
+    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    nnn "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}
+
+export NNN_PLUG='f:finder;o:fzopen;c:fzcd;h:fzhist;j:autojump'
+
+# Go
+export GOPATH="${HOME}/.go"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+
+# FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# NVM
+[ -f /opt/local/share/nvm//init-nvm.sh ] && source /opt/local/share/nvm/init-nvm.sh
+
+# Brew
+export HOMEBREW_NO_ANALYTICS=1
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
 
 # Start configuration added by Zim install {{{
 #
@@ -141,56 +206,3 @@ bindkey '^N' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 # }}} End configuration added by Zim install
-
-# Autojump
-if [ -f /opt/local/etc/profile.d/autojump.sh ]; then
-    . /opt/local/etc/profile.d/autojump.sh
-fi
-
-# C-F for sudo
-add_sudo (){
-    BUFFER="sudo $BUFFER"
-    zle -w end-of-line
-}
-zle -N add_sudo
-bindkey "^f" add_sudo
-
-# NNN
-n ()
-{
-    # Block nesting of nnn in subshells
-    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
-        echo "nnn is already running"
-        return
-    fi
-
-    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
-    # To cd on quit only on ^G, remove the "export" as in:
-    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-
-    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-    # stty start undef
-    # stty stop undef
-    # stty lwrap undef
-    # stty lnext undef
-
-    nnn "$@"
-
-    if [ -f "$NNN_TMPFILE" ]; then
-            . "$NNN_TMPFILE"
-            rm -f "$NNN_TMPFILE" > /dev/null
-    fi
-}
-
-export NNN_PLUG='f:finder;o:fzopen;c:fzcd;h:fzhist;j:autojump'
-
-# Go
-export GOPATH="${HOME}/.go"
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
-
-# FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# NVM
-[ -f /opt/local/share/nvm//init-nvm.sh ] && source /opt/local/share/nvm/init-nvm.sh

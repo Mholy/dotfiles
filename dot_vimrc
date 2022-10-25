@@ -382,6 +382,10 @@ function! VisualSelection(direction, extra_filter) range
     let @" = l:saved_reg
 endfunction
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Custom
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set clipboard=unnamed,unnamedplus
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim Plug
@@ -407,3 +411,7 @@ Plug 'https://github.com/dbakker/vim-paragraph-motion'
 Plug 'https://github.com/michaeljsmith/vim-indent-object'
 
 call plug#end()
+
+" EasyMotion Settings
+map <Leader><Leader>l <Plug>(easymotion-lineforward)
+map <Leader><Leader>h <Plug>(easymotion-linebackward)
