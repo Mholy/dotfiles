@@ -2,14 +2,6 @@ export LC_ALL=en_US.UTF-8
 export EDITOR=nvim
 source ~/.aliases
 
-# Mac Ports
-export FPATH="$FPATH:/opt/local/share/zsh/site-functions/"
-
-# Autojump
-if [ -f /opt/local/etc/profile.d/autojump.sh ]; then
-    . /opt/local/etc/profile.d/autojump.sh
-fi
-
 # C-F for sudo
 add_sudo (){
     BUFFER="sudo $BUFFER"
@@ -17,6 +9,16 @@ add_sudo (){
 }
 zle -N add_sudo
 bindkey "^f" add_sudo
+
+# Mac Ports
+export MAC_PORTS_PREFIX="/opt/local"
+export FPATH="$FPATH:$MAC_PORTS_PREFIX/share/zsh/site-functions/"
+
+# Homebrew
+export HOMEBREW_NO_ANALYTICS=1
+
+# Autojump
+[ -s "$MAC_PORTS_PREFIX/etc/profile.d/autojump.sh" ] && \. "$MAC_PORTS_PREFIX/etc/profile.d/autojump.sh"
 
 # NNN
 n ()
@@ -48,25 +50,17 @@ n ()
 
 export NNN_PLUG='f:finder;o:fzopen;c:fzcd;h:fzhist;j:autojump'
 
-# Go
-export GOPATH="${HOME}/.go"
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
-
 # FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -s "$MAC_PORTS_PREFIX/share/fzf/shell/key-bindings.zsh" ] && source "$MAC_PORTS_PREFIX/share/fzf/shell/key-bindings.zsh"
+[ -s "$MAC_PORTS_PREFIX/share/fzf/shell/completion.zsh" ] && source "$MAC_PORTS_PREFIX/share/fzf/shell/completion.zsh"
 
 # NVM
-[ -f /opt/local/share/nvm//init-nvm.sh ] && source /opt/local/share/nvm/init-nvm.sh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Brew
-export HOMEBREW_NO_ANALYTICS=1
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-if type brew &>/dev/null
-then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-fi
+# Zim
+export ZIM_HOME="${HOME}/.zim"
 
 # Start configuration added by Zim install {{{
 #
@@ -89,7 +83,7 @@ setopt HIST_IGNORE_ALL_DUPS
 #
 
 # Set editor default keymap to emacs (`-e`) or vi (`-v`)
-bindkey -e
+bindkey -v
 
 # Prompt for spelling correction of commands.
 #setopt CORRECT
