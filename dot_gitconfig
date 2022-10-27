@@ -2,8 +2,8 @@
 	useConfigOnly = true
 
 [core]
-	editor = vim
-    pager = delta --light
+	editor = nvim
+    pager = delta
     
 [init]
 	defaultBranch = main
@@ -12,28 +12,18 @@
     template = ~/.gitcommit
 
 [interactive]
-    diffFilter = delta --color-only --features=interactive
+    diffFilter = delta --color-only
 
 [delta]
-    features = decorations
-
-[delta "interactive"]
-    keep-plus-minus-markers = false
-
-[delta "decorations"]
-    commit-decoration-style = blue ol
-    commit-style = raw
-    file-style = omit
-    hunk-header-decoration-style = blue box
-    hunk-header-file-style = red
-    hunk-header-line-number-style = "#067a00"
-    hunk-header-style = file line-number syntax
+    navigate = true
+    light = true
 
 [diff]
-    tool = p4merge
+    tool = smerge
 
 [merge]
-    tool = p4merge
+    tool = smerge
 
-[mergetool "p4merge"]
-    path = "/Applications/p4merge.app/Contents/Resources/launchp4merge"
+[mergetool "smerge"]
+	cmd = smerge mergetool \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
+	trustExitCode = true
