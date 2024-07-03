@@ -1,9 +1,0 @@
-# <type>[optional scope]!: <description> #ABC-123
-# If applied, this commit will...
-#
-# What and why is this change being made?
-#
-# Provide links to any relevant tickets, URLs or other resources
-#BREAKING CHANGE: 
-#Resolves: #123
-#See also: #456 #789
