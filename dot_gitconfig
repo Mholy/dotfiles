@@ -1,29 +1,48 @@
 [user]
 	useConfigOnly = true
+	name = 
+	email = 
 
 [core]
 	editor = nvim
-    pager = delta
+  ; pager = delta
     
 [init]
 	defaultBranch = main
 
-[commit]
-    template = ~/.gitcommit
+[pager]
+  difftool = true
 
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta
 
-[delta]
-    navigate = true
-    light = true
+[push]
+	autoSetupRemote = true
+
+; [delta]
+  ; side-by-side = true
+  ; light = true
 
 [diff]
-    tool = smerge
+  ; tool = nvimdiff
+  tool = difftastic
+  external = difft
+
+[difftool]
+  prompt = false
+
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
 
 [merge]
-    tool = smerge
+  tool = smerge
+  conflictstyle = diff3
+
+[mergetool "nvimdiff"]
+  path = nvim
+  conflictstyle = diff3
+  colorMoved = default
 
 [mergetool "smerge"]
-	cmd = smerge mergetool \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
-	trustExitCode = true
+  cmd = smerge mergetool "$BASE" "$LOCAL" "$REMOTE" -o "$MERGED"
+  trustExitCode = true
