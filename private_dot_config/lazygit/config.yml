@@ -1,38 +1,15 @@
 gui:
-  mainPanelSplitMode: 'vertical'
+  expandFocusedSidePanel: true
   theme:
-    lightTheme: true
-    activeBorderColor:
-      - blue
-      - bold
-    inactiveBorderColor:
-      - black
-    optionsTextColor:
-      - black
     selectedLineBgColor:
       - reverse
     selectedRangeBgColor:
       - reverse
-    cherryPickedCommitBgColor:
-      - default
-    cherryPickedCommitFgColor:
-      - cyan
-    unstagedChangesColor:
-      - red
-    mouseEvents: false
     showBottomLine: false
+    nerdFontsVersion: "3"
 git:
   paging:
     colorArg: always
-    pager: delta --light --paging=never --side-by-side
-  log:
-    showGraph: 'always'
-os:
-  editCommand: 'vim'
-  editCommandTemplate: '{{editor}} +{{line}} {{filename}}'
-  openCommand: 'webstorm -l {{ling}} {{filename}}'
-update:
-  method: 'never'
-reporting: 'off'
-confirmOnQuit: false
-quitOnTopLevelReturn: false
+    # pager: delta --light --paging=never
+    # externalDiffCommand: difft --color=always --display=side-by-side-show-both
+    externalDiffCommand: difft --color=always 
