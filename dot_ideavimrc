@@ -1,18 +1,70 @@
-source ~/.vimrc
+let mapleader=" "
 
-" Remap multiple-cursors shortcuts to match terryma/vim-multiple-cursors
-nmap <C-n> <Plug>NextWholeOccurrence
-xmap <C-n> <Plug>NextWholeOccurrence
-nmap g<C-n> <Plug>NextOccurrence
-xmap g<C-n> <Plug>NextOccurrence
-nmap <C-x> <Plug>SkipOccurrence
-xmap <C-x> <Plug>SkipOccurrence
-nmap <C-p> <Plug>RemoveOccurrence
-xmap <C-p> <Plug>RemoveOccurrence
+set history=100
+set hlsearch
+set ignorecase
+set incsearch
+set smartcase
+set number
+set relativenumber
+set scrolloff=3
+set clipboard=unnamed,unnamedplus,ideaput
+set showmode
 
+" IdeaVim only
+set idearefactormode=select
+set ideajoin
+set ideavimsupport=dialog
+
+" Mappings
+" Disable highlight when <Esc> is pressed
+nnoremap <silent> <Esc> :noh<cr>
+map <Enter> <Action>(EditorSelectWord)
+map <S-Enter> <Action>(EditorUnSelectWord)
+
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Useful mappings for managing tabs
+map <leader>to :tabonly<cr>
+map <leader>tm :tabmove
+" map <Tab> gt
+" map <S-Tab> gT
+
+" Remap VIM 0 to first non-blank character
+" map 0 ^
+
+" Plugins
+" set sneak
+" set NERDTree
+set surround
+" set multiple-cursors
+set commentary
+set ReplaceWithRegister
+set argtextobj
+set exchange
+set textobj-entire
+set highlightedyank
+set vim-paragraph-motion
+set textobj-indent
+set matchit
+
+" vim-multiple-cursors
+" Remap shortcuts to match terryma/vim-multiple-cursors
+" nmap <C-n> <Plug>NextWholeOccurrence
+" xmap <C-n> <Plug>NextWholeOccurrence
+" nmap g<C-n> <Plug>NextOccurrence
+" xmap g<C-n> <Plug>NextOccurrence
+" nmap <C-x> <Plug>SkipOccurrence
+" xmap <C-x> <Plug>SkipOccurrence
+" nmap <C-p> <Plug>RemoveOccurrence
+" xmap <C-p> <Plug>RemoveOccurrence
 " Note that the default <A-n> and g<A-n> shortcuts don't work on Mac due to dead keys.
 " <A-n> is used to enter accented text e.g. ñ
-nmap <S-C-n> <Plug>AllWholeOccurrences
-xmap <S-C-n> <Plug>AllWholeOccurrences
-nmap g<S-C-n> <Plug>AllOccurrences
-xmap g<S-C-n> <Plug>AllOccurrences
+" nmap <S-C-n> <Plug>AllWholeOccurrences
+" xmap <S-C-n> <Plug>AllWholeOccurrences
+" nmap g<S-C-n> <Plug>AllOccurrences
+" xmap g<S-C-n> <Plug>AllOccurrences
