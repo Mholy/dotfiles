@@ -1,6 +1,6 @@
 alias rs="rsync -axHAWXS --numeric-ids --info=progress2"
-alias lg="lazygit --ucd ~/.config/lazygit"
+alias lg="lazygit"
 alias ls="eza"
 alias cat="bat"
-alias nv="neovide --fork"
+alias nv="nvim"
 alias klog-today="klog print --with-totals --today"
