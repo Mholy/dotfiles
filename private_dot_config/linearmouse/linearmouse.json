@@ -1,52 +1,89 @@
 {
-  "$schema" : "https:\/\/app.linearmouse.org\/schema\/0.7.2",
   "schemes" : [
     {
-      "buttons" : {
-        "universalBackForward" : true
+      "scrolling" : {
+        "reverse" : {
+          "horizontal" : false,
+          "vertical" : true
+        },
+        "distance" : 3
+      },
+      "pointer" : {
+        "speed" : 0.1724137931034482688,
+        "acceleration" : 0,
+        "disableAcceleration" : false
       },
       "if" : {
         "device" : {
           "category" : "mouse"
         }
       },
-      "pointer" : {
-        "acceleration" : 0,
-        "speed" : 0.1724137931034482688,
-        "disableAcceleration" : false
-      },
-      "scrolling" : {
-        "reverse" : {
-          "horizontal" : false,
-          "vertical" : true
-        },
-        "distance" : 3
+      "buttons" : {
+        "universalBackForward" : true
       }
     },
     {
-      "buttons" : {
-        "universalBackForward" : true
-      },
       "if" : {
         "device" : {
+          "vendorID" : "0x46d",
           "productName" : "USB Receiver",
-          "productID" : "0xc53f",
           "category" : "mouse",
-          "vendorID" : "0x46d"
+          "productID" : "0xc53f"
         }
+      },
+      "scrolling" : {
+        "modifiers" : {
+          "vertical" : {
+            "control" : {
+              "type" : "zoom"
+            },
+            "command" : {
+              "scale" : 4,
+              "type" : "changeSpeed"
+            },
+            "shift" : {
+              "type" : "auto"
+            }
+          },
+          "horizontal" : {
+            "shift" : {
+              "type" : "auto"
+            }
+          }
+        },
+        "distance" : 3,
+        "reverse" : {
+          "vertical" : true,
+          "horizontal" : false
+        }
+      },
+      "buttons" : {
+        "mappings" : [
+          {
+            "button" : 3,
+            "control" : false,
+            "option" : false,
+            "shift" : false,
+            "command" : false,
+            "action" : "appExpose"
+          },
+          {
+            "action" : "missionControl",
+            "shift" : false,
+            "button" : 4,
+            "option" : false,
+            "control" : false,
+            "command" : false
+          }
+        ],
+        "universalBackForward" : true
       },
       "pointer" : {
         "acceleration" : 0,
-        "speed" : 0.1724137931034482688,
+        "speed" : 0.22,
         "disableAcceleration" : false
-      },
-      "scrolling" : {
-        "reverse" : {
-          "horizontal" : false,
-          "vertical" : true
-        },
-        "distance" : 3
       }
     }
-  ]
+  ],
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.0"
 }
