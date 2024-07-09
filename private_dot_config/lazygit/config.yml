@@ -1,15 +1,16 @@
 gui:
   expandFocusedSidePanel: true
-  theme:
-    selectedLineBgColor:
-      - reverse
-    selectedRangeBgColor:
-      - reverse
-    showBottomLine: false
-    nerdFontsVersion: "3"
+  # theme:
+  #   selectedLineBgColor:
+  #     - reverse
+  #   selectedRangeBgColor:
+  #     - reverse
+  #   showBottomLine: false
+  #   nerdFontsVersion: "3"
+os:
+  editPreset: 'nvim-remote'
 git:
   paging:
     colorArg: always
-    # pager: delta --light --paging=never
     # externalDiffCommand: difft --color=always --display=side-by-side-show-both
     externalDiffCommand: difft --color=always 
