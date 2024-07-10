@@ -18,6 +18,9 @@ if g.neovide then
   g.neovide_padding_bottom = 0
   g.neovide_padding_right = 0
   g.neovide_padding_left = 0
+  g.neovide_floating_blur_amount_x = 0
+  g.neovide_floating_blur_amount_y = 0
+  g.neovide_floating_shadow = false
 
   -- Functionality
   g.neovide_refresh_rate = 120
@@ -27,8 +30,8 @@ if g.neovide then
   g.neovide_input_use_logo = 1
 
   -- Cursor settings
-  g.neovide_cursor_animate_command_line = false
-  g.neovide_cursor_vfx_mode = "sonicboom"
+  -- g.neovide_cursor_animate_command_line = false
+  g.neovide_cursor_vfx_mode = "pixiedust"
 end
 
 -- Auto commands
@@ -63,19 +66,19 @@ local wezterm_toggle_padding = function(enable)
   vim.cmd(command)
 end
 
-autocmd("VimEnter", {
-  callback = function()
-    wezterm_toggle_padding(true)
-  end,
-  desc = "Add WezTerm padding when entering Neovim",
-})
+-- autocmd("VimEnter", {
+--   callback = function()
+--     wezterm_toggle_padding(true)
+--   end,
+--   desc = "Add WezTerm padding when entering Neovim",
+-- })
 
-autocmd("VimLeavePre", {
-  callback = function()
-    wezterm_toggle_padding(false)
-  end,
-  desc = "Restore WezTerm padding when leaving Neovim",
-})
+-- autocmd("VimLeavePre", {
+--   callback = function()
+--     wezterm_toggle_padding(false)
+--   end,
+--   desc = "Restore WezTerm padding when leaving Neovim",
+-- })
 
 autocmd("BufReadPost", {
   pattern = "*",

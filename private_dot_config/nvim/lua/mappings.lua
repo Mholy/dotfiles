@@ -11,6 +11,7 @@ nomap("n", "<A-v>")
 nomap("n", "<A-h>")
 
 -- Old mapping syntax
+
 local M = {}
 
 M.general = {
@@ -115,33 +116,6 @@ M.autosession = {
   },
 }
 
-M.terminal = {
-  n = {
-    ["<leader>lg"] = {
-      function()
-        require("nvchad.term").toggle {
-          pos = "float",
-          id = "lazyGitTerm",
-          cmd = "lazygit",
-        }
-      end,
-      "Lazygit",
-    },
-    ["<leader>th"] = {
-      function()
-        require("nvchad.term").new { pos = "sp" }
-      end,
-      "New horizontal",
-    },
-    ["<leader>tv"] = {
-      function()
-        require("nvchad.term").new { pos = "vsp" }
-      end,
-      "New vertical",
-    },
-  },
-}
-
 for group, modes in pairs(M) do
   for mode, maps in pairs(modes) do
     for key, val in pairs(maps) do
@@ -149,3 +123,22 @@ for group, modes in pairs(M) do
     end
   end
 end
+
+-- New mapping syntax
+
+map({ "n", "t" }, "<leader>th", function()
+  require("nvchad.term").toggle { pos = "sp", id = "hToggleTerm" }
+end, { desc = "terminal toggle horizontal term" })
+
+map({ "n", "t" }, "<leader>tv", function()
+  require("nvchad.term").toggle { pos = "vsp", id = "vToggleTerm" }
+end, { desc = "terminal toggle vertical term" })
+
+map({ "n", "t" }, "<leader>lg", function()
+  require("nvchad.term").toggle {
+    pos = "vsp",
+    id = "lgToggleTerm",
+    size = 0.9,
+    cmd = "lazygit",
+  }
+end, { desc = "terminal toggle lazygit term" })

@@ -67,7 +67,7 @@ M.term = {
   -- this will highlight the term window differently
   hl = "Normal:term,WinSeparator:WinSeparator",
 
-  sizes = { sp = 0.3, vsp = 0.9 },
+  sizes = { sp = 0.3, vsp = 0.3 },
   float = {
     relative = "editor",
     width = 0.9,
@@ -76,8 +76,8 @@ M.term = {
     col = 0.05,
     border = "single",
   },
-  horizontal = { location = "rightbelow", split_ratio = 0.3 },
-  vertical = { location = "rightbelow", split_ratio = 10 },
+  -- horizontal = { location = "rightbelow", size = 0.3 },
+  -- vertical = { location = "rightbelow", size = 0.3 },
   shell = vim.o.shell,
 }
 

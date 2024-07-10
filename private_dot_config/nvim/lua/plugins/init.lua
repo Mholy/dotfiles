@@ -58,13 +58,18 @@ return {
         "html",
         "css",
         "scss",
+        "styled",
         "javascript",
         "typescript",
         "tsx",
         "vue",
+        "jsdoc",
         "markdown",
         "markdown_inline",
         "graphql",
+        "diff",
+        "json",
+        "yaml",
       },
       indent = {
         enable = true,
@@ -139,6 +144,7 @@ return {
     },
     config = function(_, opts)
       local t = require "telescope"
+      local builtin = require "telescope.builtin"
       local z_utils = require "telescope._extensions.zoxide.utils"
 
       opts.extensions.zoxide = {
@@ -164,7 +170,7 @@ return {
           ["<C-f>"] = {
             keepinsert = true,
             action = function(selection)
-              t.builtin.find_files { cwd = selection.path }
+              builtin.find_files { cwd = selection.path }
             end,
           },
         },
@@ -248,4 +254,6 @@ return {
       }
     end,
   },
+
+  { "typicode/bg.nvim", lazy = false },
 }

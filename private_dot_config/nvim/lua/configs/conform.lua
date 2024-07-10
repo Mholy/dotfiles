@@ -16,6 +16,13 @@ local options = {
     ["*"] = { "codespell" },
   },
 
+  formatters = {
+    injected = {
+      lang_to_ext = {
+        css = "css",
+      }
+    }
+  },
   -- format_on_save = {
   --   -- These options will be passed to conform.format()
   --   timeout_ms = 500,
