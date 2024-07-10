@@ -243,3 +243,8 @@ run = ['move-node-to-workspace X']
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
 run = ['move-node-to-workspace Z']
+
+# Float
+[[on-window-detected]]
+if.app-name-regex-substring = 'amnezia'
+run = ['layout floating']
