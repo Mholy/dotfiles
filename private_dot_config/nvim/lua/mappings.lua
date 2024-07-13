@@ -59,7 +59,7 @@ M.tabufline = {
 
 M.oil = {
   n = {
-    ["<leader>e"] = { "<cmd> Oil --float <CR>", "Open floating oil" },
+    ["<leader>e"] = { "<cmd> Oil <CR>", "Open oil" },
   },
 }
 
