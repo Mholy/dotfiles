@@ -90,7 +90,7 @@ eval "$(zoxide init --cmd j zsh)"
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 
 # bat
-export BAT_THEME="base16"
+export BAT_THEME="ansi"
 # if [[ "$is_dark_mode" == "Dark" ]]; then
 #   export BAT_THEME
 # else
