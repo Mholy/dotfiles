@@ -1,14 +1,21 @@
 # general
-alias ..="cd .."
-alias ...="cd ../.."
+alias ..="j .."
+alias ...="j ../.."
 
 alias nv="nvim"
 alias nvd="neovide --fork --no-tabs"
 
+alias klog-today="klog print --with-totals --today"
+
 # git
 alias lg="lazygit"
-
-alias klog-today="klog print --with-totals --today"
+alias gs="git status"
+alias ga="git add"
+alias gc="git commit"
+alias gp="git push"
+alias gpa="git push --all"
+alias gpl="git pull"
+alias gpla="git pull --all"
 
 # files
 alias cat="bat"
