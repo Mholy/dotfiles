@@ -126,13 +126,23 @@ end
 
 -- New mapping syntax
 
+-- Term
 map({ "n", "t" }, "<leader>th", function()
   require("nvchad.term").toggle { pos = "sp", id = "hToggleTerm" }
-end, { desc = "terminal toggle horizontal term" })
+end, { desc = "Terminal toggle horizontal term" })
 
 map({ "n", "t" }, "<leader>tv", function()
   require("nvchad.term").toggle { pos = "vsp", id = "vToggleTerm" }
-end, { desc = "terminal toggle vertical term" })
+end, { desc = "Terminal toggle vertical term" })
+
+-- Git
+map({"n"}, "]c", function()
+  require("gitsigns").next_hunk()
+end, { desc = "Git next hunk" })
+
+map({"n"}, "[c", function()
+  require("gitsigns").prev_hunk()
+end, { desc = "Git nrev hunk" })
 
 map({ "n", "t" }, "<leader>lg", function()
   require("nvchad.term").toggle {
