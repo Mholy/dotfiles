@@ -21,6 +21,8 @@ M.general = {
     ["<leader>tt"] = {
       function()
         require("base46").toggle_theme()
+        local bgUpdate = string.format('doautocmd %s', 'ColorScheme')
+        vim.cmd(bgUpdate)
       end,
       "Toggle theme",
     },
