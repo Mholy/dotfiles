@@ -105,13 +105,6 @@ for i = 1, 9 do
   }
 end
 
-M.telescope = {
-  n = {
-    ["<leader>sl"] = { "<cmd> Telescope session-lens <CR>", "Find sessions" },
-    ["<leader>z"] = { "<cmd> Telescope zoxide list <CR>", "Find files" },
-  },
-}
-
 M.autosession = {
   n = {
     ["<leader>ss"] = { ":SessionSave ", "Save session" },
@@ -141,6 +134,13 @@ end, { desc = "Terminal toggle vertical term" })
 map({"n"}, "]c", function()
   require("gitsigns").next_hunk()
 end, { desc = "Git next hunk" })
+
+
+-- Telescope
+map({ "n"}, "<leader>sl", "<cmd> Telescope session-lens <CR>", { desc = "Telescope find sessions" })
+map({ "n"}, "<leader>z", "<cmd> Telescope zoxide list <CR>", { desc = "Telescope jump to path" })
+map({ "n"}, "<leader>fr", "<cmd> Telescope resume <CR>", { desc = "Telescope resume" })
+
 
 map({"n"}, "[c", function()
   require("gitsigns").prev_hunk()
