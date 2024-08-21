@@ -8,7 +8,7 @@ local stbufnr = function()
 end
 
 M.ui = {
-  theme = "penumbra_dark",
+  theme = "nano-light",
   theme_toggle = { "penumbra_dark", "nano-light" },
   hl_override = highlights.hl_override,
   hl_add = highlights.hl_add,
