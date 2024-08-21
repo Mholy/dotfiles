@@ -206,9 +206,13 @@ X = 'built-in.*'
 # check-further-callbacks = true                         # Check further callbacks. If not specified, the default value is false
 # run = ['layout float', 'move-node-to-workspace Z']     # The callback itself
 
-# I workspace
+# 1 workspace
 [[on-window-detected]]
 if.app-id = 'com.TickTick.task.mac'
+run = ['move-node-to-workspace 1']
+
+[[on-window-detected]]
+if.app-id = 'com.heynote.app'
 run = ['move-node-to-workspace 1']
 
 # U workspace
