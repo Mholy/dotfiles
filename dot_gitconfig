@@ -5,38 +5,53 @@
 
 [core]
 	editor = nvim
-  ; pager = delta
+  pager = delta
     
 [init]
 	defaultBranch = main
 
-[pager]
-  difftool = true
+; [pager]
+  ; difftool = true
 
 [interactive]
-  diffFilter = delta
+  diffFilter = delta --color-only --features=interactive
 
 [push]
 	autoSetupRemote = true
 
-; [delta]
-  ; side-by-side = true
-  ; light = true
-
 [diff]
   ; tool = nvimdiff
   tool = difftastic
-  external = difft
 
 [difftool]
   prompt = false
 
-[difftool "difftastic"]
-  cmd = difft "$LOCAL" "$REMOTE"
-
 [merge]
   tool = smerge
   conflictstyle = diff3
+
+[delta]
+  features = decorations
+  paging = never
+  ; side-by-side = true
+  ; light = true
+
+[delta "interactive"]
+  keep-plus-minus-markers = false
+
+[delta "decorations"]
+  commit-decoration-style = auto ol
+  file-style = omit
+  hunk-header-decoration-style = auto box
+  hunk-header-file-style = auto
+  hunk-header-line-number-style = auto
+  hunk-header-style = file line-number syntax
+
+[difftool "delta"]
+	cmd = delta --color-only --features=interactive
+
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
 
 [mergetool "nvimdiff"]
   path = nvim
