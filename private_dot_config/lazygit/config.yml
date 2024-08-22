@@ -14,3 +14,5 @@ git:
     colorArg: always
     # externalDiffCommand: difft --color=always --display=side-by-side-show-both
     externalDiffCommand: difft --color=always 
+    # pager: delta --paging=never
+    # useConfig: true
