@@ -150,6 +150,5 @@ end, { desc = "Git nrev hunk" })
 
 -- Telescope
 map({ "n"}, "<leader>sl", "<cmd> Telescope session-lens <CR>", { desc = "Telescope find sessions" })
-map({ "n"}, "<leader>z", "<cmd> Telescope zoxide list <CR>", { desc = "Telescope jump to path" })
 map({ "n"}, "<leader>fr", "<cmd> Telescope resume <CR>", { desc = "Telescope resume" })
 
