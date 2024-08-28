@@ -130,22 +130,6 @@ map({ "n", "t" }, "<leader>tv", function()
   require("nvchad.term").toggle { pos = "vsp", id = "vToggleTerm" }
 end, { desc = "Terminal toggle vertical term" })
 
--- Git
-map({"n"}, "]c", function()
-  require("gitsigns").next_hunk()
-end, { desc = "Git next hunk" })
-
-
--- Telescope
-map({ "n"}, "<leader>sl", "<cmd> Telescope session-lens <CR>", { desc = "Telescope find sessions" })
-map({ "n"}, "<leader>z", "<cmd> Telescope zoxide list <CR>", { desc = "Telescope jump to path" })
-map({ "n"}, "<leader>fr", "<cmd> Telescope resume <CR>", { desc = "Telescope resume" })
-
-
-map({"n"}, "[c", function()
-  require("gitsigns").prev_hunk()
-end, { desc = "Git nrev hunk" })
-
 map({ "n", "t" }, "<leader>lg", function()
   require("nvchad.term").toggle {
     pos = "vsp",
@@ -153,4 +137,19 @@ map({ "n", "t" }, "<leader>lg", function()
     size = 0.9,
     cmd = "lazygit",
   }
-end, { desc = "terminal toggle lazygit term" })
+end, { desc = "Terminal toggle lazygit term" })
+
+-- Git
+map({"n"}, "]c", function()
+  require("gitsigns").next_hunk()
+end, { desc = "Git next hunk" })
+
+map({"n"}, "[c", function()
+  require("gitsigns").prev_hunk()
+end, { desc = "Git nrev hunk" })
+
+-- Telescope
+map({ "n"}, "<leader>sl", "<cmd> Telescope session-lens <CR>", { desc = "Telescope find sessions" })
+map({ "n"}, "<leader>z", "<cmd> Telescope zoxide list <CR>", { desc = "Telescope jump to path" })
+map({ "n"}, "<leader>fr", "<cmd> Telescope resume <CR>", { desc = "Telescope resume" })
+

@@ -7,13 +7,15 @@ local stbufnr = function()
   return vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
 end
 
-M.ui = {
+M.base46 = {
   theme = "nano-light",
   theme_toggle = { "penumbra_dark", "nano-light" },
+  changed_themes = highlights.changed_themes,
   hl_override = highlights.hl_override,
   hl_add = highlights.hl_add,
-  changed_themes = highlights.changed_themes,
+}
 
+M.ui = {
   tabufline = {
     -- enabled = false,
     order = { "buffers", "tabs" },
@@ -30,21 +32,6 @@ M.ui = {
 
     order = { "mode", "file", "session", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd" },
     modules = {
-      git = function()
-        if not vim.b[stbufnr()].gitsigns_head or vim.b[stbufnr()].gitsigns_git_status then
-          return ""
-        end
-
-        local git_status = vim.b[stbufnr()].gitsigns_status_dict
-
-        local added = (git_status.added and git_status.added ~= 0) and ("  " .. git_status.added) or ""
-        local changed = (git_status.changed and git_status.changed ~= 0) and ("  " .. git_status.changed) or ""
-        local removed = (git_status.removed and git_status.removed ~= 0) and ("  " .. git_status.removed) or ""
-        -- branch_name will be displayed as session name
-        -- local branch_name = " " .. git_status.head
-
-        return " " .. added .. changed .. removed
-      end,
       session = function()
         local session = require "auto-session.lib"
 
