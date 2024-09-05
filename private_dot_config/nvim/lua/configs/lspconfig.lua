@@ -4,15 +4,12 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 local lspconfig = require "lspconfig"
 
-local util = lspconfig.util
-
 local servers = {
   "vtsls",
   "html",
   "cssls",
   "css_variables",
   "vuels",
-  "graphql",
   "typos_lsp",
 }
 
@@ -50,6 +47,12 @@ lspconfig.cssmodules_ls.setup {
     on_attach(client)
   end,
   capabilities = capabilities,
+}
+
+lspconfig.graphql.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "graphql", "typescriptreact", "javascriptreact", "javascript", "typescript" },
 }
 
 -- lspconfig.vtsls.setup({

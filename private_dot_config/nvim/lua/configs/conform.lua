@@ -12,6 +12,7 @@ local options = {
     scss = prettier,
     json = prettier,
     yaml = prettier,
+    yml = prettier,
     markdown = prettier,
     markdown_inline = prettier,
     graphql = prettier,

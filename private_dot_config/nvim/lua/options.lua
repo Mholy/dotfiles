@@ -1,10 +1,12 @@
 require "nvchad.options"
 
 local o = vim.o
+local g = vim.g
 o.cursorlineopt = "both" -- to enable cursorline!
 o.relativenumber = true
 o.scrolloff = 5
 o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+g.mapleader = " "
 
 local g = vim.g
 -- Hello, is this Neovide?

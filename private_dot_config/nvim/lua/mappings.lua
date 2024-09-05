@@ -21,7 +21,7 @@ M.general = {
     ["<leader>tt"] = {
       function()
         require("base46").toggle_theme()
-        local bgUpdate = string.format('doautocmd %s', 'ColorScheme')
+        local bgUpdate = string.format("doautocmd %s", "ColorScheme")
         vim.cmd(bgUpdate)
       end,
       "Toggle theme",
@@ -122,15 +122,15 @@ end
 -- New mapping syntax
 
 -- Term
-map({ "n", "t" }, "<leader>th", function()
-  require("nvchad.term").toggle { pos = "sp", id = "hToggleTerm" }
-end, { desc = "Terminal toggle horizontal term" })
+map({ "n" }, "<leader>th", function()
+  require("nvchad.term").new { pos = "sp" }
+end, { desc = "Terminal horizontal" })
 
-map({ "n", "t" }, "<leader>tv", function()
-  require("nvchad.term").toggle { pos = "vsp", id = "vToggleTerm" }
-end, { desc = "Terminal toggle vertical term" })
+map({ "n" }, "<leader>tv", function()
+  require("nvchad.term").new { pos = "vsp" }
+end, { desc = "Terminal vertical" })
 
-map({ "n", "t" }, "<leader>lg", function()
+map({ "n" }, "<leader>lg", function()
   require("nvchad.term").toggle {
     pos = "vsp",
     id = "lgToggleTerm",
@@ -140,15 +140,14 @@ map({ "n", "t" }, "<leader>lg", function()
 end, { desc = "Terminal toggle lazygit term" })
 
 -- Git
-map({"n"}, "]c", function()
+map({ "n" }, "]c", function()
   require("gitsigns").next_hunk()
 end, { desc = "Git next hunk" })
 
-map({"n"}, "[c", function()
+map({ "n" }, "[c", function()
   require("gitsigns").prev_hunk()
 end, { desc = "Git nrev hunk" })
 
 -- Telescope
-map({ "n"}, "<leader>sl", "<cmd> Telescope session-lens <CR>", { desc = "Telescope find sessions" })
-map({ "n"}, "<leader>fr", "<cmd> Telescope resume <CR>", { desc = "Telescope resume" })
-
+map({ "n" }, "<leader>sl", "<cmd> Telescope session-lens <CR>", { desc = "Telescope find sessions" })
+map({ "n" }, "<leader>fr", "<cmd> Telescope resume <CR>", { desc = "Telescope resume" })
