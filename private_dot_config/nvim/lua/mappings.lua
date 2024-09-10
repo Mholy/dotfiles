@@ -122,13 +122,17 @@ end
 -- New mapping syntax
 
 -- Term
+map("t", "<C-q>", function()
+  require("nvchad.tabufline").close_buffer()
+end, { desc = "terminal close" })
+
 map({ "n" }, "<leader>th", function()
-  require("nvchad.term").new { pos = "sp" }
-end, { desc = "Terminal horizontal" })
+  require("nvchad.term").toggle { pos = "sp", id = "hToggleTerm" }
+end, { desc = "Terminal toggle horizontal" })
 
 map({ "n" }, "<leader>tv", function()
-  require("nvchad.term").new { pos = "vsp" }
-end, { desc = "Terminal vertical" })
+  require("nvchad.term").toggle { pos = "vsp", id = "vToggleTerm" }
+end, { desc = "Terminal toggle vertical" })
 
 map({ "n" }, "<leader>lg", function()
   require("nvchad.term").toggle {
