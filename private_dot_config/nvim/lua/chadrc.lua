@@ -68,4 +68,25 @@ M.term = {
   shell = vim.o.shell,
 }
 
+M.mason = {
+  pkgs = {
+    -- lua
+    "lua-language-server",
+    "stylua",
+
+    -- web
+    "html-lsp",
+    "css-lsp",
+    "css-variables-language-server",
+    "cssmodules-language-server",
+    "vtsls",
+    "vue-language-server",
+    "eslint-lsp",
+    "prettier",
+    "prettierd",
+
+    "typos-lsp",
+  },
+}
+
 return M

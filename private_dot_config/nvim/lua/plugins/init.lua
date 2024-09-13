@@ -25,30 +25,6 @@ return {
   },
 
   {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        -- lua
-        "lua-language-server",
-        "stylua",
-
-        -- web
-        "html-lsp",
-        "css-lsp",
-        "css-variables-language-server",
-        "cssmodules-language-server",
-        "vtsls",
-        "vue-language-server",
-        "eslint-lsp",
-        "prettier",
-        "prettierd",
-
-        "typos-lsp",
-      },
-    },
-  },
-
-  {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
