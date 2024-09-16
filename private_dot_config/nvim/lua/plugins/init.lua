@@ -155,8 +155,7 @@ return {
           border = "single",
         },
         win_options = {
-          -- winbar = "%!v:lua.get_oil_winbar()",
-          winbar = "test",
+          winbar = "%!v:lua.get_oil_winbar()",
         },
       }
     end,
