@@ -9,6 +9,7 @@ nomap("n", "<leader>v")
 nomap("n", "<C-n>")
 nomap("n", "<A-v>")
 nomap("n", "<A-h>")
+nomap("n", "<leader>x")
 
 -- Old mapping syntax
 
@@ -25,17 +26,6 @@ M.general = {
         vim.cmd(bgUpdate)
       end,
       "Toggle theme",
-    },
-  },
-}
-
-M.buffer = {
-  n = {
-    ["<leader>X"] = {
-      function()
-        require("nvchad.tabufline").closeAllBufs()
-      end,
-      "Close all",
     },
   },
 }
@@ -121,10 +111,21 @@ end
 
 -- New mapping syntax
 
--- Term
-map("t", "<C-q>", function()
+-- Buffers
+map({ "n", "t" }, "<C-x>", function()
   require("nvchad.tabufline").close_buffer()
-end, { desc = "terminal close" })
+end, { desc = "buffer close" })
+
+map({ "n", "t" }, "<C-x>", function()
+  require("nvchad.tabufline").close_buffer()
+end, { desc = "buffer close" })
+
+map({ "n" }, "X", function()
+  require("nvchad.tabufline").closeAllBufs()
+end, { desc = "buffer close" })
+
+-- Term
+map("t", "<C-z>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
 
 map({ "n" }, "<leader>th", function()
   require("nvchad.term").toggle { pos = "sp", id = "hToggleTerm" }

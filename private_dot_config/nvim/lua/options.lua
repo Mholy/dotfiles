@@ -98,4 +98,17 @@ autocmd("BufReadPost", {
 })
 
 -- User commands
--- local usercmd = vim.api.nvim_create_user_command
+local usercmd = vim.api.nvim_create_user_command
+
+usercmd("Termh", function()
+  require("nvchad.term").new { pos = "sp" }
+end, {
+  desc = "Open a new horizontal terminal",
+})
+
+
+usercmd("Termv", function()
+  require("nvchad.term").new { pos = "vsp" }
+end, {
+  desc = "Open a new vertical terminal",
+})

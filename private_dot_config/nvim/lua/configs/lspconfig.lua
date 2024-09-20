@@ -11,6 +11,7 @@ local servers = {
   "css_variables",
   "vuels",
   "typos_lsp",
+  "tailwindcss",
 }
 
 -- lsps with default config

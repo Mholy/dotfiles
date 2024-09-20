@@ -84,6 +84,7 @@ M.mason = {
     "eslint-lsp",
     "prettier",
     "prettierd",
+    "tailwindcss-language-server",
 
     "typos-lsp",
   },
