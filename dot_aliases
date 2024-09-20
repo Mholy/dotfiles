@@ -5,7 +5,7 @@ alias ...="j ../.."
 alias nv="nvim"
 alias nvd="neovide --fork --no-tabs"
 
-alias klog-today="klog print --with-totals --today"
+alias kt="klog print --with-totals --today"
 
 # git
 alias lg="lazygit"
