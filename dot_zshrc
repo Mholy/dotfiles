@@ -70,3 +70,11 @@ export BAT_THEME="ansi"
 
 # klog
 source <(klog completion -c zsh)
+
+# aider
+
+if [[ "$is_dark_mode" == "Dark" ]]; then
+  export AIDER_DARK_MODE=true
+else
+  export AIDER_DARK_MODE=false
+fi
