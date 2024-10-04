@@ -116,10 +116,6 @@ map({ "n", "t" }, "<C-x>", function()
   require("nvchad.tabufline").close_buffer()
 end, { desc = "buffer close" })
 
-map({ "n", "t" }, "<C-x>", function()
-  require("nvchad.tabufline").close_buffer()
-end, { desc = "buffer close" })
-
 map({ "n" }, "X", function()
   require("nvchad.tabufline").closeAllBufs()
 end, { desc = "buffer close" })
