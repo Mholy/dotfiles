@@ -6,6 +6,7 @@ alias nv="nvim"
 alias nvd="neovide --fork --no-tabs"
 
 alias kt="klog print --with-totals --today"
+alias ky="klog print --with-totals --yesterday"
 
 # git
 alias lg="lazygit"
@@ -30,3 +31,6 @@ alias ll='eza -lbhHgUma --time-style=long-iso --git --color-scale'  # all list
 alias lx='eza -lbhHgUma@ --time-style=long-iso --git --color-scale' # all + extended list
 alias lS='eza -1'                                                      # one column, just names
 alias lt='eza --tree --level=2'
+
+# brew
+alias brew-uses="brew uses --installed"
