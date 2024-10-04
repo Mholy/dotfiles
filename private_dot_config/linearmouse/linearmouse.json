@@ -1,48 +1,46 @@
 {
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.0",
   "schemes" : [
     {
       "scrolling" : {
+        "distance" : 3,
         "reverse" : {
-          "horizontal" : false,
-          "vertical" : true
-        },
-        "distance" : 3
-      },
-      "pointer" : {
-        "speed" : 0.1724137931034482688,
-        "acceleration" : 0,
-        "disableAcceleration" : false
+          "vertical" : true,
+          "horizontal" : false
+        }
       },
       "if" : {
         "device" : {
           "category" : "mouse"
         }
       },
+      "pointer" : {
+        "acceleration" : 0,
+        "speed" : 0.1724137931034482688,
+        "disableAcceleration" : false
+      },
       "buttons" : {
         "universalBackForward" : true
       }
     },
     {
-      "if" : {
-        "device" : {
-          "vendorID" : "0x46d",
-          "productName" : "USB Receiver",
-          "category" : "mouse",
-          "productID" : "0xc53f"
-        }
-      },
       "scrolling" : {
+        "reverse" : {
+          "vertical" : true,
+          "horizontal" : false
+        },
+        "distance" : 3,
         "modifiers" : {
           "vertical" : {
-            "control" : {
-              "type" : "zoom"
+            "shift" : {
+              "type" : "auto"
             },
             "command" : {
               "scale" : 4,
               "type" : "changeSpeed"
             },
-            "shift" : {
-              "type" : "auto"
+            "control" : {
+              "type" : "zoom"
             }
           },
           "horizontal" : {
@@ -50,40 +48,57 @@
               "type" : "auto"
             }
           }
-        },
-        "distance" : 3,
-        "reverse" : {
-          "vertical" : true,
-          "horizontal" : false
         }
       },
       "buttons" : {
+        "universalBackForward" : true,
         "mappings" : [
           {
-            "button" : 3,
-            "control" : false,
             "option" : false,
-            "shift" : false,
             "command" : false,
-            "action" : "appExpose"
+            "action" : "appExpose",
+            "shift" : false,
+            "control" : false,
+            "button" : 3
           },
           {
-            "action" : "missionControl",
-            "shift" : false,
-            "button" : 4,
+            "command" : false,
             "option" : false,
+            "shift" : false,
             "control" : false,
-            "command" : false
+            "action" : "missionControl",
+            "button" : 4
           }
-        ],
-        "universalBackForward" : true
+        ]
       },
       "pointer" : {
         "acceleration" : 0,
-        "speed" : 0.22,
-        "disableAcceleration" : false
+        "disableAcceleration" : false,
+        "speed" : 0.22
+      },
+      "if" : {
+        "device" : {
+          "vendorID" : "0x46d",
+          "category" : "mouse",
+          "productName" : "USB Receiver",
+          "productID" : "0xc53f"
+        }
+      }
+    },
+    {
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 1
+        }
+      },
+      "if" : {
+        "device" : {
+          "vendorID" : "0x5ac",
+          "productID" : "0x281",
+          "productName" : "Apple Internal Keyboard \/ Trackpad",
+          "category" : "trackpad"
+        }
       }
     }
-  ],
-  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.0"
+  ]
 }
