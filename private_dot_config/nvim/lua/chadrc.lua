@@ -8,8 +8,8 @@ local stbufnr = function()
 end
 
 M.base46 = {
-  theme = "nano-light",
-  theme_toggle = { "penumbra_dark", "nano-light" },
+  theme = "chadtain",
+  theme_toggle = { "chadtain", "flexoki-light" },
   changed_themes = highlights.changed_themes,
   hl_override = highlights.hl_override,
   hl_add = highlights.hl_add,
