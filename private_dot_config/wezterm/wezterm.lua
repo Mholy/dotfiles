@@ -19,11 +19,11 @@ end
 
 function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
-		return "Ashes (dark) (terminal.sexy)"
-	-- return "Zenburn (Gogh)"
-	-- return "Liquid Carbon (Gogh)"
+		-- return "Ashes (dark) (terminal.sexy)"
+    return "Solarized (dark) (terminal.sexy)"
 	else
-		return "Ashes (light) (terminal.sexy)"
+		-- return "Ashes (light) (terminal.sexy)"
+    return "Solarized (light) (terminal.sexy)"
 	end
 end
 
