@@ -197,12 +197,13 @@ alt-shift-l = ['join-with right', 'mode main']
 [workspace-to-monitor-force-assignment]
 1 = ['mi', 'built-in']
 2 = ['built-in', 'mi']
-3 = 'sidecar'
+3 = ['sidecar', 'built-in']
+D = ['mi', 'built-in']
+N = ['built-in', 'mi']
+U = ['built-in', 'mi']
 W = ['mi', 'built-in']
 X = ['built-in', 'mi']
-N = ['mi', 'built-in']
-U = ['built-in', 'mi']
-D = ['mi', 'built-in']
+Z = ['mi', 'built-in']
 
 # Callbacks
 # [[on-window-detected]]
@@ -249,10 +250,6 @@ run = ['move-node-to-workspace W']
 
 [[on-window-detected]]
 if.app-id = 'org.chromium.Chromium'
-run = ['move-node-to-workspace W']
-
-[[on-window-detected]]
-if.app-id = 'org.mozilla.firefoxdeveloperedition'
 run = ['move-node-to-workspace W']
 
 [[on-window-detected]]
