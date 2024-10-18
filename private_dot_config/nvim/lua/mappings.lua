@@ -3,13 +3,9 @@ require "nvchad.mappings"
 local map = vim.keymap.set
 local nomap = vim.keymap.del
 
-nomap("n", "<leader>b")
-nomap("n", "<leader>h")
-nomap("n", "<leader>v")
-nomap("n", "<C-n>")
+-- Window  manager conflicts
 nomap("n", "<A-v>")
 nomap("n", "<A-h>")
-nomap("n", "<leader>x")
 
 -- Old mapping syntax
 
@@ -36,8 +32,10 @@ map({ "n" }, "<leader>tt", function()
 end)
 
 -- Buffers
+nomap("n", "<leader>b")
 map({ "n" }, "<leader>bn", "<cmd> new <CR>", { desc = "buffer new" })
 
+nomap("n", "<leader>x")
 map({ "n", "t" }, "<C-x>", function()
   require("nvchad.tabufline").close_buffer()
 end, { desc = "buffer close" })
@@ -53,6 +51,7 @@ map({ "n" }, "<leader>th", function()
   require("nvchad.term").toggle { pos = "sp", id = "hToggleTerm" }
 end, { desc = "terminal toggle horizontal" })
 
+nomap("n", "<leader>v")
 map({ "n" }, "<leader>tv", function()
   require("nvchad.term").toggle { pos = "vsp", id = "vToggleTerm" }
 end, { desc = "terminal toggle vertical" })
@@ -87,13 +86,18 @@ map({ "n" }, "[c", function()
 end, { desc = "git nrev hunk" })
 
 -- Telescope
-map({ "n" }, "<leader>sl", "<cmd> Telescope session-lens <CR>", { desc = "telescope find sessions" })
-map({ "n" }, "<leader>fr", "<cmd> Telescope resume <CR>", { desc = "telescope resume" })
+map({ "n" }, "<leader>tr", "<cmd> Telescope resume <CR>", { desc = "telescope resume" })
+
+map({ "n" }, "<leader>fs", "<cmd> Telescope session-lens <CR>", { desc = "telescope find sessions" })
+
+nomap("n",  "<leader>ds") -- map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
 
 -- Oil
 map({ "n" }, "<leader>e", "<cmd> Oil <CR>", { desc = "oil open" })
 
 -- Harpoon
+nomap("n", "<leader>h")
+
 map({ "n" }, "<leader>hh", function()
   local harpoon = require "harpoon"
   harpoon.ui:toggle_quick_menu(harpoon:list())
@@ -119,3 +123,6 @@ end
 
 -- Autosession
 map({ "n" }, "<leader>ss", "<cmd> SessionSave", { desc = "session save" })
+
+-- NvimTree
+nomap("n", "<C-n>")

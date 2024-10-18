@@ -24,7 +24,7 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = require "configs.conform",
+    opts = require "configs.treesitter",
     dependencies = {
       {
         "nvim-treesitter/nvim-treesitter-context",
