@@ -1,20 +1,18 @@
 -- All NvChad plugins are lazy-loaded by default
 -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
 -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
+
 ---@type NvPluginSpec[]
 return {
   {
     "stevearc/conform.nvim",
     -- event = 'BufWritePre', -- uncomment for format on save
-    config = function()
-      require "configs.conform"
-    end,
+    opts = require "configs.conform",
   },
 
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
     end,
     dependencies = {
@@ -26,40 +24,7 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "vim",
-        "lua",
-        "vimdoc",
-        "html",
-        "css",
-        "scss",
-        "styled",
-        "javascript",
-        "typescript",
-        "tsx",
-        "vue",
-        "jsdoc",
-        "markdown",
-        "markdown_inline",
-        "graphql",
-        "diff",
-        "json",
-        "yaml",
-      },
-      indent = {
-        enable = true,
-      },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<CR>", -- set to `false` to disable one of the mappings
-          scope_incremental = "<C-CR>",
-          node_incremental = "<CR>",
-          node_decremental = "<S-CR>",
-        },
-      },
-    },
+    opts = require "configs.conform",
     dependencies = {
       {
         "nvim-treesitter/nvim-treesitter-context",
@@ -80,24 +45,36 @@ return {
       {
         "supermaven-inc/supermaven-nvim",
         config = function()
-          require("supermaven-nvim").setup {}
+          require("supermaven-nvim").setup {
+            disable_inline_completion = true,
+            disable_keymaps = true,
+          }
         end,
       },
     },
     config = function(_, opts)
       local cmp = require "cmp"
 
-      opts.completion.autocomplete = false
+      -- opts.completion.autocomplete = false
 
       opts.mapping["<C-Space>"] = nil
       opts.mapping["<A-Space>"] = cmp.mapping.complete()
       opts.mapping["<Tab>"] = cmp.mapping(function(fallback)
+        local luasnip = require "luasnip"
+        local suggestion = require "supermaven-nvim.completion_preview"
+
         if cmp.visible() then
           cmp.select_next_item()
+        elseif luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        elseif suggestion.has_suggestion() then
+          suggestion.on_accept_suggestion()
         else
           fallback()
         end
       end, { "i", "s" })
+
+      table.insert(opts.sources, 1, { name = "supermaven" })
 
       cmp.setup(opts)
     end,
@@ -155,20 +132,20 @@ return {
     end,
   },
 
-  {
-    "wakatime/vim-wakatime",
-    lazy = false,
-  },
+  -- {
+  --   "wakatime/vim-wakatime",
+  --   lazy = false,
+  -- },
 
-  {
-    "danymat/neogen",
-    event = "InsertEnter",
-    config = function()
-      require("neogen").setup {
-        snippet_engine = "luasnip",
-      }
-    end,
-  },
+  -- {
+  --   "danymat/neogen",
+  --   event = "InsertEnter",
+  --   config = function()
+  --     require("neogen").setup {
+  --       snippet_engine = "luasnip",
+  --     }
+  --   end,
+  -- },
 
   {
     "rmagatti/auto-session",
@@ -179,6 +156,10 @@ return {
         auto_save_enabled = true,
         auto_restore_enabled = true,
         auto_session_use_git_branch = false,
+        auto_create = function()
+          local cmd = "git rev-parse --is-inside-work-tree"
+          return vim.fn.system(cmd) == "true\n"
+        end,
       }
     end,
   },

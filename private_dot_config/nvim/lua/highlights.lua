@@ -2,6 +2,7 @@ local M = {}
 
 ---@type Base46HLGroupsList
 M.hl_override = {
+
   Comment = {
     italic = true,
   },

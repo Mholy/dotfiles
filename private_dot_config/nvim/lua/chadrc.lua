@@ -1,15 +1,14 @@
 local highlights = require "highlights"
+-- This file needs to have same structure as nvconfig.lua 
+-- https://github.com/NvChad/ui/blob/v3.0/lua/nvconfig.lua
+-- Please read that file to know all available options :( 
 
 ---@type ChadrcConfig
 local M = {}
 
-local stbufnr = function()
-  return vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
-end
-
 M.base46 = {
-  theme = "chadtain",
-  theme_toggle = { "chadtain", "flexoki-light" },
+  theme = "flexoki-light",
+  theme_toggle = { "doomchad", "flexoki-light" },
   changed_themes = highlights.changed_themes,
   hl_override = highlights.hl_override,
   hl_add = highlights.hl_add,
@@ -18,38 +17,45 @@ M.base46 = {
 M.ui = {
   tabufline = {
     -- enabled = false,
-    order = { "buffers", "tabs" },
-    modules = {
-      -- You can add your custom component
-      abc = function()
-        return "hi"
-      end,
-    },
+    order = { "buffers","tabs" },
+    -- modules = {
+    --   session = function()
+    --     local session = require "auto-session.lib"
+    --
+    --     local success, result = pcall(function()
+    --       return session.current_session_name()
+    --     end)
+    --
+    --     if success then
+    --       local txt = require("nvchad.tabufline.utils").txt
+    --       return txt(session, "Text")
+    --     end
+    --
+    --     return ""
+    --   end,
+    -- },
   },
 
   statusline = {
     theme = "vscode_colored", -- default/vscode/vscode_colored/minimal
+    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd" },
+  },
 
-    order = { "mode", "file", "session", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd" },
-    modules = {
-      session = function()
-        local session = require "auto-session.lib"
+  cheatsheet = {
+    theme = "simple", -- simple/grid
+  },
 
-        local success, result = pcall(function()
-          return session.current_session_name()
-        end)
+  telescope = { style = "bordered" }, -- borderless / bordered
 
-        if success then
-          return result
-        end
-
-        return ""
-      end,
+  cmp = {
+    lspkind_text = true,
+    style = "default", -- default/flat_light/flat_dark/atom/atom_colored
+    format_colors = {
+      tailwind = true,
     },
   },
 }
 
----@diagnostic disable-next-line: missing-fields
 M.term = {
   -- this will highlight the term window differently
   hl = "Normal:term,WinSeparator:WinSeparator",
@@ -68,26 +74,26 @@ M.term = {
   shell = vim.o.shell,
 }
 
-M.mason = {
-  pkgs = {
-    -- lua
-    "lua-language-server",
-    "stylua",
-
-    -- web
-    "html-lsp",
-    "css-lsp",
-    "css-variables-language-server",
-    "cssmodules-language-server",
-    "vtsls",
-    "vue-language-server",
-    "eslint-lsp",
-    "prettier",
-    "prettierd",
-    "tailwindcss-language-server",
-
-    "typos-lsp",
-  },
-}
+-- M.mason = {
+--   pkgs = {
+--     -- lua
+--     "lua-language-server",
+--     "stylua",
+--
+--     -- web
+--     "html-lsp",
+--     "css-lsp",
+--     "css-variables-language-server",
+--     "cssmodules-language-server",
+--     "vtsls",
+--     "vue-language-server",
+--     "eslint-lsp",
+--     "prettier",
+--     "prettierd",
+--     "tailwindcss-language-server",
+--
+--     "typos-lsp",
+--   },
+-- }
 
 return M

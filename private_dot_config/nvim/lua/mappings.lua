@@ -15,92 +15,6 @@ nomap("n", "<leader>x")
 
 local M = {}
 
-M.general = {
-  n = {
-    ["<leader>bn"] = { "<cmd> new <CR>", "New buffer" },
-    -- [";"] = { ":", "enter command mode", opts = { nowait = true } },
-    ["<leader>tt"] = {
-      function()
-        require("base46").toggle_theme()
-        local bgUpdate = string.format("doautocmd %s", "ColorScheme")
-        vim.cmd(bgUpdate)
-      end,
-      "Toggle theme",
-    },
-  },
-}
-
-M.tabufline = {
-  n = {
-    -- ["<leader>bl"] = { "<cmd> BufMoveRight <CR>", "Move buffer right" },
-    -- ["<leader>bh"] = { "<cmd> BufMoveLeft <CR>", "Move buffer left" },
-    ["<leader>bl"] = {
-      function()
-        require("nvchad.tabufline").move_buf(1)
-      end,
-      "Move buffer right",
-    },
-    ["<leader>bh"] = {
-      function()
-        require("nvchad.tabufline").move_buf(-1)
-      end,
-      "Move buffer left",
-    },
-  },
-}
-
-M.oil = {
-  n = {
-    ["<leader>e"] = { "<cmd> Oil <CR>", "Open oil" },
-  },
-}
-
-M.harpoon = {
-  n = {
-    ["<leader>hh"] = {
-      function()
-        local harpoon = require "harpoon"
-
-        harpoon.ui:toggle_quick_menu(harpoon:list())
-      end,
-      "Harpooned",
-    },
-    ["<leader>ha"] = {
-      function()
-        require("harpoon"):list():add()
-      end,
-      "Harpoon",
-    },
-    ["<leader>hn"] = {
-      function()
-        require("harpoon"):list():next()
-      end,
-      "Next harpooned",
-    },
-    ["<leader>hp"] = {
-      function()
-        require("harpoon"):list():prev()
-      end,
-      "Previous harpooned",
-    },
-  },
-}
-
-for i = 1, 9 do
-  M.harpoon.n["<leader>h" .. i] = {
-    function()
-      require("harpoon"):list():select(i)
-    end,
-    i .. " harpooned",
-  }
-end
-
-M.autosession = {
-  n = {
-    ["<leader>ss"] = { ":SessionSave ", "Save session" },
-  },
-}
-
 for group, modes in pairs(M) do
   for mode, maps in pairs(modes) do
     for key, val in pairs(maps) do
@@ -111,7 +25,19 @@ end
 
 -- New mapping syntax
 
+map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+
+map({ "n" }, "<leader>tt", function()
+  require("base46").toggle_theme()
+
+  local bgUpdate = string.format("doautocmd %s", "ColorScheme")
+
+  vim.cmd(bgUpdate)
+end)
+
 -- Buffers
+map({ "n" }, "<leader>bn", "<cmd> new <CR>", { desc = "buffer new" })
+
 map({ "n", "t" }, "<C-x>", function()
   require("nvchad.tabufline").close_buffer()
 end, { desc = "buffer close" })
@@ -121,34 +47,75 @@ map({ "n" }, "X", function()
 end, { desc = "buffer close" })
 
 -- Term
-map("t", "<C-z>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
+map("t", "<C-q>", "<C-\\><C-N>", { desc = "terminal escape" })
 
 map({ "n" }, "<leader>th", function()
   require("nvchad.term").toggle { pos = "sp", id = "hToggleTerm" }
-end, { desc = "Terminal toggle horizontal" })
+end, { desc = "terminal toggle horizontal" })
 
 map({ "n" }, "<leader>tv", function()
   require("nvchad.term").toggle { pos = "vsp", id = "vToggleTerm" }
-end, { desc = "Terminal toggle vertical" })
+end, { desc = "terminal toggle vertical" })
 
 map({ "n" }, "<leader>lg", function()
   require("nvchad.term").toggle {
-    pos = "vsp",
+    pos = "bo vsp",
     id = "lgToggleTerm",
     size = 0.9,
     cmd = "lazygit",
   }
-end, { desc = "Terminal toggle lazygit term" })
+end, { desc = "terminal toggle lazygit term" })
+
+-- Tabs
+map({ "n" }, "<leader>tn", "<cmd> tabnew <CR>")
+
+map({ "n" }, "<leader>bh", function()
+  require("nvchad.tabufline").move_buf(-1)
+end, { desc = "buffer move left" })
+
+map({ "n" }, "<leader>bl", function()
+  require("nvchad.tabufline").move_buf(1)
+end, { desc = "buffer move right" })
 
 -- Git
 map({ "n" }, "]c", function()
   require("gitsigns").next_hunk()
-end, { desc = "Git next hunk" })
+end, { desc = "git next hunk" })
 
 map({ "n" }, "[c", function()
   require("gitsigns").prev_hunk()
-end, { desc = "Git nrev hunk" })
+end, { desc = "git nrev hunk" })
 
 -- Telescope
-map({ "n" }, "<leader>sl", "<cmd> Telescope session-lens <CR>", { desc = "Telescope find sessions" })
-map({ "n" }, "<leader>fr", "<cmd> Telescope resume <CR>", { desc = "Telescope resume" })
+map({ "n" }, "<leader>sl", "<cmd> Telescope session-lens <CR>", { desc = "telescope find sessions" })
+map({ "n" }, "<leader>fr", "<cmd> Telescope resume <CR>", { desc = "telescope resume" })
+
+-- Oil
+map({ "n" }, "<leader>e", "<cmd> Oil <CR>", { desc = "oil open" })
+
+-- Harpoon
+map({ "n" }, "<leader>hh", function()
+  local harpoon = require "harpoon"
+  harpoon.ui:toggle_quick_menu(harpoon:list())
+end, { desc = "harpoon" })
+
+map({ "n" }, "<leader>ha", function()
+  require("harpoon"):list():add()
+end, { desc = "harpoon add" })
+
+map({ "n" }, "<leader>hn", function()
+  require("harpoon"):list():next()
+end, { desc = "harpoon next" })
+
+map({ "n" }, "<leader>hp", function()
+  require("harpoon"):list():prev()
+end, { desc = "harpoon previous" })
+
+for i = 1, 9 do
+  map({ "n" }, "<leader>h" .. i, function()
+    require("harpoon"):list():select(i)
+  end, { desc = "harpoon select " .. i })
+end
+
+-- Autosession
+map({ "n" }, "<leader>ss", "<cmd> SessionSave", { desc = "session save" })

@@ -6,9 +6,7 @@ o.cursorlineopt = "both" -- to enable cursorline!
 o.relativenumber = true
 o.scrolloff = 5
 o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-g.mapleader = " "
 
-local g = vim.g
 -- Hello, is this Neovide?
 if g.neovide then
   -- Display
@@ -49,54 +47,6 @@ autocmd("TextYankPost", {
   end,
 })
 
-local wezterm_toggle_padding = function(enable)
-  local config_path = os.getenv "WEZTERM_CONFIG_FILE"
-  local padding = '{ left = "1cell", right = "1cell", top = "0.5cell", bottom = "0.5cell" }'
-  local padding_removed = "{ left = 0, right = 0, top = 0, bottom = 0 }"
-  local command = "silen !sed -i -e"
-
-  if not config_path then
-    return
-  end
-
-  if enable then
-    command = command .. " 's/" .. padding .. "/" .. padding_removed .. "/g' " .. config_path
-  else
-    command = command .. " 's/" .. padding_removed .. "/" .. padding .. "/g' " .. config_path
-  end
-
-  vim.cmd(command)
-end
-
--- autocmd("VimEnter", {
---   callback = function()
---     wezterm_toggle_padding(true)
---   end,
---   desc = "Add WezTerm padding when entering Neovim",
--- })
-
--- autocmd("VimLeavePre", {
---   callback = function()
---     wezterm_toggle_padding(false)
---   end,
---   desc = "Restore WezTerm padding when leaving Neovim",
--- })
-
-autocmd("BufReadPost", {
-  pattern = "*",
-  callback = function()
-    local line = vim.fn.line "'\""
-    if
-      line > 1
-      and line <= vim.fn.line "$"
-      and vim.bo.filetype ~= "commit"
-      and vim.fn.index({ "xxd", "gitrebase" }, vim.bo.filetype) == -1
-    then
-      vim.cmd 'normal! g`"'
-    end
-  end,
-})
-
 -- User commands
 local usercmd = vim.api.nvim_create_user_command
 
@@ -106,9 +56,14 @@ end, {
   desc = "Open a new horizontal terminal",
 })
 
-
 usercmd("Termv", function()
   require("nvchad.term").new { pos = "vsp" }
 end, {
   desc = "Open a new vertical terminal",
+})
+
+usercmd("Themes", function()
+  require("nvchad.themes").open { style = "bordered" }
+end, {
+  desc = "Open the theme selector",
 })
