@@ -46,8 +46,8 @@ return {
         "supermaven-inc/supermaven-nvim",
         config = function()
           require("supermaven-nvim").setup {
-            disable_inline_completion = true,
-            disable_keymaps = true,
+            -- disable_inline_completion = true,
+            -- disable_keymaps = true,
           }
         end,
       },
@@ -59,22 +59,10 @@ return {
 
       opts.mapping["<C-Space>"] = nil
       opts.mapping["<A-Space>"] = cmp.mapping.complete()
-      opts.mapping["<Tab>"] = cmp.mapping(function(fallback)
-        local luasnip = require "luasnip"
-        local suggestion = require "supermaven-nvim.completion_preview"
+      opts.mapping["<Tab>"] = nil
+      opts.mapping["<S-Tab>"] = nil
 
-        if cmp.visible() then
-          cmp.select_next_item()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
-        elseif suggestion.has_suggestion() then
-          suggestion.on_accept_suggestion()
-        else
-          fallback()
-        end
-      end, { "i", "s" })
-
-      table.insert(opts.sources, 1, { name = "supermaven" })
+      -- table.insert(opts.sources, 1, { name = "supermaven" })
 
       cmp.setup(opts)
     end,

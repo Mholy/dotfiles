@@ -1,7 +1,7 @@
 local highlights = require "highlights"
--- This file needs to have same structure as nvconfig.lua 
+-- This file needs to have same structure as nvconfig.lua
 -- https://github.com/NvChad/ui/blob/v3.0/lua/nvconfig.lua
--- Please read that file to know all available options :( 
+-- Please read that file to know all available options :(
 
 ---@type ChadrcConfig
 local M = {}
@@ -17,23 +17,22 @@ M.base46 = {
 M.ui = {
   tabufline = {
     -- enabled = false,
-    order = { "buffers","tabs" },
-    -- modules = {
-    --   session = function()
-    --     local session = require "auto-session.lib"
-    --
-    --     local success, result = pcall(function()
-    --       return session.current_session_name()
-    --     end)
-    --
-    --     if success then
-    --       local txt = require("nvchad.tabufline.utils").txt
-    --       return txt(session, "Text")
-    --     end
-    --
-    --     return ""
-    --   end,
-    -- },
+    order = { "buffers", "session", "tabs" },
+    modules = {
+      session = function()
+        local session = require "auto-session.lib"
+
+        local success, result = pcall(function()
+          return session.current_session_name(true)
+        end)
+
+        if success then
+          return "%#TbBufOff#" .. result .. " "
+        end
+
+        return ""
+      end,
+    },
   },
 
   statusline = {
