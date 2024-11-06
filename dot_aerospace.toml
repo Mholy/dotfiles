@@ -130,7 +130,7 @@ alt-n = 'workspace N'
 # alt-s = 'workspace S'
 # alt-t = 'workspace T'
 alt-u = 'workspace U'
-# alt-v = 'workspace V'
+alt-v = 'workspace V'
 alt-w = 'workspace W'
 alt-x = 'workspace X'
 # alt-y = 'workspace Y'
@@ -163,7 +163,7 @@ alt-shift-d = 'move-node-to-workspace D'
 # alt-shift-s = 'move-node-to-workspace S'
 # alt-shift-t = 'move-node-to-workspace T'
 alt-shift-u = 'move-node-to-workspace U'
-# alt-shift-v = 'move-node-to-workspace V'
+alt-shift-v = 'move-node-to-workspace V'
 alt-shift-w = 'move-node-to-workspace W'
 alt-shift-x = 'move-node-to-workspace X'
 # alt-shift-y = 'move-node-to-workspace Y'
@@ -204,6 +204,7 @@ U = ['built-in', 'mi']
 W = ['mi', 'built-in']
 X = ['built-in', 'mi']
 Z = ['mi', 'built-in']
+V = ['virtual']
 
 # Callbacks
 # [[on-window-detected]]
@@ -217,6 +218,11 @@ Z = ['mi', 'built-in']
 # [[on-window-detected]]
 # check-further-callbacks = true
 # run = ['move-node-to-workspace D']
+
+# Sidecar workspace
+[[on-window-detected]]
+if.app-id = 'ch.xiaoyi.recursechat'
+run = ['move-node-to-workspace 3']
 
 # N workspace
 [[on-window-detected]]
@@ -277,4 +283,17 @@ run = ['move-node-to-workspace Z']
 # Float
 [[on-window-detected]]
 if.app-name-regex-substring = 'amnezia'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'shadowrocket'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'betterdisplay'
+if.window-title-regex-substring = 'virtual'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.window-title-regex-substring = 'Extension: (Bitwarden Password Manager) - Bitwarden'
 run = ['layout floating']

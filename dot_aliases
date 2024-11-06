@@ -7,6 +7,7 @@ alias nvd="neovide --fork --no-tabs"
 
 alias kt="klog print --with-totals --today"
 alias ky="klog print --with-totals --yesterday"
+alias kw="klog print --with-totals --this-week"
 
 # git
 alias lg="lazygit"
@@ -34,3 +35,7 @@ alias lt='eza --tree --level=2'
 
 # brew
 alias brew-uses="brew uses --installed"
+
+# npm
+alias npm-check="ncu -i --format group"
+alias npm-check-minor="ncu -i --format group --target minor"

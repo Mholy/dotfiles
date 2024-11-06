@@ -12,7 +12,15 @@ bindkey "^F" add_sudo
 
 # Homebrew
 export HOMEBREW_NO_ANALYTICS=1
-export FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+if type brew &>/dev/null; then
+  export FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
+
+# Completions
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+fi
 
 # FZF
 if command -v fzf &> /dev/null; then
@@ -76,3 +84,30 @@ if [[ "$is_dark_mode" == "Dark" ]]; then
 else
   export AIDER_DARK_MODE=false
 fi
+
+# bit
+case ":$PATH:" in
+  *":/Users/sea/bin:"*) ;;
+  *) export PATH="$PATH:/Users/sea/bin" ;;
+esac
+# bit end
+#compdef bit
+###-begin-bit-completions-###
+#
+# yargs command completion script
+#
+# Installation: /Users/sea/.bvm/links/bit/node_modules/@teambit/bit/bin/bit completion >> ~/.zshrc
+#    or /Users/sea/.bvm/links/bit/node_modules/@teambit/bit/bin/bit completion >> ~/.zsh_profile on OSX.
+#
+_bit_yargs_completions()
+{
+  local reply
+  local si=$IFS
+  IFS=$'
+' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" /Users/sea/.bvm/links/bit/node_modules/@teambit/bit/bin/bit --get-yargs-completions "${words[@]}"))
+  IFS=$si
+  _describe 'values' reply
+}
+compdef _bit_yargs_completions bit
+###-end-bit-completions-###
+
