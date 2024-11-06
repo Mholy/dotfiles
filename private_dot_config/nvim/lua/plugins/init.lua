@@ -2,6 +2,11 @@
 -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
 -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
 
+local function isGitDirectory()
+  local cmd = "git rev-parse --is-inside-work-tree"
+  return vim.fn.system(cmd) == "true\n"
+end
+
 ---@type NvPluginSpec[]
 return {
   {
@@ -48,6 +53,9 @@ return {
           require("supermaven-nvim").setup {
             -- disable_inline_completion = true,
             -- disable_keymaps = true,
+            condition = function()
+              return not isGitDirectory()
+            end,
           }
         end,
       },
@@ -74,18 +82,97 @@ return {
   },
 
   {
+    "lewis6991/gitsigns.nvim",
+    config = function(_, opts)
+      opts.on_attach = function(bufnr)
+        local gitsigns = require "gitsigns"
+
+        local function map(mode, l, r, opts)
+          opts = opts or {}
+          opts.buffer = bufnr
+          vim.keymap.set(mode, l, r, opts)
+        end
+
+        -- Navigation
+        map("n", "]c", function()
+          if vim.wo.diff then
+            vim.cmd.normal { "]c", bang = true }
+          else
+            gitsigns.nav_hunk "next"
+          end
+        end, { desc = "git next hunk" })
+
+        map("n", "[c", function()
+          if vim.wo.diff then
+            vim.cmd.normal { "[c", bang = true }
+          else
+            gitsigns.nav_hunk "prev"
+          end
+        end, { desc = "git prev hunk" })
+
+        -- Actions
+        map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "git stage hunk" })
+        map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "git reset hunk" })
+        map("v", "<leader>hs", function()
+          gitsigns.stage_hunk { vim.fn.line ".", vim.fn.line "v" }
+        end, { desc = "git stage hunk range" })
+        map("v", "<leader>hr", function()
+          gitsigns.reset_hunk { vim.fn.line ".", vim.fn.line "v" }
+        end, { desc = "git reset hunk range" })
+        map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "git stage buffer" })
+        map("n", "<leader>hu", gitsigns.undo_stage_hunk, { desc = "git undo stage hunk" })
+        map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "git reset buffer" })
+        map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "git preview hunk" })
+        map("n", "<leader>hb", function()
+          gitsigns.blame_line { full = true }
+        end, { desc = "git blame line" })
+        map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "git toggle current line blame" })
+        map("n", "<leader>hd", gitsigns.diffthis, { desc = "git diff this" })
+        map("n", "<leader>hD", function()
+          gitsigns.diffthis "~"
+        end, { desc = "git diff this ~" })
+        map("n", "<leader>td", gitsigns.toggle_deleted, { desc = "git toggle deleted" })
+
+        -- Text object
+        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "git select hunk" })
+      end
+
+      require("gitsigns").setup(opts)
+    end,
+  },
+
+  {
     "stevearc/oil.nvim",
     lazy = false,
     config = function()
       require("oil").setup {
         skip_confirm_for_simple_edits = true,
+        use_default_keymaps = false,
         keymaps = {
+          ["g?"] = "actions.show_help",
+          ["<CR>"] = "actions.select",
+          ["<C-v>"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
+          ["<C-x>"] = { "actions.select", opts = { horizontal = true }, desc = "Open the entry in a horizontal split" },
+          ["<C-t>"] = { "actions.select", opts = { tab = true }, desc = "Open the entry in new tab" },
+          ["<C-p>"] = "actions.preview",
+          ["<C-d>"] = "actions.preview_scroll_down",
+          ["<C-u>"] = "actions.preview_scroll_up",
           ["q"] = "actions.close",
-          ["<C-c>"] = false,
-          ["<C-s>"] = false,
-          ["<C-h>"] = false,
-          ["g\\"] = false,
-          ["gY"] = "actions.copy_entry_path",
+          ["<Esc>"] = "actions.close",
+          ["<C-r>"] = "actions.refresh",
+          ["<C-\\>"] = {
+            function()
+              require("oil").discard_all_changes()
+            end,
+            desc = "Discard all changes",
+          },
+          ["-"] = "actions.parent",
+          ["_"] = "actions.open_cwd",
+          ["`"] = "actions.cd",
+          ["~"] = { "actions.cd", opts = { scope = "tab" }, desc = ":tcd to the current oil directory", mode = "n" },
+          ["gs"] = "actions.change_sort",
+          ["g."] = "actions.toggle_hidden",
+          ["gY"] = "actions.yank_entry",
           ["gy"] = {
             function()
               local oil = require "oil"
@@ -145,8 +232,7 @@ return {
         auto_restore_enabled = true,
         auto_session_use_git_branch = false,
         auto_create = function()
-          local cmd = "git rev-parse --is-inside-work-tree"
-          return vim.fn.system(cmd) == "true\n"
+          return isGitDirectory()
         end,
       }
     end,

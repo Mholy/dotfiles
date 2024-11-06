@@ -39,7 +39,6 @@ local function on_attach(_, bufnr)
   -- map("n", "gi", "<cmd> Telescope lsp_implementations <CR>", opts "Implementations")
   map("n", "gd", "<cmd> Telescope lsp_definitions <CR>", opts "Definitions")
   map("n", "gD", "<cmd> Telescope lsp_type_definitions <CR>", opts "Type definitions")
-  map("n", "g\\", "<cmd> Telescope diagnostics <CR>", opts "Diagnostics")
   map("n", "go", "<cmd> Telescope lsp_outgoing_calls <CR>", opts "Outgoing calls")
   map("n", "gi", "<cmd> Telescope lsp_incoming_calls <CR>", opts "Incoming calls")
 end

@@ -33,7 +33,7 @@ end)
 
 -- Buffers
 nomap("n", "<leader>b")
-map({ "n" }, "<leader>bn", "<cmd> new <CR>", { desc = "buffer new" })
+map({ "n" }, "<leader>bn", "<cmd> enew <CR>", { desc = "buffer new" })
 
 nomap("n", "<leader>x")
 map({ "n", "t" }, "<C-x>", function()
@@ -86,11 +86,11 @@ map({ "n" }, "[c", function()
 end, { desc = "git nrev hunk" })
 
 -- Telescope
-map({ "n" }, "<leader>tr", "<cmd> Telescope resume <CR>", { desc = "telescope resume" })
+map("n", "<leader>tr", "<cmd> Telescope resume <CR>", { desc = "telescope resume" })
 
-map({ "n" }, "<leader>fs", "<cmd> Telescope session-lens <CR>", { desc = "telescope find sessions" })
+map("n", "<leader>fs", "<cmd> Telescope session-lens <CR>", { desc = "telescope find sessions" })
 
-nomap("n",  "<leader>ds") -- map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
+map("n", "<leader>fq", "<cmd> Telescope quickfixhistory <CR>", { desc = "telescope quickfix" })
 
 -- Oil
 map({ "n" }, "<leader>e", "<cmd> Oil <CR>", { desc = "oil open" })

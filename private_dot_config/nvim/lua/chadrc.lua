@@ -26,8 +26,8 @@ M.ui = {
           return session.current_session_name(true)
         end)
 
-        if success then
-          return "%#TbBufOff#" .. result .. " "
+        if success and result and result ~= "" then
+          return "session: " .. "%#TbBufOff#" .. result .. " "
         end
 
         return ""
