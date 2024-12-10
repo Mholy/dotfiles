@@ -37,7 +37,17 @@ M.ui = {
 
   statusline = {
     theme = "vscode_colored", -- default/vscode/vscode_colored/minimal
-    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd" },
+    order = {
+      "mode",
+      "file",
+      "git",
+      "%=",
+      "lsp_msg",
+      "%=",
+      "diagnostics",
+      "lsp",
+      "cwd",
+    },
   },
 
   cheatsheet = {

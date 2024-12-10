@@ -1,18 +1,30 @@
 gui:
   expandFocusedSidePanel: true
-  # theme:
-  #   selectedLineBgColor:
-  #     - reverse
-  #   selectedRangeBgColor:
-  #     - reverse
-  #   showBottomLine: false
-  #   nerdFontsVersion: "3"
+  theme:
+    showBottomLine: false
+    nerdFontsVersion: "3"
 os:
-  editPreset: 'nvim-remote'
+  editPreset: "nvim"
 git:
   paging:
     colorArg: always
     # externalDiffCommand: difft --color=always --display=side-by-side-show-both
-    externalDiffCommand: difft --color=always 
+    externalDiffCommand: difft --color=always
     # pager: delta --paging=never
     # useConfig: true
+customCommands:
+  - key: t
+    command: tig show {{.SelectedSubCommit.Sha}}
+    context: subCommits
+    description: tig commit (`t` again to browse files at revision)
+    subprocess: yes
+  - key: t
+    command: tig show {{.SelectedLocalBranch.Name}}
+    context: localBranches
+    description: tig branch (`t` again to browse files at revision)
+    subprocess: yes
+  - key: t
+    command: tig show {{.SelectedRemoteBranch.RemoteName}}/{{.SelectedRemoteBranch.Name}}
+    context: remoteBranches
+    description: tig branch (`t` again to browse files at revision)
+    subprocess: yes

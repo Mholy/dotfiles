@@ -36,7 +36,7 @@ return {
         event = "VeryLazy",
         config = function()
           require("treesitter-context").setup {
-            multiline_threshold = 3,
+            multiline_threshold = 1,
             -- separator = "-",
           }
         end,
@@ -142,6 +142,23 @@ return {
   },
 
   {
+    "telescope.nvim",
+    config = function(_, opts)
+      local open_with_trouble = require("trouble.sources.telescope").open
+
+      -- Use this to add more results without clearing the trouble list
+      local add_to_trouble = require("trouble.sources.telescope").add
+
+      opts.defaults.mappings = {
+        i = { ["<c-t>"] = open_with_trouble, ["<s-t>"] = add_to_trouble },
+        n = { ["<c-t>"] = open_with_trouble, ["<s-t>"] = add_to_trouble },
+      }
+
+      require("telescope").setup(opts)
+    end,
+  },
+
+  {
     "stevearc/oil.nvim",
     lazy = false,
     config = function()
@@ -239,4 +256,84 @@ return {
   },
 
   { "typicode/bg.nvim", lazy = false },
+
+  {
+    "ggandor/leap.nvim",
+    lazy = false,
+    config = function()
+      vim.keymap.set("n", "s", "<Plug>(leap)")
+      vim.keymap.set("n", "S", "<Plug>(leap-from-window)")
+      vim.keymap.set({ "x", "o" }, "s", "<Plug>(leap-forward)")
+      vim.keymap.set({ "x", "o" }, "S", "<Plug>(leap-backward)")
+
+      -- Define equivalence classes for brackets and quotes, in addition to
+      -- the default whitespace group.
+      require("leap").opts.equivalence_classes = { " \t\r\n", "([{", ")]}", "'\"`" }
+
+      -- Use the traversal keys to repeat the previous motion without explicitly
+      -- invoking Leap.
+      require("leap.user").set_repeat_keys("<enter>", "<backspace>")
+    end,
+  },
+
+  {
+    "RRethy/vim-illuminate",
+    event = "VeryLazy",
+  },
+
+  {
+    "folke/todo-comments.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("todo-comments").setup()
+    end,
+  },
+
+  {
+    "folke/trouble.nvim",
+    opts = {
+      ---@type trouble.Window.opts
+      win = {
+        size = 0.3
+      },
+    },
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xt",
+        "<cmd>Trouble todo filter = {tag = {TODO,FIX,FIXME}}<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle focus=true pinned=true<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>cl",
+        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
+      },
+      -- {
+      --   "<leader>xL",
+      --   "<cmd>Trouble loclist toggle<cr>"
+      --   desc = "Location List (Trouble)",
+      -- },
+      -- {
+      --   "<leader>xQ",
+      --   "<cmd>Trouble qflist toggle<cr>",
+      --   desc = "Quickfix List (Trouble)",
+      -- },
+    },
+  },
 }

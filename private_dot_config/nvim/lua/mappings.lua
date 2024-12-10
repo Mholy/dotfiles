@@ -3,23 +3,12 @@ require "nvchad.mappings"
 local map = vim.keymap.set
 local nomap = vim.keymap.del
 
+-- LSP diagnostic location list
+nomap("n", "<leader>ds")
+
 -- Window  manager conflicts
 nomap("n", "<A-v>")
 nomap("n", "<A-h>")
-
--- Old mapping syntax
-
-local M = {}
-
-for group, modes in pairs(M) do
-  for mode, maps in pairs(modes) do
-    for key, val in pairs(maps) do
-      map(mode, key, val[1], { desc = group .. " " .. val[2] })
-    end
-  end
-end
-
--- New mapping syntax
 
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
@@ -33,7 +22,7 @@ end)
 
 -- Buffers
 nomap("n", "<leader>b")
-map({ "n" }, "<leader>bn", "<cmd> enew <CR>", { desc = "buffer new" })
+map({ "n" }, "<leader>bn", "<cmd> new <CR>", { desc = "buffer new" })
 
 nomap("n", "<leader>x")
 map({ "n", "t" }, "<C-x>", function()

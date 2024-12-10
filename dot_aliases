@@ -8,6 +8,7 @@ alias nvd="neovide --fork --no-tabs"
 alias kt="klog print --with-totals --today"
 alias ky="klog print --with-totals --yesterday"
 alias kw="klog print --with-totals --this-week"
+alias kc="klog today --now --follow"
 
 # git
 alias lg="lazygit"

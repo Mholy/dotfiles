@@ -115,14 +115,14 @@ alt-5 = 'workspace 5'
 # alt-9 = 'workspace 9'
 # alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
 # alt-b = 'workspace B'
-# alt-c = 'workspace C'
+alt-c = 'workspace C'
 alt-d = 'workspace D'
 # alt-e = 'workspace E'
 # alt-f = 'workspace F'
 # alt-g = 'workspace G'
 # alt-i = 'workspace I'
 # alt-m = 'workspace M'
-alt-n = 'workspace N'
+# alt-n = 'workspace N'
 # alt-o = 'workspace O'
 # alt-p = 'workspace P'
 # alt-q = 'workspace Q'
@@ -148,14 +148,14 @@ alt-shift-5 = 'move-node-to-workspace 5'
 # alt-shift-9 = 'move-node-to-workspace 9'
 # alt-shift-a = 'move-node-to-workspace A'
 # alt-shift-b = 'move-node-to-workspace B'
-# alt-shift-c = 'move-node-to-workspace C'
+alt-shift-c = 'move-node-to-workspace C'
 alt-shift-d = 'move-node-to-workspace D'
 # alt-shift-e = 'move-node-to-workspace E'
 # alt-shift-f = 'move-node-to-workspace F'
 # alt-shift-g = 'move-node-to-workspace G'
 # alt-shift-i = 'move-node-to-workspace I'
 # alt-shift-m = 'move-node-to-workspace M'
- alt-shift-n = 'move-node-to-workspace N'
+ # alt-shift-n = 'move-node-to-workspace N'
 # alt-shift-o = 'move-node-to-workspace O'
 # alt-shift-p = 'move-node-to-workspace P'
 # alt-shift-q = 'move-node-to-workspace Q'
@@ -177,6 +177,7 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-shift-semicolon = 'mode service'
 
+# Disable keybindings
 cmd-h = []
 cmd-m = []
 
@@ -199,7 +200,7 @@ alt-shift-l = ['join-with right', 'mode main']
 2 = ['built-in', 'mi']
 3 = ['sidecar', 'built-in']
 D = ['mi', 'built-in']
-N = ['built-in', 'mi']
+C = ['built-in', 'mi']
 U = ['built-in', 'mi']
 W = ['mi', 'built-in']
 X = ['built-in', 'mi']
@@ -224,22 +225,40 @@ V = ['virtual']
 if.app-id = 'ch.xiaoyi.recursechat'
 run = ['move-node-to-workspace 3']
 
-# N workspace
+# C workspace
 [[on-window-detected]]
 if.app-id = 'com.TickTick.task.mac'
-run = ['move-node-to-workspace N']
+run = ['move-node-to-workspace C']
 
 [[on-window-detected]]
 if.app-id = 'com.heynote.app'
-run = ['move-node-to-workspace N']
+run = ['move-node-to-workspace C']
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
-run = ['move-node-to-workspace N']
+run = ['move-node-to-workspace C']
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Notes'
-run = ['move-node-to-workspace N']
+run = ['move-node-to-workspace C']
+
+[[on-window-detected]]
+if.app-id = 'com.getupnote.desktop'
+check-further-callbacks = true
+run = ['move-node-to-workspace C']
+
+[[on-window-detected]]
+if.app-id = 'com.culturedcode.ThingsMac'
+run = ['move-node-to-workspace C']
+
+[[on-window-detected]]
+if.app-id = 'com.philipyoungg.session'
+run = ['move-node-to-workspace C']
+
+# U workspace
+[[on-window-detected]]
+if.app-id = 'com.luckymarmot.Paw'
+run = ['move-node-to-workspace U']
 
 # W workspace
 [[on-window-detected]]
@@ -297,3 +316,8 @@ run = ['layout floating']
 [[on-window-detected]]
 if.window-title-regex-substring = 'Extension: (Bitwarden Password Manager) - Bitwarden'
 run = ['layout floating']
+
+# [[on-window-detected]]
+# if.app-id = 'com.getupnote.desktop'
+# if.window-title-regex-substring = '^((?!upnote).*)$'
+# run = ['layout floating']
