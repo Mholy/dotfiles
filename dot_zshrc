@@ -85,6 +85,43 @@ else
   export AIDER_DARK_MODE=false
 fi
 
+# nvim
+
+# Function to truncate the path to the first letters of directories except the last directory
+truncate_path() {
+  local path="$1"
+  local parts=(${(s:/:)path})  # Split the path into directories
+  local truncated_path=""
+  local last_part=${parts[-1]}  # Get the last directory
+
+  # Truncate the path to the first letters of directories
+  for part in ${parts[1,-2]}; do
+    truncated_path+="${part[1]}"
+    
+    if [[ "$part" != "${parts[-2]}" ]]; then
+      truncated_path+="/"
+    fi
+  done
+
+  # Append the last directory
+  truncated_path+=":$last_part"
+
+  echo "$truncated_path"
+}
+
+# Function to set the process title based on the current working directory for nvim
+set_title_based_on_cwd_for_nvim() {
+  local command="$1"
+  if [[ "$command" == "nvim" || "$command" == "nv" ]]; then
+    local cwd=$(truncate_path "$(pwd)")
+    local title="nvim - $cwd"
+
+    echo -n "\e]0;$title\007"
+  fi
+}
+
+preexec_functions=(set_title_based_on_cwd_for_nvim)
+
 # bit
 case ":$PATH:" in
   *":/Users/sea/bin:"*) ;;
@@ -110,4 +147,3 @@ _bit_yargs_completions()
 }
 compdef _bit_yargs_completions bit
 ###-end-bit-completions-###
-

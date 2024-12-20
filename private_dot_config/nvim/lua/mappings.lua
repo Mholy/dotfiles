@@ -22,7 +22,7 @@ end)
 
 -- Buffers
 nomap("n", "<leader>b")
-map({ "n" }, "<leader>bn", "<cmd> new <CR>", { desc = "buffer new" })
+map({ "n" }, "<leader>bn", "<cmd> enew <CR>", { desc = "buffer new" })
 
 nomap("n", "<leader>x")
 map({ "n", "t" }, "<C-x>", function()

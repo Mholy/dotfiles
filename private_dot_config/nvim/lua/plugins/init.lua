@@ -34,6 +34,7 @@ return {
       {
         "nvim-treesitter/nvim-treesitter-context",
         event = "VeryLazy",
+        enabled = false,
         config = function()
           require("treesitter-context").setup {
             multiline_threshold = 1,
@@ -144,15 +145,15 @@ return {
   {
     "telescope.nvim",
     config = function(_, opts)
-      local open_with_trouble = require("trouble.sources.telescope").open
+      -- local open_with_trouble = require("trouble.sources.telescope").open
 
       -- Use this to add more results without clearing the trouble list
-      local add_to_trouble = require("trouble.sources.telescope").add
+      -- local add_to_trouble = require("trouble.sources.telescope").add
 
-      opts.defaults.mappings = {
-        i = { ["<c-t>"] = open_with_trouble, ["<s-t>"] = add_to_trouble },
-        n = { ["<c-t>"] = open_with_trouble, ["<s-t>"] = add_to_trouble },
-      }
+      -- opts.defaults.mappings = {
+      --   i = { ["<c-t>"] = open_with_trouble, ["<s-t>"] = add_to_trouble },
+      --   n = { ["<c-t>"] = open_with_trouble, ["<s-t>"] = add_to_trouble },
+      -- }
 
       require("telescope").setup(opts)
     end,
@@ -175,7 +176,6 @@ return {
           ["<C-d>"] = "actions.preview_scroll_down",
           ["<C-u>"] = "actions.preview_scroll_up",
           ["q"] = "actions.close",
-          ["<Esc>"] = "actions.close",
           ["<C-r>"] = "actions.refresh",
           ["<C-\\>"] = {
             function()
@@ -291,10 +291,13 @@ return {
 
   {
     "folke/trouble.nvim",
+    enabled = false,
     opts = {
+      auto_jump = true, -- auto jump to the item when there's only one
+      focus = true, -- Focus the window when opened
       ---@type trouble.Window.opts
       win = {
-        size = 0.3
+        size = 0.3,
       },
     },
     cmd = "Trouble",
@@ -315,25 +318,35 @@ return {
         desc = "Buffer Diagnostics (Trouble)",
       },
       {
-        "<leader>cs",
-        "<cmd>Trouble symbols toggle focus=true pinned=true<cr>",
+        "gs",
+        "<cmd>Trouble symbols toggle focus=false win.relative=win win.position=right pinned=true<cr>",
         desc = "Symbols (Trouble)",
       },
       {
-        "<leader>cl",
-        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        "gd",
+        "<cmd>Trouble lsp toggle win.position=right follow=false<cr>",
         desc = "LSP Definitions / references / ... (Trouble)",
       },
-      -- {
-      --   "<leader>xL",
-      --   "<cmd>Trouble loclist toggle<cr>"
-      --   desc = "Location List (Trouble)",
-      -- },
-      -- {
-      --   "<leader>xQ",
-      --   "<cmd>Trouble qflist toggle<cr>",
-      --   desc = "Quickfix List (Trouble)",
-      -- },
+      {
+        "<leader>xL",
+        "<cmd>Trouble loclist toggle<cr>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>xQ",
+        "<cmd>Trouble qflist toggle<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
+    },
+  },
+
+  {
+    "sindrets/diffview.nvim",
+    event = "BufRead",
+    opts = {
+      default_args = {
+        DiffviewOpen = { "--imply-local" },
+      },
     },
   },
 }

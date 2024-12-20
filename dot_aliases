@@ -40,3 +40,6 @@ alias brew-uses="brew uses --installed"
 # npm
 alias npm-check="ncu -i --format group"
 alias npm-check-minor="ncu -i --format group --target minor"
+
+# jless
+alias yless="jless --yaml"

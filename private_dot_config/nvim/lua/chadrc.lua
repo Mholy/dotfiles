@@ -7,7 +7,7 @@ local highlights = require "highlights"
 local M = {}
 
 M.base46 = {
-  theme = "flexoki-light",
+  theme = "doomchad",
   theme_toggle = { "doomchad", "flexoki-light" },
   changed_themes = highlights.changed_themes,
   hl_override = highlights.hl_override,

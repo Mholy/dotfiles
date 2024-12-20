@@ -33,14 +33,14 @@ local function on_attach(_, bufnr)
   map("n", "<leader>ra", require "nvchad.lsp.renamer", opts "NvRenamer")
   map("n", "<leader>sh", vim.lsp.buf.signature_help, opts "Show signature help")
 
-  -- map("n", "gs", "<cmd> Telescope lsp_document_symbols <CR>", opts "Symbols")
-  -- map("n", "gS", "<cmd> Telescope lsp_workspace_symbols <CR>", opts "Workspace symbols")
-  -- map("n", "gr", "<cmd> Telescope lsp_references <CR>", opts "References")
-  -- map("n", "gd", "<cmd> Telescope lsp_definitions <CR>", opts "Definitions")
-  -- map("n", "gD", "<cmd> Telescope lsp_type_definitions <CR>", opts "Type definitions")
-  -- map("n", "go", "<cmd> Telescope lsp_outgoing_calls <CR>", opts "Outgoing calls")
-  -- map("n", "gi", "<cmd> Telescope lsp_incoming_calls <CR>", opts "Incoming calls")
-  -- map("n", "gI", "<cmd> Telescope lsp_implementations <CR>", opts "Incoming calls")
+  map("n", "gs", "<cmd> Telescope lsp_document_symbols <CR>", opts "Symbols")
+  map("n", "gS", "<cmd> Telescope lsp_workspace_symbols <CR>", opts "Workspace symbols")
+  map("n", "gr", "<cmd> Telescope lsp_references <CR>", opts "References")
+  map("n", "gd", "<cmd> Telescope lsp_definitions <CR>", opts "Definitions")
+  map("n", "gD", "<cmd> Telescope lsp_type_definitions <CR>", opts "Type definitions")
+  map("n", "go", "<cmd> Telescope lsp_outgoing_calls <CR>", opts "Outgoing calls")
+  map("n", "gi", "<cmd> Telescope lsp_incoming_calls <CR>", opts "Incoming calls")
+  map("n", "gI", "<cmd> Telescope lsp_implementations <CR>", opts "Implementations")
 end
 
 -- lsps with default config
