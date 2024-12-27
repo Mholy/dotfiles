@@ -4,7 +4,7 @@ local map = vim.keymap.set
 local nomap = vim.keymap.del
 
 -- LSP diagnostic location list
-nomap("n", "<leader>ds")
+-- nomap("n", "<leader>ds")
 
 -- Window  manager conflicts
 nomap("n", "<A-v>")
@@ -34,6 +34,7 @@ map({ "n" }, "X", function()
 end, { desc = "buffer close" })
 
 -- Term
+
 map("t", "<C-q>", "<C-\\><C-N>", { desc = "terminal escape" })
 
 map({ "n" }, "<leader>th", function()
@@ -80,6 +81,17 @@ map("n", "<leader>tr", "<cmd> Telescope resume <CR>", { desc = "telescope resume
 map("n", "<leader>fs", "<cmd> Telescope session-lens <CR>", { desc = "telescope find sessions" })
 
 map("n", "<leader>fq", "<cmd> Telescope quickfixhistory <CR>", { desc = "telescope quickfix" })
+
+map("n", "<leader>fo", function()
+  require("telescope.builtin").oldfiles {
+    cwd_only = true,
+    tiebreak = function(current_entry, existing_entry, _)
+      -- This ensures that when you are filtering, it's also sorted by last opened time.
+      -- https://github.com/nvim-telescope/telescope.nvim/issues/2539#issuecomment-1562510095
+      return current_entry.index < existing_entry.index
+    end,
+  }
+end, { desc = "telescope recent files" })
 
 -- Oil
 map({ "n" }, "<leader>e", "<cmd> Oil <CR>", { desc = "oil open" })

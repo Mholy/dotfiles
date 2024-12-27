@@ -34,6 +34,7 @@ local options = {
     markdown_inline = prettier,
     graphql = prettier,
     ["*"] = { "codespell" },
+    ["_"] = { "trim_whitespace" },
   },
 
   -- formatters = {

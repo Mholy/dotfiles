@@ -272,13 +272,9 @@ return {
 
       -- Use the traversal keys to repeat the previous motion without explicitly
       -- invoking Leap.
-      require("leap.user").set_repeat_keys("<enter>", "<backspace>")
+      -- WARN: When active, enter in quickfix window does not work
+      -- require("leap.user").set_repeat_keys("<enter>", "<backspace>")
     end,
-  },
-
-  {
-    "RRethy/vim-illuminate",
-    event = "VeryLazy",
   },
 
   {

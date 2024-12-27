@@ -84,3 +84,24 @@ usercmd("Themes", function()
 end, {
   desc = "Open the theme selector",
 })
+
+usercmd("Jless", function()
+  require("nvchad.term").toggle {
+    id = "jless",
+    pos = "bo vsp",
+    size = 1,
+    cmd = function()
+      local file = vim.fn.expand "%"
+
+      -- If no file, save it to /tmp
+      if file == "" then
+        file = "/tmp/tmp.json"
+        vim.cmd("w! " .. file)
+      end
+
+      return "jless " .. file
+    end,
+  }
+end, {
+  desc = "Open a new terminal with jless",
+})
