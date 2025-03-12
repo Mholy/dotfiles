@@ -47,20 +47,6 @@ return {
 
   {
     "hrsh7th/nvim-cmp",
-    dependencies = {
-      {
-        "supermaven-inc/supermaven-nvim",
-        config = function()
-          require("supermaven-nvim").setup {
-            -- disable_inline_completion = true,
-            -- disable_keymaps = true,
-            condition = function()
-              return not isGitDirectory()
-            end,
-          }
-        end,
-      },
-    },
     config = function(_, opts)
       local cmp = require "cmp"
 
@@ -343,6 +329,19 @@ return {
       default_args = {
         DiffviewOpen = { "--imply-local" },
       },
+    },
+  },
+
+  {
+    "supermaven-inc/supermaven-nvim",
+    -- cmd = "Supermaven",
+    event = 'InsertEnter',
+    opts = {
+      -- disable_inline_completion = true,
+      -- disable_keymaps = true,
+      condition = function()
+        return not isGitDirectory()
+      end,
     },
   },
 }

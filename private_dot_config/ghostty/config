@@ -1,1 +1,9 @@
 theme = dark:"Builtin Solarized Dark",light:"Builtin Solarized Light"
+font-family = "Iosevka Nerd Font Mono"
+font-size = 15
+font-feature = ss05
+
+mouse-hide-while-typing
+macos-option-as-alt = true
+
+keybind = global:alt+enter=toggle_quick_terminal

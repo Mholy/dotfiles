@@ -7,7 +7,7 @@ local highlights = require "highlights"
 local M = {}
 
 M.base46 = {
-  theme = "flexoki-light",
+  theme = "doomchad",
   theme_toggle = { "doomchad", "flexoki-light" },
   changed_themes = highlights.changed_themes,
   hl_override = highlights.hl_override,
@@ -82,27 +82,5 @@ M.term = {
   -- vertical = { location = "rightbelow", size = 0.3 },
   shell = vim.o.shell,
 }
-
--- M.mason = {
---   pkgs = {
---     -- lua
---     "lua-language-server",
---     "stylua",
---
---     -- web
---     "html-lsp",
---     "css-lsp",
---     "css-variables-language-server",
---     "cssmodules-language-server",
---     "vtsls",
---     "vue-language-server",
---     "eslint-lsp",
---     "prettier",
---     "prettierd",
---     "tailwindcss-language-server",
---
---     "typos-lsp",
---   },
--- }
 
 return M

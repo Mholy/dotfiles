@@ -4,7 +4,6 @@ require("nvchad.configs.lspconfig").defaults()
 local lspconfig = require "lspconfig"
 local map = vim.keymap.set
 
--- EXAMPLE
 local servers = {
   "vtsls",
   "html",
@@ -13,6 +12,7 @@ local servers = {
   "vuels",
   "typos_lsp",
   "tailwindcss",
+  "graphql",
 }
 
 local nvlsp = require "nvchad.configs.lspconfig"

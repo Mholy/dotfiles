@@ -1,17 +1,15 @@
 gui:
   expandFocusedSidePanel: true
   theme:
-    showBottomLine: false
     nerdFontsVersion: "3"
 os:
-  editPreset: "nvim"
+  editPreset: "zed"
 git:
   paging:
     colorArg: always
     # externalDiffCommand: difft --color=always --display=side-by-side-show-both
-    externalDiffCommand: difft --color=always
-    # pager: delta --paging=never
-    # useConfig: true
+    # externalDiffCommand: difft --color=always
+    pager: delta --paging=never --light
 customCommands:
   - key: t
     command: tig show {{.SelectedSubCommit.Sha}}

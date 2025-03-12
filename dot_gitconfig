@@ -16,12 +16,16 @@
 [interactive]
   diffFilter = delta --color-only --features=interactive
 
+[pull]
+  rebase = true
+
 [push]
 	autoSetupRemote = true
 
 [diff]
   ; tool = nvimdiff
-  tool = difftastic
+  ; tool = difftastic
+  tool = delta
 
 [difftool]
   prompt = false
@@ -32,8 +36,7 @@
 
 [delta]
   features = decorations
-  paging = never
-  ; side-by-side = true
+  side-by-side = true
   ; light = true
 
 [delta "interactive"]

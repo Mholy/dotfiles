@@ -66,15 +66,6 @@ map({ "n" }, "<leader>bl", function()
   require("nvchad.tabufline").move_buf(1)
 end, { desc = "buffer move right" })
 
--- Git
-map({ "n" }, "]c", function()
-  require("gitsigns").next_hunk()
-end, { desc = "git next hunk" })
-
-map({ "n" }, "[c", function()
-  require("gitsigns").prev_hunk()
-end, { desc = "git nrev hunk" })
-
 -- Telescope
 map("n", "<leader>tr", "<cmd> Telescope resume <CR>", { desc = "telescope resume" })
 

@@ -15,7 +15,7 @@ after-login-command = []
 after-startup-command = []
 
 # Start AeroSpace at login
-start-at-login = true
+start-at-login = false
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -24,7 +24,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 30
+accordion-padding = 0
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'accordion'
@@ -202,7 +202,7 @@ V = ['virtual']
 
 # Callbacks
 # [[on-window-detected]]
-# if.app-id = 'id'                                       # Application ID exact match  
+# if.app-id = 'id'                                       # Application ID exact match
 # if.app-name-regex-substring = 'settings'               # Case insensitive regex substring
 # if.window-title-regex-substring = 'substring'          # Case insensitive regex substring
 # if.during-aerospace-startup = true                     # Run the callback only if the window detected during AeroSpace startup
@@ -273,6 +273,10 @@ run = ['move-node-to-workspace R']
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
 run = ['move-node-to-workspace Q']
+
+[[on-window-detected]]
+if.app-id="com.mitchellh.ghostty"
+run = ['layout tiling', 'move-node-to-workspace Q']
 
 # Float
 [[on-window-detected]]
