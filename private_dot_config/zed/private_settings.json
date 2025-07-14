@@ -1,0 +1,138 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+  // Key bindings
+  "base_keymap": "VSCode",
+  "vim_mode": true,
+
+  // UI
+  "theme": {
+    "mode": "system",
+    "light": "Gruvbox Light Soft",
+    "dark": "Gruvbox Dark Soft"
+  },
+
+  // UI - Font
+  "buffer_font_family": "Iosevka Nerd Font Mono",
+  "ui_font_size": 15,
+  "buffer_font_size": 15,
+  "agent_font_size": 15,
+  "buffer_line_height": "standard",
+
+  // UI - Misc
+  // "cursor_blink": false,
+  "relative_line_numbers": true,
+  "indent_guides": {
+    "coloring": "indent_aware",
+    "active_line_width": 2
+  },
+  "active_pane_modifiers": {
+    "border_size": 0,
+    "inactive_opacity": 0.5
+  },
+  "pane_split_direction_horizontal": "down",
+  "pane_split_direction_vertical": "right",
+  "project_panel": {
+    "hide_gitignore": false,
+    "entry_spacing": "standard",
+    "indent_guides": {
+      "show": "never"
+    }
+  },
+  "hide_mouse": "on_typing_and_movement",
+  "minimap": {
+    "show": "never"
+  },
+
+  // Editing
+  "tab_size": 2,
+  "show_completions_on_input": true,
+  "format_on_save": "on",
+  "features": {
+    "edit_prediction_provider": "supermaven"
+  },
+
+  // LSP
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "tsserver": {
+            "experimental": {
+              "enableProjectDiagnostics": true
+            }
+          }
+        }
+      }
+    },
+    "tailwindcss-language-server": {
+      "settings": {
+        "classAttributes": ["class", "className", "classNames"],
+        "classFunctions": ["clsx", "tw", "tw\\.[a-z-]+", "cva", "cn"]
+      }
+    }
+  },
+
+  // Language settings
+  "languages": {
+    "TypeScript": {
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      },
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
+    }
+  },
+
+  // Agent
+  "agent": {
+    "enable_feedback": false,
+    "play_sound_when_agent_done": true,
+    "default_width": 500,
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-7-sonnet"
+    },
+    "commit_message_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-7-sonnet"
+    },
+    "thread_summary_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-7-sonnet"
+    }
+  },
+
+  // Misc
+  "confirm_quit": true,
+  "when_closing_with_no_tabs": "keep_window_open",
+  "ssh_connections": [
+    {
+      "host": "aeza",
+      "projects": [
+        {
+          "paths": ["/etc"]
+        },
+        {
+          "paths": ["~"]
+        }
+      ]
+    }
+  ],
+
+  // Telemetry
+  "telemetry": {
+    "metrics": false,
+    "diagnostics": false
+  }
+}
