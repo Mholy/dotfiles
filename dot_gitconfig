@@ -1,12 +1,12 @@
 [user]
 	useConfigOnly = true
-	name = 
-	email = 
+	name =
+	email =
 
 [core]
 	editor = nvim
   pager = delta
-    
+
 [init]
 	defaultBranch = main
 
@@ -25,7 +25,8 @@
 [diff]
   ; tool = nvimdiff
   ; tool = difftastic
-  tool = delta
+  tool = smerge
+  ; external = difft
 
 [difftool]
   prompt = false
@@ -33,6 +34,25 @@
 [merge]
   tool = smerge
   conflictstyle = diff3
+
+[rebase]
+  updateRefs = true
+
+[difftool "difftastic"]
+    cmd = difft "$LOCAL" "$REMOTE"
+
+[mergetool "nvimdiff"]
+  path = nvim
+  conflictstyle = diff3
+  colorMoved = default
+
+[difftool "smerge"]
+  cmd = smerge mergetool "$LOCAL" "$REMOTE"
+  trustExitCode = true
+
+[mergetool "smerge"]
+  cmd = smerge mergetool "$BASE" "$LOCAL" "$REMOTE" -o "$MERGED"
+  trustExitCode = true
 
 [delta]
   features = decorations
@@ -49,18 +69,3 @@
   hunk-header-file-style = auto
   hunk-header-line-number-style = auto
   hunk-header-style = file line-number syntax
-
-[difftool "delta"]
-	cmd = delta --color-only --features=interactive
-
-[difftool "difftastic"]
-  cmd = difft "$LOCAL" "$REMOTE"
-
-[mergetool "nvimdiff"]
-  path = nvim
-  conflictstyle = diff3
-  colorMoved = default
-
-[mergetool "smerge"]
-  cmd = smerge mergetool "$BASE" "$LOCAL" "$REMOTE" -o "$MERGED"
-  trustExitCode = true

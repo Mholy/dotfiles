@@ -1,28 +1,31 @@
 gui:
   expandFocusedSidePanel: true
-  theme:
-    nerdFontsVersion: "3"
+  nerdFontsVersion: "3"
+  tabWidth: 2
+  sidePanelWidth: 0.33
+  enlargedSideViewLocation: top
+  # showNumstatInFilesView: true
+  statusPanelView: allBranchesLog
+  mouseEvents: false
+  # showDivergenceFromBaseBranch: arrowAndNumber
+  portraitMode: always
 os:
   editPreset: "zed"
 git:
   paging:
     colorArg: always
-    # externalDiffCommand: difft --color=always --display=side-by-side-show-both
-    # externalDiffCommand: difft --color=always
-    pager: delta --paging=never --light
+    # pager: delta --paging=never
+    externalDiffCommand: difft --color always --skip-unchanged --syntax-highlight on --tab-width 2 --display side-by-side-show-both
 customCommands:
   - key: t
     command: tig show {{.SelectedSubCommit.Sha}}
     context: subCommits
     description: tig commit (`t` again to browse files at revision)
-    subprocess: yes
   - key: t
     command: tig show {{.SelectedLocalBranch.Name}}
     context: localBranches
     description: tig branch (`t` again to browse files at revision)
-    subprocess: yes
   - key: t
     command: tig show {{.SelectedRemoteBranch.RemoteName}}/{{.SelectedRemoteBranch.Name}}
     context: remoteBranches
     description: tig branch (`t` again to browse files at revision)
-    subprocess: yes

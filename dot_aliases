@@ -38,8 +38,9 @@ alias lt='eza --tree --level=2'
 alias brew-uses="brew uses --installed"
 
 # npm
-alias npm-check="ncu -i --format group"
-alias npm-check-minor="ncu -i --format group --target minor"
+alias ncu="ncu -i --format group"
+alias ncu-minor="ncu --target minor"
+alias ncu-prod="ncu --dep prod"
 
 # jless
 alias yless="jless --yaml"
