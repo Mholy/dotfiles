@@ -1,8 +1,7 @@
 [
   {
-    "context": "GitPanel || ProjectPanel || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || AgentPanel",
+    "context": "AgentPanel || GitPanel || ProjectPanel || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || DebugPanel || Dock",
     "bindings": {
-      // window related commands (ctrl-w X)
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
@@ -10,16 +9,21 @@
     }
   },
   {
-    "context": "vim_mode == insert",
+    "context": "Editor && edit_prediction",
     "bindings": {
-      "ctrl-x ctrl-e": "editor::ToggleEditPrediction",
+      "alt-tab": "editor::AcceptEditPrediction",
+      "tab": "editor::AcceptEditPrediction",
+      "ctrl-j": "editor::AcceptPartialEditPrediction",
+      "ctrl-x ctrl-c": "editor::ToggleEditPrediction",
       "ctrl-x ctrl-n": "editor::NextEditPrediction",
       "ctrl-x ctrl-p": "editor::PreviousEditPrediction"
     }
   },
   {
-    "context": "Editor && edit_prediction",
+    "context": "Editor && edit_prediction_conflict",
+    "use_key_equivalents": true,
     "bindings": {
+      "alt-tab": "editor::AcceptEditPrediction",
       "ctrl-j": "editor::AcceptPartialEditPrediction"
     }
   },
@@ -31,15 +35,36 @@
     }
   },
   {
+    "context": "VimControl && !menu && vim_mode != operator",
+    "bindings": {
+      "w": "vim::NextSubwordStart",
+      "b": "vim::PreviousSubwordStart",
+      "e": "vim::NextSubwordEnd",
+      "g e": "vim::PreviousSubwordEnd"
+    }
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "shift-s": "vim::PushAddSurrounds",
+      "shift-x": "vim::Exchange"
+    }
+  },
+  {
+    "context": "vim_operator == a || vim_operator == i || vim_operator == cs",
+    "bindings": {
+      // Traditional Vim behavior
+      // "q": "vim::AnyQuotes",
+      // "b": "vim::AnyBrackets",
+      // mini.ai plugin behavior
+      "q": "vim::MiniQuotes",
+      "b": "vim::MiniBrackets"
+    }
+  },
+  {
     "context": "ProjectPanel && not_editing",
     "bindings": {
       "H": "project_panel::CollapseAllEntries"
     }
   }
-  // {
-  //   "context": "Editor && vim_mode == normal && (vim_operator == none || vim_operator == n) && !VimWaiting",
-  //   "bindings": {
-  //     "space l g": ["task::Spawn", { "task_name": "Lazygit" }]
-  //   }
-  // }
 ]
