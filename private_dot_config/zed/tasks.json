@@ -1,14 +1,20 @@
 [
   {
     "label": "Lazygit",
-    "command": "lg",
+    "command": "export EDITOR=zed && lg",
     "reveal_target": "center",
     "hide": "on_success"
   },
   {
     "label": "Lazygit: File Log",
-    "command": "lazygit",
+    "command": "export EDITOR=zed && lg",
     "args": ["-f", "\"$ZED_RELATIVE_FILE\""],
+    "reveal_target": "center",
+    "hide": "on_success"
+  },
+  {
+    "label": "Jujutsu",
+    "command": "export EDITOR=zed && jjui",
     "reveal_target": "center",
     "hide": "on_success"
   },
