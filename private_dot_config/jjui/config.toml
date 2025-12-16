@@ -1,3 +1,32 @@
-[ui.colors]
-"selected" = { bg = "5", fg = "255" }
+[ui]
+#in seconds
+auto_refresh_interval = 60
 
+[ui.colors]
+"selected" = { bold = true, bg = "188" }
+
+[preview]
+show_at_start = false
+revision_command = ["show", "--color", "always", "--config", "ui.diff-formatter=[\"difft\", \"--color\", \"always\", \"--skip-unchanged\", \"--syntax-highlight\", \"on\", \"--tab-width\", \"2\", \"--width\", \"125\", \"$left\", \"$right\"]", "-r", "$change_id"]
+file_command = ["diff", "--color", "always", "--config", "ui.diff-formatter=[\"difft\", \"--color\", \"always\", \"--skip-unchanged\", \"--syntax-highlight\", \"on\", \"--tab-width\", \"2\", \"--width\", \"125\", \"$left\", \"$right\"]", "-r", "$change_id", "$file"]
+
+[custom_commands]
+"show after revisions" = { revset = "::$change_id" }
+"local bookmarks" = { revset = "bookmarks() & ~(main | develop | remote_bookmarks())" }
+"my remote bookmarks" = { revset = "remote_bookmarks() & (mine() | committer('e.smolnikov@campingworld.com') | committer('5146835+Mholy@users.noreply.github.com'))" }
+"revision local changes" = { revset = "remote_bookmarks()..@" }
+"restore file(s) to @" = { args = ["restore", "--from", "$change_id-", "$checked_files"] }
+"resolve conflicts in file" = { args = ["resolve", "$file"] }
+
+[leader.e]
+context = [ "$file", "$change_id" ]
+help = "Edit file in @"
+send = [ "$", "$EDITOR $file", "enter" ]
+
+[leader.E]
+context = [ "$file", "$change_id" ]
+help = "Edit file in change"
+send = [ "$", "jj edit $change_id && $EDITOR $file", "enter" ]
+
+[ui.tracer]
+enabled = true
