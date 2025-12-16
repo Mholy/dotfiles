@@ -12,10 +12,7 @@ start-at-login = true
 # Examples:
 #   after-startup-command = 'exec-and-forget open -a Ghostty'
 #   after-startup-command = ['exec-and-forget open -a Safari', 'exec-and-forget open -a Slack']
-after-startup-command = [
-  'workspace 1',
-  'layout scroll'
-]
+after-startup-command = []
 
 # ╔═══════════════════════════════════════════════════════════════════════════════╗
 # ║                            DEFAULT LAYOUT SETTINGS                            ║
@@ -26,12 +23,12 @@ after-startup-command = [
 # 'dwindle' - HyprSpace exclusive binary tree layout with automatic orientation
 # 'master' - HyprSpace exclusive master/stack layout
 # 'scroll'/'niri'/'paper' - HyprSpace exclusive scrollable layout
-default-root-container-layout = 'scroll'
+default-root-container-layout = 'dwindle'
 
 # Default container orientation for tiles layout
 # Options: 'horizontal', 'vertical', 'auto'
 # 'auto' - Automatically choose based on screen dimensions
-default-root-container-orientation = 'auto'
+default-root-container-orientation = 'horizontal'
 
 # ╔═══════════════════════════════════════════════════════════════════════════════╗
 # ║                    DWINDLE LAYOUT (HYPRSPACE EXCLUSIVE)                       ║
@@ -43,7 +40,7 @@ default-root-container-orientation = 'auto'
 #   1.0 = Equal split (50%/50%)
 #   1.618 = Golden ratio split (~62%/38%)
 #   0.618 = Inverse golden ratio (~38%/62%)
-dwindle-default-split-ratio = 1.618
+dwindle-default-split-ratio = 1.0
 
 # Enforce aspect ratio for single windows in dwindle layout
 # Format: [width, height] or [0, 0] to disable
@@ -72,7 +69,7 @@ dwindle-single-window-aspect-ratio-tolerance = 0.1
 #   0.5 = Precise (slower, fine-grained control)
 #   1.0 = Balanced (default)
 #   2.0 = Aggressive (faster, coarse adjustments)
-mouse-sensitivity = 1.0
+mouse-sensitivity = 0.3
 
 # ╔═══════════════════════════════════════════════════════════════════════════════╗
 # ║                     MASTER LAYOUT (HYPRSPACE EXCLUSIVE)                       ║
@@ -84,7 +81,7 @@ mouse-sensitivity = 1.0
 #   0.5 = Equal split (50%)
 #   0.618 = Golden ratio (~62%)
 #   0.66 = Two-thirds (~66%)
-master-default-percent = 0.5
+master-default-percent = 0.618
 
 # ╔═══════════════════════════════════════════════════════════════════════════════╗
 # ║                SCROLL/NIRI/PAPER LAYOUT (HYPRSPACE EXCLUSIVE)                 ║
@@ -100,7 +97,7 @@ master-default-percent = 0.5
 #   0.8  = 80% width (10% peek each side) - default
 #   0.9  = 90% width (5% peek each side) - focused
 #   1.0  = 100% width (no peek) - full screen
-niri-focused-width-ratio = 0.95
+niri-focused-width-ratio = 0.8
 
 # ╔═══════════════════════════════════════════════════════════════════════════════╗
 # ║                           OTHER LAYOUT SETTINGS                               ║
@@ -143,7 +140,7 @@ automatically-unhide-macos-hidden-apps = true
 # even when they are invisible.
 # This config version is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
-persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C",
+persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "A", "B", "C",
                          "D", "E", "F", "G", "I",  "M", "N", "O",
                          "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
@@ -204,6 +201,9 @@ outer.right = 10
 # 3 = "secondary"                     # Workspace 3 on any secondary monitor
 # 4 = ["Built-in", 1]                 # Workspace 4 prefers Built-in, falls back to monitor 1
 # 5 = "LG.*"                          # Workspace 5 on any LG monitor
+
+[workspace-to-monitor-force-assignment]
+0 = "Built-in"
 
 # ╔═══════════════════════════════════════════════════════════════════════════════╗
 # ║                            KEY MAPPING                                        ║
@@ -273,25 +273,24 @@ on-focused-monitor-changed = 'move-mouse monitor-lazy-center'
 #   - move-node-to-workspace (must be last command if used)
 #
 
-# ──────────────────────────────────────────────────────────────────────────────
-#                                Workspace 2
-# ──────────────────────────────────────────────────────────────────────────────
+[[on-window-detected]]
+if.app-id = 'com.culturedcode.ThingsMac'
+run = ['move-node-to-workspace 0']
 
-# Ghostty
+[[on-window-detected]]
+if.app-id = 'org.mozilla.com.zen.browser'
+run = ['move-node-to-workspace 1']
+
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 if.during-aerospace-startup = true
 run = 'move-node-to-workspace 2'
 
-# ──────────────────────────────────────────────────────────────────────────────
-#                                Workspace W
-# ──────────────────────────────────────────────────────────────────────────────
-
 # Slack
-[[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-check-further-callbacks = false
-run = 'move-node-to-workspace W'
+# [[on-window-detected]]
+# if.app-id = 'com.tinyspeck.slackmacgap'
+# check-further-callbacks = false
+# run = 'move-node-to-workspace S'
 
 # ──────────────────────────────────────────────────────────────────────────────
 #                                  Floating
@@ -312,6 +311,9 @@ run = 'layout floating'
 # ╚═══════════════════════════════════════════════════════════════════════════════╝
 
 [mode.main.binding]
+
+cmd-h = [] # Disable "hide application"
+cmd-alt-h = [] # Disable "hide others"
 
 # ──────────────────────────────────────────────────────────────────────────────
 #                              FOCUS MOVEMENT
@@ -344,6 +346,7 @@ alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
+alt-0 = 'workspace 0'
 alt-a = 'workspace A'
 alt-b = 'workspace B'
 alt-c = 'workspace C'
@@ -376,6 +379,7 @@ alt-shift-6 = 'move-node-to-workspace 6'
 alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
+alt-shift-0 = 'move-node-to-workspace 0'
 alt-shift-a = 'move-node-to-workspace A'
 alt-shift-b = 'move-node-to-workspace B'
 alt-shift-c = 'move-node-to-workspace C'
@@ -399,19 +403,20 @@ alt-shift-x = 'move-node-to-workspace X'
 alt-shift-y = 'move-node-to-workspace Y'
 alt-shift-z = 'move-node-to-workspace Z'
 
-# Navigate workspaces sequentially
-alt-tab = 'workspace-back-and-forth'
-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+alt-backslash = 'workspace-back-and-forth'
+alt-shift-backslash = 'move-workspace-to-monitor --wrap-around next'
+alt-tab = "exec-and-forget hyprspace list-workspaces --monitor focused --empty no | hyprspace workspace next --stdin"
+alt-shift-tab = "exec-and-forget hyprspace list-workspaces --monitor focused --empty no | hyprspace workspace prev --stdin"
 
 # ──────────────────────────────────────────────────────────────────────────────
 #                            WINDOW RESIZING
 # ──────────────────────────────────────────────────────────────────────────────
 
 # Direct resize - immediate size adjustment without entering a mode
-alt-equal = 'resize width -50'
-alt-minus = 'resize width +50'
-alt-shift-equal = 'resize height -50'
-alt-shift-minus = 'resize height +50'
+alt-equal = 'resize width +400'
+alt-minus = 'resize width -400'
+alt-shift-equal = 'resize height +400'
+alt-shift-minus = 'resize height -400'
 
 # ──────────────────────────────────────────────────────────────────────────────
 #                            WINDOW MANAGEMENT
