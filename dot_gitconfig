@@ -6,6 +6,7 @@
 [core]
 	editor = nvim
   pager = delta
+  excludesfile = ~/.gitignore_global
 
 [init]
 	defaultBranch = main
@@ -21,6 +22,7 @@
 
 [push]
 	autoSetupRemote = true
+  followTags = true
 
 [diff]
   ; tool = nvimdiff
@@ -39,7 +41,7 @@
   updateRefs = true
 
 [difftool "difftastic"]
-    cmd = difft "$LOCAL" "$REMOTE"
+    cmd = difft $LOCAL $REMOTE
 
 [mergetool "nvimdiff"]
   path = nvim
@@ -47,11 +49,19 @@
   colorMoved = default
 
 [difftool "smerge"]
-  cmd = smerge mergetool "$LOCAL" "$REMOTE"
+  cmd = smerge mergetool $LOCAL $REMOTE
   trustExitCode = true
 
 [mergetool "smerge"]
-  cmd = smerge mergetool "$BASE" "$LOCAL" "$REMOTE" -o "$MERGED"
+  cmd = smerge mergetool $BASE $LOCAL $REMOTE -o $MERGED
+  trustExitCode = true
+
+[difftool "codium"]
+  cmd = codium --wait --diff $LOCAL $REMOTE
+  trustExitCode = true
+
+[mergetool "codium"]
+  cmd = codium --wait --merge $LOCAL $REMOTE $BASE $MERGED
   trustExitCode = true
 
 [delta]
