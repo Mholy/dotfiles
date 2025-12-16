@@ -1,4 +1,15 @@
 "$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
 
 [ui]
+# --display=side-by-side-show-both
+diff-formatter = ["difft", "--color", "always", "--skip-unchanged", "--syntax-highlight", "on", "--tab-width", "2", "$left", "$right"]
+
 merge-editor = "smerge"
+diff-editor = "meld-3"
+
+[revsets]
+log = "present(@) | ancestors(immutable_heads().., 2) | present(trunk())"
+# log = "present(@) | ancestors(immutable_heads().., 2) | bookmarks(develop)"
+
+[remotes.origin]
+auto-track-bookmarks = "glob:*"
