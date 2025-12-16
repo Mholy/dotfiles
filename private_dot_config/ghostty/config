@@ -1,11 +1,8 @@
-theme = dark:"GruvboxDark",light:"GruvboxLight"
+theme = dark:"Gruvbox Dark",light:"Gruvbox Light"
 font-family = "Iosevka Nerd Font Mono"
 font-size = 15
 font-feature = ss05
-maximize = true
-quit-after-last-window-closed = true
-
+# maximize = true
 mouse-hide-while-typing
 macos-option-as-alt = true
-
-keybind = global:ctrl+cmd+enter=toggle_quick_terminal
+# keybind = global:ctrl+cmd+enter=toggle_quick_terminal
