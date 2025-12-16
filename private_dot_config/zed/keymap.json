@@ -1,5 +1,20 @@
 [
   {
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-Z u +": "zed::IncreaseUiFontSize",
+      "ctrl-Z u -": "zed::DecreaseUiFontSize",
+      "ctrl-Z u 0": "zed::ResetUiFontSize",
+      "ctrl-Z b +": "zed::IncreaseBufferFontSize",
+      "ctrl-Z b -": "zed::DecreaseBufferFontSize",
+      "ctrl-Z b 0": "zed::ResetBufferFontSize",
+      "cmd-0": ["workspace::SendKeystrokes", "ctrl-Z u 0 ctrl-Z b 0"],
+      "cmd-=": ["workspace::SendKeystrokes", "ctrl-Z u + ctrl-Z b +"],
+      "cmd-+": ["workspace::SendKeystrokes", "ctrl-Z u + ctrl-Z b +"],
+      "cmd--": ["workspace::SendKeystrokes", "ctrl-Z u - ctrl-Z b -"]
+    }
+  },
+  {
     "context": "AgentPanel || GitPanel || ProjectPanel || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || DebugPanel || Dock",
     "bindings": {
       "ctrl-h": "workspace::ActivatePaneLeft",
@@ -11,20 +26,16 @@
   {
     "context": "Editor && edit_prediction",
     "bindings": {
-      "alt-tab": "editor::AcceptEditPrediction",
-      "tab": "editor::AcceptEditPrediction",
-      "ctrl-j": "editor::AcceptPartialEditPrediction",
-      "ctrl-x ctrl-c": "editor::ToggleEditPrediction",
-      "ctrl-x ctrl-n": "editor::NextEditPrediction",
-      "ctrl-x ctrl-p": "editor::PreviousEditPrediction"
+      "shift-enter": "editor::AcceptPartialEditPrediction",
+      "ctrl-x ctrl-.": "editor::NextEditPrediction",
+      "ctrl-x ctrl-,": "editor::PreviousEditPrediction"
     }
   },
   {
     "context": "Editor && edit_prediction_conflict",
     "use_key_equivalents": true,
     "bindings": {
-      "alt-tab": "editor::AcceptEditPrediction",
-      "ctrl-j": "editor::AcceptPartialEditPrediction"
+      "shift-enter": "editor::AcceptPartialEditPrediction"
     }
   },
   {
@@ -32,15 +43,6 @@
     "bindings": {
       "s": "vim::PushSneak",
       "shift-s": "vim::PushSneakBackward"
-    }
-  },
-  {
-    "context": "VimControl && !menu && vim_mode != operator",
-    "bindings": {
-      "w": "vim::NextSubwordStart",
-      "b": "vim::PreviousSubwordStart",
-      "e": "vim::NextSubwordEnd",
-      "g e": "vim::PreviousSubwordEnd"
     }
   },
   {
@@ -62,9 +64,44 @@
     }
   },
   {
-    "context": "ProjectPanel && not_editing",
+    "context": "vim_mode == normal",
     "bindings": {
-      "H": "project_panel::CollapseAllEntries"
+      "] d": [
+        "editor::GoToDiagnostic",
+        {
+          "severity": {
+            "min": "warning",
+            "max": "error"
+          }
+        }
+      ],
+      "[ d": [
+        "editor::GoToPreviousDiagnostic",
+        {
+          "severity": {
+            "min": "warning",
+            "max": "error"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "context": "Workspace",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-g ctrl-g": [
+        "task::Spawn",
+        {
+          "task_name": "Lazygit"
+        }
+      ],
+      "ctrl-g ctrl-j": [
+        "task::Spawn",
+        {
+          "task_name": "Jujutsu"
+        }
+      ]
     }
   }
 ]
