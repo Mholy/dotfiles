@@ -17,10 +17,5 @@
     "command": "export EDITOR=zed && jjui",
     "reveal_target": "center",
     "hide": "on_success"
-  },
-  {
-    "label": "Aider",
-    "command": "aider",
-    "hide": "on_success"
   }
 ]
