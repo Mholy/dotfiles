@@ -26,9 +26,9 @@ alias df="duf"
 alias rs="rsync -axHAWXS --numeric-ids --info=progress2"
 
 # eza
-alias ls='eza --group-directories-first --git' # ls
-alias l='ls --header' # list, size, type, git
-alias ll='ls --header --all --color-scale' # all list
+alias ls='eza --group-directories-first --git'
+alias l='ls --long --header'
+alias ll='ls --long --header --all'
 
 # brew
 alias brew-uses="brew uses --installed"
