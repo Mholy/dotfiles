@@ -13,6 +13,7 @@ local servers = {
   "typos_lsp",
   "tailwindcss",
   "graphql",
+  "gh_actions_ls"
 }
 
 local nvlsp = require "nvchad.configs.lspconfig"
@@ -60,6 +61,7 @@ lspconfig.eslint.setup {
     })
     on_attach(client, bufnr)
   end,
+  on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
   settings = {
     useESLintClass = true,
@@ -76,5 +78,6 @@ lspconfig.cssmodules_ls.setup {
     client.server_capabilities.definitionProvider = false
     on_attach(client)
   end,
+  on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
 }

@@ -2,6 +2,17 @@
 -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
 -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
 
+function _G.get_oil_winbar()
+  local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
+  local dir = require("oil").get_current_dir(bufnr)
+  if dir then
+    return vim.fn.fnamemodify(dir, ":~")
+  else
+    -- If there is no current directory (e.g. over ssh), just show the buffer name
+    return vim.api.nvim_buf_get_name(0)
+  end
+end
+
 local function isGitDirectory()
   local cmd = "git rev-parse --is-inside-work-tree"
   return vim.fn.system(cmd) == "true\n"
@@ -11,7 +22,7 @@ end
 return {
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
+    event = "BufWritePre", -- uncomment for format on save
     opts = require "configs.conform",
   },
 
@@ -49,15 +60,18 @@ return {
     "hrsh7th/nvim-cmp",
     config = function(_, opts)
       local cmp = require "cmp"
+      local neocodeium = require "neocodeium"
 
-      -- opts.completion.autocomplete = false
+      opts.completion = {
+        autocomplete = false,
+      }
 
       opts.mapping["<C-Space>"] = nil
       opts.mapping["<A-Space>"] = cmp.mapping.complete()
-      opts.mapping["<Tab>"] = nil
-      opts.mapping["<S-Tab>"] = nil
 
-      -- table.insert(opts.sources, 1, { name = "supermaven" })
+      cmp.event:on("menu_opened", function()
+        neocodeium.clear()
+      end)
 
       cmp.setup(opts)
     end,
@@ -129,28 +143,24 @@ return {
   },
 
   {
-    "telescope.nvim",
-    config = function(_, opts)
-      -- local open_with_trouble = require("trouble.sources.telescope").open
-
-      -- Use this to add more results without clearing the trouble list
-      -- local add_to_trouble = require("trouble.sources.telescope").add
-
-      -- opts.defaults.mappings = {
-      --   i = { ["<c-t>"] = open_with_trouble, ["<s-t>"] = add_to_trouble },
-      --   n = { ["<c-t>"] = open_with_trouble, ["<s-t>"] = add_to_trouble },
-      -- }
-
-      require("telescope").setup(opts)
-    end,
-  },
-
-  {
     "stevearc/oil.nvim",
     lazy = false,
     config = function()
       require("oil").setup {
+        default_file_explorer = true,
+        delete_to_trash = true,
         skip_confirm_for_simple_edits = true,
+        lsp_file_methods = {
+          enabled = true,
+          timeout_ms = 1000,
+          autosave_changes = false,
+        },
+        -- view_options = {
+        --   show_hidden = true,
+        -- },
+        win_options = {
+          winbar = "%!v:lua.get_oil_winbar()",
+        },
         use_default_keymaps = false,
         keymaps = {
           ["g?"] = "actions.show_help",
@@ -204,10 +214,11 @@ return {
 
   {
     "ThePrimeagen/harpoon",
+    event = "BufRead",
     branch = "harpoon2",
-    config = function()
-      require("harpoon").setup()
-    end,
+    -- config = function()
+    --   require("harpoon").setup()
+    -- end,
   },
 
   -- {
@@ -244,28 +255,33 @@ return {
   { "typicode/bg.nvim", lazy = false },
 
   {
+    "tpope/vim-repeat",
+    event = "BufRead",
+  },
+
+  {
     "ggandor/leap.nvim",
     lazy = false,
     config = function()
-      vim.keymap.set("n", "s", "<Plug>(leap)")
-      vim.keymap.set("n", "S", "<Plug>(leap-from-window)")
-      vim.keymap.set({ "x", "o" }, "s", "<Plug>(leap-forward)")
-      vim.keymap.set({ "x", "o" }, "S", "<Plug>(leap-backward)")
+      require("leap").opts.preview = function(ch0, ch1, ch2)
+        return not (ch1:match "%s" or (ch0:match "%a" and ch1:match "%a" and ch2:match "%a"))
+      end
 
-      -- Define equivalence classes for brackets and quotes, in addition to
-      -- the default whitespace group.
-      require("leap").opts.equivalence_classes = { " \t\r\n", "([{", ")]}", "'\"`" }
+      require("leap").opts.equivalence_classes = {
+        " \t\r\n",
+        "([{",
+        ")]}",
+        "'\"`",
+      }
 
-      -- Use the traversal keys to repeat the previous motion without explicitly
-      -- invoking Leap.
-      -- WARN: When active, enter in quickfix window does not work
-      -- require("leap.user").set_repeat_keys("<enter>", "<backspace>")
+      require "leap.user"
     end,
   },
 
   {
     "folke/todo-comments.nvim",
-    event = "VeryLazy",
+    enabled = false,
+    event = "BufRead",
     config = function()
       require("todo-comments").setup()
     end,
@@ -323,25 +339,33 @@ return {
   },
 
   {
-    "sindrets/diffview.nvim",
-    event = "BufRead",
-    opts = {
-      default_args = {
-        DiffviewOpen = { "--imply-local" },
-      },
-    },
-  },
+    "monkoose/neocodeium",
+    event = "InsertEnter",
+    config = function()
+      local neocodeium = require "neocodeium"
+      local cmp = require "cmp"
 
-  {
-    "supermaven-inc/supermaven-nvim",
-    -- cmd = "Supermaven",
-    event = 'InsertEnter',
-    opts = {
-      -- disable_inline_completion = true,
-      -- disable_keymaps = true,
-      condition = function()
-        return not isGitDirectory()
-      end,
-    },
+      neocodeium.setup {
+        silent = false,
+        single_line = {
+          enabled = false,
+          label = "...", -- Label indicating that there is multi-line suggestion.
+        },
+        filter = function(bufnr)
+          local function isEnv()
+            local filename = vim.fs.basename(vim.api.nvim_buf_get_name(bufnr))
+            if string.match(filename, "^%.env") then
+              return true
+            end
+            return false
+          end
+
+          return isGitDirectory() and not cmp.visible() and not isEnv()
+        end,
+        filetypes = {
+          TelescopePrompt = false,
+        },
+      }
+    end,
   },
 }

@@ -1,11 +1,15 @@
 require "nvchad.options"
 
 local o = vim.o
-local g = vim.g
+
 o.cursorlineopt = "both" -- to enable cursorline!
 o.relativenumber = true
 o.scrolloff = 5
 o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+local g = vim.g
+
+g.codeium_disable_bindings = 1
 
 -- Hello, is this Neovide?
 if g.neovide then
@@ -33,75 +37,3 @@ if g.neovide then
   -- g.neovide_cursor_animate_command_line = false
   g.neovide_cursor_vfx_mode = "pixiedust"
 end
-
--- Auto commands
-local autocmd = vim.api.nvim_create_autocmd
-
--- Highlight on yank
-autocmd("TextYankPost", {
-  callback = function()
-    vim.highlight.on_yank {
-      higroup = "Visual",
-      timeout = 300,
-      on_visual = false,
-    }
-  end,
-})
-
--- Restore cursor position when opening a file
-autocmd("BufReadPost", {
-  pattern = "*",
-  callback = function()
-    local line = vim.fn.line "'\""
-    if
-      line > 1
-      and line <= vim.fn.line "$"
-      and vim.bo.filetype ~= "commit"
-      and vim.fn.index({ "xxd", "gitrebase" }, vim.bo.filetype) == -1
-    then
-      vim.cmd 'normal! g`"'
-    end
-  end,
-})
-
--- User commands
-local usercmd = vim.api.nvim_create_user_command
-
-usercmd("Termh", function()
-  require("nvchad.term").new { pos = "sp" }
-end, {
-  desc = "Open a new horizontal terminal",
-})
-
-usercmd("Termv", function()
-  require("nvchad.term").new { pos = "vsp" }
-end, {
-  desc = "Open a new vertical terminal",
-})
-
-usercmd("Themes", function()
-  require("nvchad.themes").open { style = "bordered" }
-end, {
-  desc = "Open the theme selector",
-})
-
-usercmd("Jless", function()
-  require("nvchad.term").toggle {
-    id = "jless",
-    pos = "bo vsp",
-    size = 1,
-    cmd = function()
-      local file = vim.fn.expand "%"
-
-      -- If no file, save it to /tmp
-      if file == "" then
-        file = "/tmp/tmp.json"
-        vim.cmd("w! " .. file)
-      end
-
-      return "jless " .. file
-    end,
-  }
-end, {
-  desc = "Open a new terminal with jless",
-})
