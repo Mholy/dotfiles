@@ -1,2 +1,10 @@
+[env]
+COMPLETION_DIR = "{{config_root}}/.config/mise/completions"
+
 [tools]
-node = "lts"
+node = { version = "lts", postinstall = "corepack enable" }
+prettier = "latest"
+snyk = "latest"
+
+[settings]
+default_config_filename = "mise.local.toml"
