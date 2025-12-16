@@ -27,12 +27,12 @@ alias rs="rsync -axHAWXS --numeric-ids --info=progress2"
 
 # exa
 alias ls='eza --group-directories-first'                                                         # ls
-alias l='ls -lbhF --git'                                               # list, size, type, git
-alias lm='ls -lbhF --git --sort=modified'                            # long list, modified date sort
-alias ll='ls -lbhHgUma --time-style=long-iso --git --color-scale'  # all list
-alias lx='ls -lbhHgUma@ --time-style=long-iso --git --color-scale' # all + extended list
-alias lS='ls -1'                                                      # one column, just names
-alias lt='ls --tree --level=2'
+alias l='eza -lbhF --git'                                               # list, size, type, git
+alias lm='eza -lbhF --git --sort=modified'                            # long list, modified date sort
+alias ll='eza -lbhHgUma --time-style=long-iso --git --color-scale'  # all list
+alias lx='eza -lbhHgUma@ --time-style=long-iso --git --color-scale' # all + extended list
+alias lS='eza -1'                                                      # one column, just names
+alias lt='eza --tree --level=2'
 
 # brew
 alias brew-uses="brew uses --installed"
