@@ -2,6 +2,8 @@
 -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
 -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
 
+local map = vim.keymap.set
+
 function _G.get_oil_winbar()
   local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
   local dir = require("oil").get_current_dir(bufnr)
@@ -60,7 +62,8 @@ return {
     "hrsh7th/nvim-cmp",
     config = function(_, opts)
       local cmp = require "cmp"
-      local neocodeium = require "neocodeium"
+
+      local neocodeium_exists, neocodeium = pcall(require, "neocodeium")
 
       opts.completion = {
         autocomplete = false,
@@ -69,9 +72,11 @@ return {
       opts.mapping["<C-Space>"] = nil
       opts.mapping["<A-Space>"] = cmp.mapping.complete()
 
-      cmp.event:on("menu_opened", function()
-        neocodeium.clear()
-      end)
+      if neocodeium_exists then
+        cmp.event:on("menu_opened", function()
+          neocodeium.clear()
+        end)
+      end
 
       cmp.setup(opts)
     end,
@@ -341,6 +346,9 @@ return {
   {
     "monkoose/neocodeium",
     event = "InsertEnter",
+    cond = function()
+      return os.getenv "NVIM_NEOCODEIUM" ~= "false"
+    end,
     config = function()
       local neocodeium = require "neocodeium"
       local cmp = require "cmp"
@@ -366,6 +374,54 @@ return {
           TelescopePrompt = false,
         },
       }
+
+      -- mapping defined here to only add when plugin enabled
+      map("i", "<C-CR>", function()
+        require("neocodeium").accept()
+      end, { desc = "suggestion accept" })
+
+      map("i", "<C-,>", function()
+        require("neocodeium").accept_word()
+      end, { desc = "suggestion accept word" })
+
+      map("i", "<C-.>", function()
+        require("neocodeium").accept_line()
+      end, { desc = "suggestion accept line" })
+
+      map("i", "<C-;>", function()
+        require("neocodeium").cycle_or_complete()
+      end, { desc = "suggestion complete/next" })
+
+      map("i", "<C-S-;>", function()
+        require("neocodeium").cycle_or_complete(-1)
+      end, { desc = "suggestion prev" })
+
+      map("i", "<C-\\>", function()
+        require("neocodeium").clear()
+      end, { desc = "suggestion clear" })
+    end,
+  },
+
+  {
+    "github/copilot.vim",
+    event = "VeryLazy",
+    cond = function()
+      return os.getenv "NVIM_COPILOT" == "true"
+    end,
+    config = function()
+      vim.g.copilot_no_tab_map = true
+
+      -- mapping defined here to only add when plugin enabled
+      map("i", "<C-CR>", 'copilot#Accept("")', {
+        expr = true,
+        replace_keycodes = false,
+      })
+
+      map("i", "<C-,>", "<Plug>(copilot-accept-word)", { desc = "suggestion accept word" })
+      map("i", "<C-.>", "<Plug>(copilot-accept-line)", { desc = "suggestion accept line" })
+      map("i", "<C-;>", "<Plug>(copilot-next)", { desc = "suggestion next" })
+      map("i", "<C-S-;>", "<Plug>(copilot-previous)", { desc = "suggestion prev" })
+      map("i", "<C-\\>", "<Plug>(copilot-dismiss)", { desc = "suggestion clear" })
     end,
   },
 }

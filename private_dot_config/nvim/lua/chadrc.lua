@@ -7,7 +7,7 @@ local highlights = require "highlights"
 local M = {}
 
 M.base46 = {
-  theme = "gruvchad",
+  theme = "gruvbox_light",
   changed_themes = highlights.changed_themes,
   integrations = {},
   transparency = false,

@@ -108,26 +108,6 @@ end
 -- NvimTree
 nomap("n", "<C-n>")
 
--- Codeium
-map("i", "<C-CR>", function()
-  require("neocodeium").accept()
-end, { desc = "codeium accept" })
-map("i", "<C-,>", function()
-  require("neocodeium").accept_word()
-end, { desc = "codeium accept word" })
-map("i", "<C-.>", function()
-  require("neocodeium").accept_line()
-end, { desc = "codeium accept line" })
-map("i", "<C-;>", function()
-  require("neocodeium").cycle_or_complete()
-end, { desc = "codeium complete/next" })
-map("i", "<C-S-;>", function()
-  require("neocodeium").cycle_or_complete(-1)
-end, { desc = "codeium prev" })
-map("i", "<C-\\>", function()
-  require("neocodeium").clear()
-end, { desc = "codeium clear" })
-
 -- leap
 map({ "n", "x", "o" }, "s", "<Plug>(leap)", { desc = 'leap search'})
 map("n", "S", "<Plug>(leap-from-window)", { desc = 'leap search from window'})
