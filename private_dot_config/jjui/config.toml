@@ -2,11 +2,12 @@
 #in seconds
 auto_refresh_interval = 60
 
-[ui.colors]
-"selected" = { bold = true, bg = "188" }
+[ui.theme]
+light = "gruvbox-light"
+dark = "gruvbox-dark"
 
 [preview]
-show_at_start = false
+show_at_start = true
 revision_command = ["show", "--color", "always", "--config", "ui.diff-formatter=[\"difft\", \"--color\", \"always\", \"--skip-unchanged\", \"--syntax-highlight\", \"on\", \"--tab-width\", \"2\", \"--width\", \"125\", \"$left\", \"$right\"]", "-r", "$change_id"]
 file_command = ["diff", "--color", "always", "--config", "ui.diff-formatter=[\"difft\", \"--color\", \"always\", \"--skip-unchanged\", \"--syntax-highlight\", \"on\", \"--tab-width\", \"2\", \"--width\", \"125\", \"$left\", \"$right\"]", "-r", "$change_id", "$file"]
 
