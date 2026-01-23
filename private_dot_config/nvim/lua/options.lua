@@ -6,6 +6,8 @@ o.cursorlineopt = "both" -- to enable cursorline!
 o.relativenumber = true
 o.scrolloff = 5
 o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+o.title = true
+o.titlestring = "%t (%{fnamemodify(getcwd(),':~')})"
 
 local g = vim.g
 

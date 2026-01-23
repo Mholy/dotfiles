@@ -2,8 +2,6 @@
 -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
 -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
 
-local map = vim.keymap.set
-
 function _G.get_oil_winbar()
   local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
   local dir = require("oil").get_current_dir(bufnr)
@@ -15,10 +13,10 @@ function _G.get_oil_winbar()
   end
 end
 
-local function isGitDirectory()
-  local cmd = "git rev-parse --is-inside-work-tree"
-  return vim.fn.system(cmd) == "true\n"
-end
+-- local function isGitDirectory()
+--   local cmd = "git rev-parse --is-inside-work-tree"
+--   return vim.fn.system(cmd) == "true\n"
+-- end
 
 ---@type NvPluginSpec[]
 return {
@@ -33,11 +31,6 @@ return {
     config = function()
       require "configs.lspconfig"
     end,
-    dependencies = {
-      {
-        "yioneko/nvim-vtsls",
-      },
-    },
   },
 
   {
@@ -72,11 +65,16 @@ return {
       opts.mapping["<C-Space>"] = nil
       opts.mapping["<A-Space>"] = cmp.mapping.complete()
 
-      if neocodeium_exists then
-        cmp.event:on("menu_opened", function()
+      cmp.event:on("menu_opened", function()
+        vim.b.copilot_suggestion_hidden = true
+        if neocodeium_exists then
           neocodeium.clear()
-        end)
-      end
+        end
+      end)
+
+      cmp.event:on("menu_closed", function()
+        vim.b.copilot_suggestion_hidden = false
+      end)
 
       cmp.setup(opts)
     end,
@@ -117,27 +115,30 @@ return {
         end, { desc = "git prev hunk" })
 
         -- Actions
-        map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "git stage hunk" })
-        map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "git reset hunk" })
-        map("v", "<leader>hs", function()
-          gitsigns.stage_hunk { vim.fn.line ".", vim.fn.line "v" }
-        end, { desc = "git stage hunk range" })
-        map("v", "<leader>hr", function()
-          gitsigns.reset_hunk { vim.fn.line ".", vim.fn.line "v" }
-        end, { desc = "git reset hunk range" })
-        map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "git stage buffer" })
-        map("n", "<leader>hu", gitsigns.undo_stage_hunk, { desc = "git undo stage hunk" })
-        map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "git reset buffer" })
-        map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "git preview hunk" })
-        map("n", "<leader>hb", function()
+        map("n", "<leader>gs", gitsigns.stage_hunk, { desc = "git stage hunk" })
+        map("n", "<leader>gr", gitsigns.reset_hunk, { desc = "git reset hunk" })
+
+        map("n", "<leader>gS", gitsigns.stage_buffer, { desc = "git stage buffer" })
+        map("n", "<leader>gu", gitsigns.undo_stage_hunk, { desc = "git undo stage hunk" })
+        map("n", "<leader>gR", gitsigns.reset_buffer, { desc = "git reset buffer" })
+        map("n", "<leader>gp", gitsigns.preview_hunk, { desc = "git preview hunk" })
+        map("n", "<leader>gb", function()
           gitsigns.blame_line { full = true }
+          map("n", "<leader>gB", gitsigns.toggle_current_line_blame, { desc = "git toggle current line blame" })
         end, { desc = "git blame line" })
-        map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "git toggle current line blame" })
-        map("n", "<leader>hd", gitsigns.diffthis, { desc = "git diff this" })
-        map("n", "<leader>hD", function()
+        map("n", "<leader>gw", gitsigns.diffthis, { desc = "git diff this" })
+        map("n", "<leader>gW", function()
           gitsigns.diffthis "~"
         end, { desc = "git diff this ~" })
-        map("n", "<leader>td", gitsigns.toggle_deleted, { desc = "git toggle deleted" })
+        map("n", "<leader>gd", gitsigns.toggle_deleted, { desc = "git toggle deleted" })
+
+        -- Visual
+        map("v", "<leader>gs", function()
+          gitsigns.stage_hunk { vim.fn.line ".", vim.fn.line "v" }
+        end, { desc = "git stage hunk range" })
+        map("v", "<leader>gr", function()
+          gitsigns.reset_hunk { vim.fn.line ".", vim.fn.line "v" }
+        end, { desc = "git reset hunk range" })
 
         -- Text object
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "git select hunk" })
@@ -219,11 +220,35 @@ return {
 
   {
     "ThePrimeagen/harpoon",
+    enabled = false,
     event = "BufRead",
     branch = "harpoon2",
-    -- config = function()
-    --   require("harpoon").setup()
-    -- end,
+    config = function()
+      local harpoon = require "harpoon"
+      local map = vim.keymap.set
+
+      map({ "n" }, "<leader>hh", function()
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+      end, { desc = "harpoon" })
+
+      map({ "n" }, "<leader>ha", function()
+        harpoon:list():add()
+      end, { desc = "harpoon add" })
+
+      map({ "n" }, "<leader>hn", function()
+        harpoon:list():next()
+      end, { desc = "harpoon next" })
+
+      map({ "n" }, "<leader>hp", function()
+        harpoon:list():prev()
+      end, { desc = "harpoon previous" })
+
+      for i = 1, 9 do
+        map({ "n" }, "<leader>h" .. i, function()
+          harpoon:list():select(i)
+        end, { desc = "harpoon select " .. i })
+      end
+    end,
   },
 
   -- {
@@ -250,9 +275,9 @@ return {
         auto_save_enabled = true,
         auto_restore_enabled = true,
         auto_session_use_git_branch = false,
-        auto_create = function()
-          return isGitDirectory()
-        end,
+        -- auto_create = function()
+        --   return isGitDirectory()
+        -- end,
       }
     end,
   },
@@ -345,10 +370,10 @@ return {
 
   {
     "monkoose/neocodeium",
-    event = "InsertEnter",
     cond = function()
-      return os.getenv "NVIM_NEOCODEIUM" ~= "false"
+      return not require("utils.workmode").is_work_project()
     end,
+    event = "InsertEnter",
     config = function()
       local neocodeium = require "neocodeium"
       local cmp = require "cmp"
@@ -359,24 +384,29 @@ return {
           enabled = false,
           label = "...", -- Label indicating that there is multi-line suggestion.
         },
-        filter = function(bufnr)
-          local function isEnv()
-            local filename = vim.fs.basename(vim.api.nvim_buf_get_name(bufnr))
-            if string.match(filename, "^%.env") then
-              return true
-            end
-            return false
-          end
-
-          return isGitDirectory() and not cmp.visible() and not isEnv()
-        end,
         filetypes = {
           TelescopePrompt = false,
+          help = false,
         },
+        filter = function(bufnr)
+          local function isEnv()
+            local bufname = vim.api.nvim_buf_get_name(bufnr)
+
+            if string.match(bufname, "%.env.*$") then
+              return false
+            end
+
+            return true
+          end
+
+          return not cmp.visible() and not isEnv()
+        end,
       }
 
       -- mapping defined here to only add when plugin enabled
-      map("i", "<C-CR>", function()
+      local map = vim.keymap.set
+
+      map("i", "<C-l>", function()
         require("neocodeium").accept()
       end, { desc = "suggestion accept" })
 
@@ -403,25 +433,178 @@ return {
   },
 
   {
-    "github/copilot.vim",
-    event = "VeryLazy",
+    "zbirenbaum/copilot.lua",
     cond = function()
-      return os.getenv "NVIM_COPILOT" == "true"
+      return require("utils.workmode").is_work_project()
     end,
+    event = "InsertEnter",
+    dependencies = {
+      "copilotlsp-nvim/copilot-lsp",
+      init = function()
+        vim.g.copilot_nes_debounce = 500
+      end,
+    },
     config = function()
-      vim.g.copilot_no_tab_map = true
+      require("copilot").setup {
+        panel = {
+          enabled = true,
+          auto_refresh = false,
+          keymap = {
+            jump_prev = "[[",
+            jump_next = "]]",
+            accept = "<CR>",
+            refresh = "gr",
+            open = "<C-CR>",
+          },
+          layout = {
+            position = "right", -- | top | left | right | bottom |
+            ratio = 0.4,
+          },
+        },
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          hide_during_completion = true,
+          debounce = 15,
+          trigger_on_accept = true,
+          keymap = {
+            accept = "<C-l>",
+            accept_word = "<C-,>",
+            accept_line = "<C-.>",
+            next = "<C-;>",
+            prev = "<C-S-;>",
+            dismiss = "<C-\\>",
+            toggle_auto_trigger = false,
+          },
+        },
+        nes = {
+          enabled = true,
+          auto_trigger = false,
+          keymap = {
+            accept_and_goto = "<leader>p",
+            accept = false,
+            dismiss = "<Esc>",
+          },
+        },
+        filetypes = {
+          TelescopePrompt = false,
+          help = false,
+          ["*"] = true,
+        },
+        should_attach = function(_, bufname)
+          if string.match(bufname, "%.env.*$") then
+            return false
+          end
 
-      -- mapping defined here to only add when plugin enabled
-      map("i", "<C-CR>", 'copilot#Accept("")', {
-        expr = true,
-        replace_keycodes = false,
-      })
-
-      map("i", "<C-,>", "<Plug>(copilot-accept-word)", { desc = "suggestion accept word" })
-      map("i", "<C-.>", "<Plug>(copilot-accept-line)", { desc = "suggestion accept line" })
-      map("i", "<C-;>", "<Plug>(copilot-next)", { desc = "suggestion next" })
-      map("i", "<C-S-;>", "<Plug>(copilot-previous)", { desc = "suggestion prev" })
-      map("i", "<C-\\>", "<Plug>(copilot-dismiss)", { desc = "suggestion clear" })
+          return true
+        end,
+      }
     end,
   },
+
+  {
+    "andymass/vim-matchup",
+    lazy = false,
+  },
+
+  {
+    "TheNoeTrevino/haunt.nvim",
+    lazy = false,
+    -- default config: change to your liking, or remove it to use defaults
+    ---@class HauntConfig
+    opts = {
+      sign = "󱙝",
+      sign_hl = "DiagnosticInfo",
+      virt_text_hl = "HauntAnnotation",
+      annotation_prefix = " 󰆉 ",
+      line_hl = nil,
+      virt_text_pos = "eol",
+      data_dir = nil,
+      picker_keys = {
+        delete = { key = "d", mode = { "n" } },
+        edit_annotation = { key = "a", mode = { "n" } },
+      },
+    },
+    -- recommended keymaps, with a helpful prefix alias
+    init = function()
+      local haunt = require "haunt.api"
+      local haunt_picker = require "haunt.picker"
+      local map = vim.keymap.set
+      local prefix = "<leader>h"
+
+      -- annotations
+      map("n", prefix .. "a", function()
+        haunt.annotate()
+      end, { desc = "Haunting Annotate" })
+
+      map("n", prefix .. "t", function()
+        haunt.toggle_annotation()
+      end, { desc = "Haunting Toggle annotation" })
+
+      map("n", prefix .. "T", function()
+        haunt.toggle_all_lines()
+      end, { desc = "Haunting Toggle all annotations" })
+
+      map("n", prefix .. "d", function()
+        haunt.delete()
+      end, { desc = "Haunting Delete bookmark" })
+
+      map("n", prefix .. "C", function()
+        haunt.clear_all()
+      end, { desc = "Haunting Delete all bookmarks" })
+
+      -- move
+      map("n", prefix .. "p", function()
+        haunt.prev()
+      end, { desc = "Haunting Previous bookmark" })
+
+      map("n", prefix .. "n", function()
+        haunt.next()
+      end, { desc = "Haunting Next bookmark" })
+
+      -- picker
+      map("n", prefix .. "l", function()
+        haunt_picker.show()
+      end, { desc = "Haunting Show Picker" })
+
+      -- quickfix
+      map("n", prefix .. "q", function()
+        haunt.to_quickfix()
+      end, { desc = "Haunting Send to QF Lix (buffer)" })
+
+      map("n", prefix .. "Q", function()
+        haunt.to_quickfix { current_buffer = true }
+      end, { desc = "Haunting Send to QF Lix (all)" })
+
+      -- yank
+      map("n", prefix .. "y", function()
+        haunt.yank_locations { current_buffer = true }
+      end, { desc = "Haunting Send to Clipboard (buffer)" })
+
+      map("n", prefix .. "Y", function()
+        haunt.yank_locations()
+      end, { desc = "Haunting Send to Clipboard (all)" })
+    end,
+  },
+
+  -- {
+  --   "folke/sidekick.nvim",
+  --   cmd = "Sidekick",
+  --   ---@class sidekick.Config
+  --   opts = function()
+  --     local haunt_sk_exists, haunt_sk = pcall(require, "haunt.sidekick")
+  --     local opts = {
+  --       cli = {
+  --         prompts = {},
+  --       },
+  --     }
+  --
+  --     if haunt_sk_exists then
+  --       opts.cli.prompts.haunt_all = haunt_sk.get_locations
+  --       opts.cli.prompts.haunt_buffer = haunt_sk.get_locations { current_buffer = true }
+  --     end
+  --
+  --     return opts
+  --   end,
+  -- },
 }

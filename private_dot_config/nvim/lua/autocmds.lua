@@ -57,6 +57,6 @@ usercmd("LazygitLog", function()
     pos = "bo vsp",
     id = "lgToggleTerm",
     size = 0.9,
-    cmd = "lazygit -f" .. current_file,
+    cmd = "lazygit -f " .. current_file,
   }
 end, { desc = "Open Lazygit file log" })
