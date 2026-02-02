@@ -2,17 +2,6 @@
 -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
 -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
 
-function _G.get_oil_winbar()
-  local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
-  local dir = require("oil").get_current_dir(bufnr)
-  if dir then
-    return vim.fn.fnamemodify(dir, ":~")
-  else
-    -- If there is no current directory (e.g. over ssh), just show the buffer name
-    return vim.api.nvim_buf_get_name(0)
-  end
-end
-
 -- local function isGitDirectory()
 --   local cmd = "git rev-parse --is-inside-work-tree"
 --   return vim.fn.system(cmd) == "true\n"
@@ -20,6 +9,21 @@ end
 
 ---@type NvPluginSpec[]
 return {
+  {
+    "nvim-tree/nvim-tree.lua",
+    enabled = false,
+  },
+
+  {
+    "L3MON4D3/LuaSnip",
+    enabled = false,
+  },
+
+  {
+    "saadparwaiz1/cmp_luasnip",
+    enabled = false,
+  },
+
   {
     "stevearc/conform.nvim",
     event = "BufWritePre", -- uncomment for format on save
@@ -76,13 +80,15 @@ return {
         vim.b.copilot_suggestion_hidden = false
       end)
 
+      opts.sources = {
+        { name = "nvim_lsp" },
+        { name = "buffer" },
+        { name = "nvim_lua" },
+        { name = "async_path" },
+      }
+
       cmp.setup(opts)
     end,
-  },
-
-  {
-    "nvim-tree/nvim-tree.lua",
-    enabled = false,
   },
 
   {
@@ -152,6 +158,17 @@ return {
     "stevearc/oil.nvim",
     lazy = false,
     config = function()
+      function _G.get_oil_winbar()
+        local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
+        local dir = require("oil").get_current_dir(bufnr)
+        if dir then
+          return vim.fn.fnamemodify(dir, ":~")
+        else
+          -- If there is no current directory (e.g. over ssh), just show the buffer name
+          return vim.api.nvim_buf_get_name(0)
+        end
+      end
+
       require("oil").setup {
         default_file_explorer = true,
         delete_to_trash = true,
@@ -290,7 +307,7 @@ return {
   },
 
   {
-    "ggandor/leap.nvim",
+    "https://codeberg.org/andyg/leap.nvim",
     lazy = false,
     config = function()
       require("leap").opts.preview = function(ch0, ch1, ch2)
@@ -393,10 +410,10 @@ return {
             local bufname = vim.api.nvim_buf_get_name(bufnr)
 
             if string.match(bufname, "%.env.*$") then
-              return false
+              return true
             end
 
-            return true
+            return false
           end
 
           return not cmp.visible() and not isEnv()
@@ -438,12 +455,12 @@ return {
       return require("utils.workmode").is_work_project()
     end,
     event = "InsertEnter",
-    dependencies = {
-      "copilotlsp-nvim/copilot-lsp",
-      init = function()
-        vim.g.copilot_nes_debounce = 500
-      end,
-    },
+    -- dependencies = {
+    --   "copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
+    --   init = function()
+    --     vim.g.copilot_nes_debounce = 500
+    --   end,
+    -- },
     config = function()
       require("copilot").setup {
         panel = {
@@ -478,8 +495,7 @@ return {
           },
         },
         nes = {
-          enabled = true,
-          auto_trigger = false,
+          enabled = false,
           keymap = {
             accept_and_goto = "<leader>p",
             accept = false,
