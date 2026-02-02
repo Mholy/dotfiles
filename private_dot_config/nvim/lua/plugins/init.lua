@@ -529,6 +529,7 @@ return {
     -- default config: change to your liking, or remove it to use defaults
     ---@class HauntConfig
     opts = {
+      picker = 'telescope',
       sign = "󱙝",
       sign_hl = "DiagnosticInfo",
       virt_text_hl = "HauntAnnotation",
