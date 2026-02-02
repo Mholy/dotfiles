@@ -1,0 +1,98 @@
+{
+  "actions" : [
+    {
+      "key" : "b",
+      "type" : "application",
+      "value" : "/Applications/Zen Browser.app"
+    },
+    {
+      "actions" : [
+        {
+          "key" : "c",
+          "type" : "application",
+          "value" : "/Applications/Chromium.app"
+        },
+        {
+          "iconPath" : "/Applications/Antinote.app",
+          "key" : "n",
+          "type" : "application",
+          "value" : "/System/Applications/Antinote.app"
+        },
+        {
+          "key" : "s",
+          "type" : "application",
+          "value" : "/Applications/Slack.app"
+        }
+      ],
+      "key" : "o",
+      "type" : "group"
+    },
+    {
+      "actions" : [
+        {
+          "iconPath" : "lock.circle",
+          "key" : "l",
+          "label" : "Lock Screen",
+          "type" : "url",
+          "value" : "raycast://extensions/raycast/system/lock-screen"
+        },
+        {
+          "iconPath" : "speaker.slash.circle",
+          "key" : "m",
+          "label" : "Toggle Mute",
+          "type" : "url",
+          "value" : "raycast://extensions/raycast/system/toggle-mute"
+        }
+      ],
+      "key" : "s",
+      "type" : "group"
+    },
+    {
+      "key" : "t",
+      "type" : "application",
+      "value" : "/Applications/Ghostty.app"
+    },
+    {
+      "actions" : [
+        {
+          "iconPath" : "arrowshape.left",
+          "key" : "[",
+          "label" : "Previous Display",
+          "type" : "url",
+          "value" : "raycast://extensions/raycast/window-management/previous-display"
+        },
+        {
+          "iconPath" : "arrowshape.right",
+          "key" : "]",
+          "label" : "Next Display",
+          "type" : "url",
+          "value" : "raycast://extensions/raycast/window-management/next-display"
+        },
+        {
+          "iconPath" : "inset.filled.rectangle",
+          "key" : "f",
+          "label" : "Maximize",
+          "type" : "url",
+          "value" : "raycast://extensions/raycast/window-management/maximize"
+        },
+        {
+          "iconPath" : "inset.filled.lefthalf.righthalf.rectangle",
+          "key" : "l",
+          "label" : "Left Half",
+          "type" : "url",
+          "value" : "raycast://extensions/raycast/window-management/left-half"
+        },
+        {
+          "iconPath" : "inset.filled.righthalf.lefthalf.rectangle",
+          "key" : "r",
+          "label" : "Right Half",
+          "type" : "url",
+          "value" : "raycast://extensions/raycast/window-management/right-half"
+        }
+      ],
+      "key" : "w",
+      "type" : "group"
+    }
+  ],
+  "type" : "group"
+}
