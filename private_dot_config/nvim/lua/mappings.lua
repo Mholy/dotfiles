@@ -56,7 +56,7 @@ end, { desc = "terminal toggle lazygit" })
 map({ "n" }, "<leader>tj", function()
   require("nvchad.term").toggle {
     pos = "bo vsp",
-    id = "lgToggleTerm",
+    id = "jjToggleTerm",
     size = 0.9,
     cmd = "jjui",
   }

@@ -15,13 +15,22 @@ return {
   },
 
   {
-    "L3MON4D3/LuaSnip",
-    enabled = false,
-  },
+    "nvim-telescope/telescope.nvim",
+    config = function(_, opts)
+      local optsOverride = {
+        defaults = {
+          prompt_prefix = "",
+          initial_mode = "normal",
+          path_display = {
+            filename_first = {
+              reverse_directories = true,
+            },
+          },
+        },
+      }
 
-  {
-    "saadparwaiz1/cmp_luasnip",
-    enabled = false,
+      require("telescope").setup(vim.tbl_deep_extend("force", opts, optsOverride))
+    end,
   },
 
   {
@@ -79,13 +88,6 @@ return {
       cmp.event:on("menu_closed", function()
         vim.b.copilot_suggestion_hidden = false
       end)
-
-      opts.sources = {
-        { name = "nvim_lsp" },
-        { name = "buffer" },
-        { name = "nvim_lua" },
-        { name = "async_path" },
-      }
 
       cmp.setup(opts)
     end,
@@ -288,13 +290,14 @@ return {
     lazy = false,
     config = function()
       require("auto-session").setup {
-        auto_session_enabled = true,
-        auto_save_enabled = true,
-        auto_restore_enabled = true,
-        auto_session_use_git_branch = false,
-        -- auto_create = function()
-        --   return isGitDirectory()
-        -- end,
+        -- Git / Session naming
+        git_use_branch_name = true, -- Include git branch name in session name, can also be a function that takes an optional path and returns the name of the branch
+        git_auto_restore_on_branch_change = true, -- Should we auto-restore the session when the git branch changes. Requires git_use_branch_name
+        custom_session_tag = nil, -- Function that can return a string to be used as part of the session name
+
+        -- Deleting
+        auto_delete_empty_sessions = true, -- Enables/disables deleting the session if there are only unnamed/empty buffers when auto-saving
+        purge_after_minutes = 14400, -- Sessions older than purge_after_minutes will be deleted asynchronously on startup, e.g. set to 14400 to delete sessions that haven't been accessed for more than 10 days, defaults to off (no purging), requires >= nvim 0.10
       }
     end,
   },
@@ -529,7 +532,7 @@ return {
     -- default config: change to your liking, or remove it to use defaults
     ---@class HauntConfig
     opts = {
-      picker = 'telescope',
+      picker = "telescope",
       sign = "󱙝",
       sign_hl = "DiagnosticInfo",
       virt_text_hl = "HauntAnnotation",

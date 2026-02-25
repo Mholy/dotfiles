@@ -7,13 +7,13 @@ local highlights = require "highlights"
 local M = {}
 
 M.base46 = {
-  theme = "gruvchad",
+  theme = "penumbra_dark",
   changed_themes = highlights.changed_themes,
   integrations = {},
   transparency = false,
   hl_add = highlights.hl_add,
   hl_override = highlights.hl_override,
-  theme_toggle = { "gruvchad", "gruvbox_light" },
+  theme_toggle = {"penumbra_light", "penumbra_dark" },
 }
 
 M.ui = {
