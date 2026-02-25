@@ -1,59 +1,28 @@
 {
   "actions" : [
     {
-      "key" : "b",
-      "type" : "application",
-      "value" : "/Applications/Zen Browser.app"
-    },
-    {
       "actions" : [
         {
-          "key" : "c",
-          "type" : "application",
-          "value" : "/Applications/Chromium.app"
+          "iconPath" : "inset.filled.rectangle",
+          "key" : "f",
+          "label" : "Maximize",
+          "type" : "url",
+          "value" : "raycast://extensions/raycast/window-management/maximize"
         },
         {
-          "iconPath" : "/Applications/Antinote.app",
-          "key" : "n",
-          "type" : "application",
-          "value" : "/System/Applications/Antinote.app"
+          "iconPath" : "inset.filled.lefthalf.righthalf.rectangle",
+          "key" : "h",
+          "label" : "Left Half",
+          "type" : "url",
+          "value" : "raycast://extensions/raycast/window-management/left-half"
         },
         {
-          "key" : "s",
-          "type" : "application",
-          "value" : "/Applications/Slack.app"
-        }
-      ],
-      "key" : "o",
-      "type" : "group"
-    },
-    {
-      "actions" : [
-        {
-          "iconPath" : "lock.circle",
+          "iconPath" : "inset.filled.righthalf.lefthalf.rectangle",
           "key" : "l",
-          "label" : "Lock Screen",
+          "label" : "Right Half",
           "type" : "url",
-          "value" : "raycast://extensions/raycast/system/lock-screen"
+          "value" : "raycast://extensions/raycast/window-management/right-half"
         },
-        {
-          "iconPath" : "speaker.slash.circle",
-          "key" : "m",
-          "label" : "Toggle Mute",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/system/toggle-mute"
-        }
-      ],
-      "key" : "s",
-      "type" : "group"
-    },
-    {
-      "key" : "t",
-      "type" : "application",
-      "value" : "/Applications/Ghostty.app"
-    },
-    {
-      "actions" : [
         {
           "iconPath" : "arrowshape.left",
           "key" : "[",
@@ -67,30 +36,196 @@
           "label" : "Next Display",
           "type" : "url",
           "value" : "raycast://extensions/raycast/window-management/next-display"
-        },
-        {
-          "iconPath" : "inset.filled.rectangle",
-          "key" : "f",
-          "label" : "Maximize",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/maximize"
-        },
-        {
-          "iconPath" : "inset.filled.lefthalf.righthalf.rectangle",
-          "key" : "l",
-          "label" : "Left Half",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/left-half"
-        },
-        {
-          "iconPath" : "inset.filled.righthalf.lefthalf.rectangle",
-          "key" : "r",
-          "label" : "Right Half",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/right-half"
         }
       ],
+      "iconPath" : "inset.filled.leadinghalf.toptrailing.bottomtrailing.rectangle",
       "key" : "w",
+      "label" : "WM",
+      "type" : "group"
+    },
+    {
+      "actions" : [
+        {
+          "iconPath" : "plus.app",
+          "key" : "e",
+          "label" : "Assign app",
+          "type" : "command",
+          "value" : "flashspace assign-app"
+        },
+        {
+          "iconPath" : "xmark.app",
+          "key" : "q",
+          "label" : "Unassign app",
+          "type" : "command",
+          "value" : "flashspace unassign-app"
+        }
+      ],
+      "iconPath" : "/Applications/FlashSpace.app",
+      "key" : "f",
+      "label" : "Flashspace",
+      "type" : "group"
+    },
+    {
+      "iconPath" : "/Applications/FlashSpace.app",
+      "key" : "1",
+      "label" : "Search",
+      "type" : "command",
+      "value" : "flashspace workspace --number 1"
+    },
+    {
+      "iconPath" : "/Applications/FlashSpace.app",
+      "key" : "2",
+      "label" : "Code",
+      "type" : "command",
+      "value" : "flashspace workspace --number 2"
+    },
+    {
+      "iconPath" : "/Applications/FlashSpace.app",
+      "key" : "3",
+      "label" : "Messages",
+      "type" : "command",
+      "value" : "flashspace workspace --number 3"
+    },
+    {
+      "iconPath" : "/Applications/FlashSpace.app",
+      "key" : "4",
+      "label" : "Planning",
+      "type" : "command",
+      "value" : "flashspace workspace --number 4"
+    },
+    {
+      "actions" : [
+        {
+          "key" : "tab",
+          "label" : "Show",
+          "type" : "url",
+          "value" : "shottr://show"
+        },
+        {
+          "key" : "f",
+          "label" : "Fullscreen",
+          "type" : "url",
+          "value" : "shottr://grab/fullscreen"
+        },
+        {
+          "key" : "w",
+          "label" : "Window",
+          "type" : "url",
+          "value" : "shottr://grab/window"
+        },
+        {
+          "key" : "a",
+          "label" : "Area",
+          "type" : "url",
+          "value" : "shottr://grab/area"
+        },
+        {
+          "key" : "s",
+          "label" : "Scrolling",
+          "type" : "url",
+          "value" : "shottr://grab/scrolling"
+        },
+        {
+          "key" : "t",
+          "label" : "Delayed",
+          "type" : "url",
+          "value" : "shottr://grab/delayed"
+        },
+        {
+          "key" : "v",
+          "label" : "Append",
+          "type" : "url",
+          "value" : "shottr://grab/append"
+        },
+        {
+          "key" : "o",
+          "label" : "OCR",
+          "type" : "url",
+          "value" : "shottr://ocr"
+        }
+      ],
+      "iconPath" : "/Applications/Shottr.app",
+      "key" : "s",
+      "label" : "Shottr",
+      "type" : "group"
+    },
+    {
+      "actions" : [
+        {
+          "key" : "tab",
+          "type" : "application",
+          "value" : "/Applications/Things3.app"
+        },
+        {
+          "key" : "q",
+          "label" : "Quick Entry",
+          "type" : "url",
+          "value" : "things:///add?show-quick-entry=true"
+        },
+        {
+          "actions" : [
+            {
+              "iconPath" : "note.text",
+              "key" : "n",
+              "label" : "Replace Notes",
+              "type" : "url",
+              "value" : "things:///add?show-quick-entry=true&use-clipboard=replace-notes"
+            },
+            {
+              "iconPath" : "checklist.unchecked",
+              "key" : "t",
+              "label" : "Replace Title",
+              "type" : "url",
+              "value" : "things:///add?show-quick-entry=true&use-clipboard=replace-title"
+            }
+          ],
+          "iconPath" : "document.on.clipboard.fill",
+          "key" : "c",
+          "label" : "Use Clipboard",
+          "type" : "group"
+        }
+      ],
+      "iconPath" : "/Applications/Things3.app",
+      "key" : "t",
+      "label" : "Things",
+      "type" : "group"
+    },
+    {
+      "iconPath" : "/Applications/Antinote.app",
+      "key" : "n",
+      "type" : "application",
+      "value" : "/Applications/Antinote.app"
+    },
+    {
+      "iconPath" : "document.on.clipboard",
+      "key" : "c",
+      "label" : "Clipboard",
+      "type" : "url",
+      "value" : "raycast://extensions/raycast/clipboard-history/clipboard-history"
+    },
+    {
+      "actions" : [
+        {
+          "key" : "tab",
+          "type" : "application",
+          "value" : "/Applications/Daily.app"
+        },
+        {
+          "key" : "e",
+          "label" : "Enable",
+          "type" : "command",
+          "value" : "osascript -e 'tell application \"Daily\" to set registration mode \"ask\"'"
+        },
+        {
+          "key" : "z",
+          "label" : "Disable",
+          "type" : "command",
+          "value" : "osascript -e 'tell application \"Daily\" to set registration mode \"off\"'"
+        }
+      ],
+      "iconPath" : "/Applications/Daily.app",
+      "key" : "d",
+      "label" : "Daily",
       "type" : "group"
     }
   ],

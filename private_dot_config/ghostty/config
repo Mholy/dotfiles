@@ -1,8 +1,11 @@
-theme = dark:"Gruvbox Dark",light:"Gruvbox Light"
+# theme = dark:"Monokai Pro Machine",light:"Monokai Pro Light"
+theme = "Ocean"
 font-family = "Iosevka Nerd Font Mono"
 font-size = 15
 font-feature = ss05
-# maximize = true
+maximize = true
+window-padding-x = 5
+window-padding-y = 5
 mouse-hide-while-typing
 macos-option-as-alt = true
 # keybind = global:ctrl+cmd+enter=toggle_quick_terminal

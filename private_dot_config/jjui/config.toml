@@ -2,9 +2,9 @@
 #in seconds
 auto_refresh_interval = 60
 
-[ui.theme]
-light = "gruvbox-light"
-dark = "gruvbox-dark"
+# [ui.theme]
+# light = "base24-ocean"
+# dark = "base24-ocean"
 
 [preview]
 show_at_start = true
