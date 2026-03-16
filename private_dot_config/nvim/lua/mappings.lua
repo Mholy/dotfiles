@@ -93,3 +93,28 @@ map({ "x", "o" }, "R", function()
     opts = require("leap.user").with_traversal_keys("R", "r"),
   }
 end, { desc = "leap treesitter" })
+
+-- LSP
+map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP Code action" })
+map("n", "<leader>sh", vim.lsp.buf.signature_help, { desc = "LSP Show signature help" })
+
+map("n", "gs", function()
+  require("telescope.builtin").lsp_document_symbols {
+    ignore_symbols = {
+      "property",
+      "method",
+    },
+  }
+end, { desc = "LSP Symbols" })
+
+map("n", "gS", function()
+  require("telescope.builtin").lsp_dynamic_workspace_symbols {
+    ignore_symbols = {
+      "property",
+      "method",
+    },
+  }
+end, { desc = "LSP Workspace symbols" })
+
+map("n", "go", "<cmd> Telescope lsp_outgoing_calls <CR>", { desc = "LSP Outgoing calls" })
+map("n", "gi", "<cmd> Telescope lsp_incoming_calls <CR>", { desc = "LSP Incoming calls" })

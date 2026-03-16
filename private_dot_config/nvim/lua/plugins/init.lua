@@ -2,11 +2,6 @@
 -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
 -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
 
--- local function isGitDirectory()
---   local cmd = "git rev-parse --is-inside-work-tree"
---   return vim.fn.system(cmd) == "true\n"
--- end
-
 ---@type NvPluginSpec[]
 return {
   {
@@ -48,21 +43,20 @@ return {
   },
 
   {
-    "nvim-treesitter/nvim-treesitter",
-    opts = require "configs.treesitter",
-    dependencies = {
-      {
-        "nvim-treesitter/nvim-treesitter-context",
-        event = "VeryLazy",
-        enabled = false,
-        config = function()
-          require("treesitter-context").setup {
-            multiline_threshold = 1,
-            -- separator = "-",
-          }
-        end,
+    "pmizio/typescript-tools.nvim",
+    event = "VeryLazy",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {
+      jsx_close_tag = {
+        enable = true,
+        filetypes = { "javascriptreact", "typescriptreact" },
       },
     },
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = require "configs.treesitter",
   },
 
   {
@@ -272,21 +266,6 @@ return {
     end,
   },
 
-  -- {
-  --   "wakatime/vim-wakatime",
-  --   lazy = false,
-  -- },
-
-  -- {
-  --   "danymat/neogen",
-  --   event = "InsertEnter",
-  --   config = function()
-  --     require("neogen").setup {
-  --       snippet_engine = "luasnip",
-  --     }
-  --   end,
-  -- },
-
   {
     "rmagatti/auto-session",
     lazy = false,
@@ -297,10 +276,6 @@ return {
         "NvTerm_bosp",
         "NvTerm_bovsp",
       }
-
-      local telescopeConfig = require("telescope.config").values
-      -- telescopeConfig.layout_config.height = 0.5
-      -- telescopeConfig.layout_config.width = 0.5
 
       require("auto-session").setup {
         single_session_mode = true,
@@ -367,72 +342,8 @@ return {
   },
 
   {
-    "folke/todo-comments.nvim",
-    enabled = false,
-    event = "BufRead",
-    config = function()
-      require("todo-comments").setup()
-    end,
-  },
-
-  {
-    "folke/trouble.nvim",
-    enabled = false,
-    opts = {
-      auto_jump = true, -- auto jump to the item when there's only one
-      focus = true, -- Focus the window when opened
-      ---@type trouble.Window.opts
-      win = {
-        size = 0.3,
-      },
-    },
-    cmd = "Trouble",
-    keys = {
-      {
-        "<leader>xx",
-        "<cmd>Trouble diagnostics toggle<cr>",
-        desc = "Diagnostics (Trouble)",
-      },
-      {
-        "<leader>xX",
-        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-        desc = "Buffer Diagnostics (Trouble)",
-      },
-      {
-        "<leader>xt",
-        "<cmd>Trouble todo filter = {tag = {TODO,FIX,FIXME}}<cr>",
-        desc = "Buffer Diagnostics (Trouble)",
-      },
-      {
-        "gs",
-        "<cmd>Trouble symbols toggle focus=false win.relative=win win.position=right pinned=true<cr>",
-        desc = "Symbols (Trouble)",
-      },
-      {
-        "gd",
-        "<cmd>Trouble lsp toggle win.position=right follow=false<cr>",
-        desc = "LSP Definitions / references / ... (Trouble)",
-      },
-      {
-        "<leader>xL",
-        "<cmd>Trouble loclist toggle<cr>",
-        desc = "Location List (Trouble)",
-      },
-      {
-        "<leader>xQ",
-        "<cmd>Trouble qflist toggle<cr>",
-        desc = "Quickfix List (Trouble)",
-      },
-    },
-  },
-
-  {
     "monkoose/neocodeium",
     event = "VeryLazy",
-    -- cond = function()
-    --   return not require("utils.workmode").is_work_project()
-    -- end,
-    -- event = "InsertEnter",
     config = function()
       local neocodeium = require "neocodeium"
       local cmp = require "cmp"
@@ -646,25 +557,4 @@ return {
       end, { desc = "Haunting Send to Clipboard (all)" })
     end,
   },
-
-  -- {
-  --   "folke/sidekick.nvim",
-  --   cmd = "Sidekick",
-  --   ---@class sidekick.Config
-  --   opts = function()
-  --     local haunt_sk_exists, haunt_sk = pcall(require, "haunt.sidekick")
-  --     local opts = {
-  --       cli = {
-  --         prompts = {},
-  --       },
-  --     }
-  --
-  --     if haunt_sk_exists then
-  --       opts.cli.prompts.haunt_all = haunt_sk.get_locations
-  --       opts.cli.prompts.haunt_buffer = haunt_sk.get_locations { current_buffer = true }
-  --     end
-  --
-  --     return opts
-  --   end,
-  -- },
 }

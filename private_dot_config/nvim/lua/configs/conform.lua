@@ -1,24 +1,24 @@
 local function prettier()
-  return { "prettier", stop_after_first = true }
+  return { "prettierd", "prettier", stop_after_first = true }
 end
 
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
-    javascript = prettier,
-    typescript = prettier,
-    javascriptreact = prettier,
-    typescriptreact = prettier,
-    html = prettier,
-    css = prettier,
-    scss = prettier,
-    json = prettier,
-    yaml = prettier,
-    yml = prettier,
-    markdown = prettier,
-    markdown_inline = prettier,
-    graphql = prettier,
-    ["_"] = { "trim_whitespace" },
+    ["_"] = function(bufnr)
+      if require("conform").get_formatter_info("prettier", bufnr).available then
+        return prettier()
+      else
+        return { "trim_whitespace" }
+      end
+    end,
+  },
+  default_format_opts = {
+    lsp_format = "fallback",
+  },
+  format_on_save = {
+    lsp_format = "fallback",
+    timeout_ms = 500,
   },
 }
 

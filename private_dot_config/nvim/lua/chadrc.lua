@@ -13,14 +13,13 @@ M.base46 = {
   transparency = false,
   hl_add = highlights.hl_add,
   hl_override = highlights.hl_override,
-  theme_toggle = {"penumbra_light", "penumbra_dark" },
+  theme_toggle = { "penumbra_light", "penumbra_dark" },
 }
 
 M.ui = {
   tabufline = {
     enabled = true,
     lazyload = true,
-    bufwidth = 21,
     order = { "buffers", "session", "tabs" },
     modules = {
       session = function()
@@ -41,10 +40,10 @@ M.ui = {
 
   statusline = {
     enabled = true,
-    theme = "vscode_colored", -- default/vscode/vscode_colored/minimal
+    theme = "minimal", -- default/vscode/vscode_colored/minimal
     -- default/round/block/arrow separators work only for default statusline theme
     -- round and block will work for minimal theme only
-    separator_style = "default",
+    separator_style = "round",
     order = {
       "mode",
       "file",
@@ -53,7 +52,8 @@ M.ui = {
       "lsp_msg",
       "%=",
       "diagnostics",
-      "lsp",
+      -- "lsp",
+      "cursor",
       "cwd",
     },
   },
@@ -104,7 +104,12 @@ M.cheatsheet = {
   excluded_groups = { "terminal (t)", "autopairs", "Nvim", "Opens" }, -- can add group name or with mode
 }
 
-M.mason = { pkgs = {}, skip = {} }
+M.mason = {
+  -- ensure this installed
+  pkgs = {
+    "eslint_d",
+  },
+}
 
 M.colorify = {
   enabled = true,
