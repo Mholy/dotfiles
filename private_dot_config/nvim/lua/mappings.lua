@@ -48,17 +48,17 @@ map({ "n" }, "<leader>tg", function()
   require("nvchad.term").toggle {
     pos = "bo vsp",
     id = "lgToggleTerm",
-    size = 0.9,
+    size = 1,
     cmd = "lazygit",
   }
 end, { desc = "terminal toggle lazygit" })
 
 map({ "n" }, "<leader>tj", function()
   require("nvchad.term").toggle {
-    pos = "bo vsp",
+    pos = "vsp",
     id = "jjToggleTerm",
-    size = 0.9,
-    cmd = "jjui",
+    size = 1,
+    cmd = "unset DEBUG && jjui",
   }
 end, { desc = "terminal toggle jjui" })
 

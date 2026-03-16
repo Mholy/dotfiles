@@ -20,11 +20,12 @@ return {
       local optsOverride = {
         defaults = {
           prompt_prefix = "",
-          initial_mode = "normal",
+          -- initial_mode = "normal",
           path_display = {
-            filename_first = {
-              reverse_directories = true,
-            },
+            "filename_first",
+            -- filename_first = {
+            --   reverse_directories = true,
+            -- },
           },
         },
       }
@@ -210,6 +211,7 @@ return {
           ["~"] = { "actions.cd", opts = { scope = "tab" }, desc = ":tcd to the current oil directory", mode = "n" },
           ["gs"] = "actions.change_sort",
           ["g."] = "actions.toggle_hidden",
+          ["g\\"] = "actions.toggle_trash",
           ["gY"] = "actions.yank_entry",
           ["gy"] = {
             function()
@@ -289,15 +291,51 @@ return {
     "rmagatti/auto-session",
     lazy = false,
     config = function()
+      local nvtermFiletypes = {
+        "NvTerm_sp",
+        "NvTerm_vsp",
+        "NvTerm_bosp",
+        "NvTerm_bovsp",
+      }
+
+      local telescopeConfig = require("telescope.config").values
+      -- telescopeConfig.layout_config.height = 0.5
+      -- telescopeConfig.layout_config.width = 0.5
+
       require("auto-session").setup {
+        single_session_mode = true,
+        legacy_cmds = false,
+        close_filetypes_on_save = nvtermFiletypes,
+        preserve_buffer_on_restore = function(bufnr)
+          local filetype = vim.bo[bufnr].filetype
+
+          if vim.tbl_contains(nvtermFiletypes, filetype) then
+            return true
+          end
+        end,
+
         -- Git / Session naming
-        git_use_branch_name = true, -- Include git branch name in session name, can also be a function that takes an optional path and returns the name of the branch
-        git_auto_restore_on_branch_change = true, -- Should we auto-restore the session when the git branch changes. Requires git_use_branch_name
-        custom_session_tag = nil, -- Function that can return a string to be used as part of the session name
+        git_use_branch_name = true,
+        git_auto_restore_on_branch_change = true,
 
         -- Deleting
-        auto_delete_empty_sessions = true, -- Enables/disables deleting the session if there are only unnamed/empty buffers when auto-saving
-        purge_after_minutes = 14400, -- Sessions older than purge_after_minutes will be deleted asynchronously on startup, e.g. set to 14400 to delete sessions that haven't been accessed for more than 10 days, defaults to off (no purging), requires >= nvim 0.10
+        auto_delete_empty_sessions = true,
+        purge_after_minutes = 14400, -- 10 days
+
+        post_save = {
+          "redrawtabline",
+        },
+
+        session_lens = {
+          picker = "telescope",
+          load_on_setup = true,
+          picker_opts = {
+            layout_config = {
+              width = 0.5,
+              height = 0.5,
+            },
+          },
+        },
       }
     end,
   },
@@ -390,15 +428,17 @@ return {
 
   {
     "monkoose/neocodeium",
-    cond = function()
-      return not require("utils.workmode").is_work_project()
-    end,
-    event = "InsertEnter",
+    event = "VeryLazy",
+    -- cond = function()
+    --   return not require("utils.workmode").is_work_project()
+    -- end,
+    -- event = "InsertEnter",
     config = function()
       local neocodeium = require "neocodeium"
       local cmp = require "cmp"
 
       neocodeium.setup {
+        enabled = false,
         silent = false,
         single_line = {
           enabled = false,
