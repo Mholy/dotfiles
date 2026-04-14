@@ -9,23 +9,29 @@ PaperWM:bindHotkeys({
 
 PaperWM.window_gap = 10
 -- PaperWM.window_gap  =  { top = 10, bottom = 8, left = 12, right = 12 }
+
 -- ignore a specific app
 PaperWM.window_filter:rejectApp("SomaFM")
+
 -- ignore a specific window of an app
 -- PaperWM.window_filter:setAppFilter("iTunes", { rejectTitles = "MiniPlayer" })
+
 -- list of screens to tile (use % to escape string match characters, like -)
 -- PaperWM.window_filter:setScreens({ "Built%-in Retina Display" })
+
 -- PaperWM.center_mouse = false
 -- PaperWM.infinite_loop_window = true
-PaperWM.window_ratios = { 1 / 3, 1 / 2, 2 / 3 }
-PaperWM.default_width = 0.5
+PaperWM.window_ratios = { 0.20, 0.5, 0.80 }
+PaperWM.default_width = 0.80
 PaperWM.app_widths = {
-	["Zen Browser"] = 0.75,
+	-- ["Zen Browser"] = 0.75,
 }
 PaperWM.swipe_fingers = 3
 PaperWM.swipe_gain = 1.0
+
 -- set to a table of modifier keys to enable window dragging, default is nil
 -- PaperWM.drag_window = { "alt", "cmd" }`
+
 -- set to a table of modifier keys to enable window lifting, default is nil
 -- PaperWM.lift_window = { "alt", "cmd", "shift" }
 
