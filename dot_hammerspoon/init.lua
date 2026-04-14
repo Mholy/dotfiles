@@ -1,13 +1,13 @@
 PaperWM = hs.loadSpoon("PaperWM")
 
-PaperWM:bindHotkeys({
-	-- switch windows by cycling forward/backward
-	-- (forward = down or right, backward = up or left)
-	focus_prev = { { "alt", "shift" }, "tab" },
-	focus_next = { { "alt" }, "tab" },
-})
+-- PaperWM:bindHotkeys({
+-- switch windows by cycling forward/backward
+-- (forward = down or right, backward = up or left)
+-- focus_prev = { { "alt", "shift" }, "tab" },
+-- focus_next = { { "alt" }, "tab" },
+-- })
 
-PaperWM.window_gap = 10
+PaperWM.window_gap = 0
 -- PaperWM.window_gap  =  { top = 10, bottom = 8, left = 12, right = 12 }
 
 -- ignore a specific app
@@ -21,19 +21,28 @@ PaperWM.window_filter:rejectApp("SomaFM")
 
 -- PaperWM.center_mouse = false
 -- PaperWM.infinite_loop_window = true
-PaperWM.window_ratios = { 0.20, 0.5, 0.80 }
-PaperWM.default_width = 0.80
+PaperWM.window_ratios = { 1 / 3, 1 / 2, 0.80 }
+PaperWM.default_width = 0.5
 PaperWM.app_widths = {
-	-- ["Zen Browser"] = 0.75,
+	["Zen"] = 0.75,
+	["Slack"] = 0.75,
 }
-PaperWM.swipe_fingers = 3
-PaperWM.swipe_gain = 1.0
+-- PaperWM.swipe_fingers = 3
+-- PaperWM.swipe_gain = 1.0
 
 -- set to a table of modifier keys to enable window dragging, default is nil
 -- PaperWM.drag_window = { "alt", "cmd" }`
 
 -- set to a table of modifier keys to enable window lifting, default is nil
 -- PaperWM.lift_window = { "alt", "cmd", "shift" }
+
+hs.hotkey.bind({ "alt", "shift" }, "tab", function()
+	hs.window.focusedWindow():focusWindowWest()
+end)
+
+hs.hotkey.bind({ "alt" }, "tab", function()
+	hs.window.focusedWindow():focusWindowEast()
+end)
 
 hs.urlevent.bind("paperwm", function(_, params)
 	local eventAction = params.action
@@ -113,6 +122,14 @@ hs.urlevent.bind("paperwm", function(_, params)
 		if v == eventAction then
 			return actions[v]()
 		end
+	end
+
+	if eventAction == "stop" then
+		PaperWM:stop()
+	end
+
+	if eventAction == "start" then
+		PaperWM:start()
 	end
 end)
 
