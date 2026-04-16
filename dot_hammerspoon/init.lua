@@ -1,14 +1,14 @@
 PaperWM = hs.loadSpoon("PaperWM")
 
--- PaperWM:bindHotkeys({
--- switch windows by cycling forward/backward
--- (forward = down or right, backward = up or left)
--- focus_prev = { { "alt", "shift" }, "tab" },
--- focus_next = { { "alt" }, "tab" },
--- })
+PaperWM:bindHotkeys({
+	-- switch windows by cycling forward/backward
+	-- (forward = down or right, backward = up or left)
+	focus_left = { { "alt", "shift" }, "tab" },
+	focus_right = { { "alt" }, "tab" },
+})
 
 PaperWM.window_gap = 0
--- PaperWM.window_gap  =  { top = 10, bottom = 8, left = 12, right = 12 }
+-- PaperWM.window_gap = { top = 0, bottom = 0, left = 6, right = 6 }
 
 -- ignore a specific app
 PaperWM.window_filter:rejectApp("SomaFM")
@@ -21,9 +21,9 @@ PaperWM.window_filter:rejectApp("Itsypad")
 -- list of screens to tile (use % to escape string match characters, like -)
 -- PaperWM.window_filter:setScreens({ "Built%-in Retina Display" })
 
--- PaperWM.center_mouse = false
--- PaperWM.infinite_loop_window = true
-PaperWM.window_ratios = { 1 / 3, 1 / 2, 0.80 }
+PaperWM.center_mouse = true
+PaperWM.infinite_loop_window = true
+PaperWM.window_ratios = { 1 / 3, 1 / 2, 2 / 3, 3 / 4 }
 PaperWM.default_width = 0.5
 PaperWM.app_widths = {
 	["Zen"] = 0.75,
@@ -50,15 +50,15 @@ local function paperwmCenterMode(enabled)
 	end
 end
 
-paperwmCenterMode(true)
+-- paperwmCenterMode(true)
 
-hs.hotkey.bind({ "alt", "shift" }, "tab", function()
-	hs.window.focusedWindow():focusWindowWest()
-end)
+-- hs.hotkey.bind({ "alt", "shift" }, "tab", function()
+-- 	hs.window.focusedWindow():focusWindowWest()
+-- end)
 
-hs.hotkey.bind({ "alt" }, "tab", function()
-	hs.window.focusedWindow():focusWindowEast()
-end)
+-- hs.hotkey.bind({ "alt" }, "tab", function()
+-- 	hs.window.focusedWindow():focusWindowEast()
+-- end)
 
 hs.urlevent.bind("paperwm", function(_, params)
 	local eventAction = params.action
