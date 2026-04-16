@@ -12,6 +12,8 @@ PaperWM.window_gap = 0
 
 -- ignore a specific app
 PaperWM.window_filter:rejectApp("SomaFM")
+PaperWM.window_filter:rejectApp("Antinote")
+PaperWM.window_filter:rejectApp("Itsypad")
 
 -- ignore a specific window of an app
 -- PaperWM.window_filter:setAppFilter("iTunes", { rejectTitles = "MiniPlayer" })
@@ -35,6 +37,20 @@ PaperWM.app_widths = {
 
 -- set to a table of modifier keys to enable window lifting, default is nil
 -- PaperWM.lift_window = { "alt", "cmd", "shift" }
+
+PaperWM:start()
+
+local paperwmWindowFilter = hs.window.filter.copy(PaperWM.window_filter)
+
+local function paperwmCenterMode(enabled)
+	if enabled then
+		paperwmWindowFilter:subscribe(hs.window.filter.windowFocused, PaperWM.actions.actions().center_window)
+	else
+		paperwmWindowFilter:unsubscribe(hs.window.filter.windowFocused, PaperWM.actions.actions().center_window)
+	end
+end
+
+paperwmCenterMode(true)
 
 hs.hotkey.bind({ "alt", "shift" }, "tab", function()
 	hs.window.focusedWindow():focusWindowWest()
@@ -131,9 +147,16 @@ hs.urlevent.bind("paperwm", function(_, params)
 	if eventAction == "start" then
 		PaperWM:start()
 	end
-end)
 
-PaperWM:start()
+	-- center window on focus
+	if eventAction == "mode_center_on" then
+		paperwmCenterMode(true)
+	end
+
+	if eventAction == "mode_center_off" then
+		paperwmCenterMode(false)
+	end
+end)
 
 ---
 
