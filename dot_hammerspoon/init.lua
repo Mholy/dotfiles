@@ -22,7 +22,7 @@ PaperWM.window_filter:rejectApp("Itsypad")
 -- PaperWM.window_filter:setScreens({ "Built%-in Retina Display" })
 
 PaperWM.center_mouse = true
-PaperWM.infinite_loop_window = true
+PaperWM.infinite_loop_window = false
 PaperWM.window_ratios = { 1 / 3, 1 / 2, 2 / 3, 3 / 4 }
 PaperWM.default_width = 0.5
 PaperWM.app_widths = {
