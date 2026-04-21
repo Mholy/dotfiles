@@ -27,6 +27,7 @@ PaperWM.default_width = 0.5
 PaperWM.app_widths = {
 	["Zen"] = 0.9,
 	["Slack"] = 0.9,
+	["Bear"] = 0.9,
 	["Chromium"] = 3 / 4,
 	["Ghostty"] = 1 / 3,
 	["Claude"] = 1 / 4,
