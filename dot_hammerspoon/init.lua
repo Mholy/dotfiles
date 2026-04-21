@@ -13,7 +13,6 @@ PaperWM.window_gap = 0
 -- ignore a specific app
 PaperWM.window_filter:rejectApp("SomaFM")
 PaperWM.window_filter:rejectApp("Antinote")
-PaperWM.window_filter:rejectApp("Itsypad")
 
 -- ignore a specific window of an app
 -- PaperWM.window_filter:setAppFilter("iTunes", { rejectTitles = "MiniPlayer" })
@@ -23,11 +22,15 @@ PaperWM.window_filter:rejectApp("Itsypad")
 
 PaperWM.center_mouse = true
 PaperWM.infinite_loop_window = false
-PaperWM.window_ratios = { 1 / 3, 1 / 2, 2 / 3, 3 / 4 }
+PaperWM.window_ratios = { 1 / 4, 1 / 3, 1 / 2, 2 / 3, 3 / 4 }
 PaperWM.default_width = 0.5
 PaperWM.app_widths = {
-	["Zen"] = 0.75,
-	["Slack"] = 0.75,
+	["Zen"] = 0.9,
+	["Slack"] = 0.9,
+	["Chromium"] = 3 / 4,
+	["Ghostty"] = 1 / 3,
+	["Claude"] = 1 / 4,
+	["ChatGPT"] = 1 / 4,
 }
 -- PaperWM.swipe_fingers = 3
 -- PaperWM.swipe_gain = 1.0
@@ -160,11 +163,11 @@ end)
 
 ---
 
-WarpMouse = hs.loadSpoon("WarpMouse")
--- WarpMouse.margin = 10 -- optionally set how far past a screen edge the mouse should warp, default is 2 pixels
-WarpMouse.reverseScreens = true -- optionally set to warp from bottom to top instead of top to bottom, default is false
-
-WarpMouse:start()
+-- WarpMouse = hs.loadSpoon("WarpMouse")
+-- -- WarpMouse.margin = 10 -- optionally set how far past a screen edge the mouse should warp, default is 2 pixels
+-- WarpMouse.reverseScreens = true -- optionally set to warp from bottom to top instead of top to bottom, default is false
+--
+-- WarpMouse:start()
 
 ---
 
