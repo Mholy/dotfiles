@@ -1,0 +1,122 @@
+{
+  "profiles" : [
+    {
+      "id" : "9B37D36F-D5E2-478B-AEF2-B5AA64E45A34",
+      "name" : "Default",
+      "workspaces" : [
+        {
+          "apps" : [
+            {
+              "autoOpen" : true,
+              "bundleIdentifier" : "app.zen-browser.zen",
+              "iconPath" : "/Applications/Zen Browser.app/Contents/Resources/firefox.icns",
+              "name" : "Zen"
+            }
+          ],
+          "display" : "Mi Monitor",
+          "id" : "115A355F-C2FA-42BD-AFCC-5A3C1B1819A5",
+          "name" : "Search",
+          "openAppsOnActivation" : true,
+          "symbolIconName" : "magnifyingglass"
+        },
+        {
+          "apps" : [
+            {
+              "bundleIdentifier" : "org.chromium.Chromium",
+              "iconPath" : "/Applications/Chromium.app/Contents/Resources/app.icns",
+              "name" : "Chromium"
+            },
+            {
+              "bundleIdentifier" : "com.figma.Desktop",
+              "iconPath" : "/Applications/Figma.app/Contents/Resources/electron.icns",
+              "name" : "Figma"
+            },
+            {
+              "bundleIdentifier" : "com.postmanlabs.mac",
+              "iconPath" : "/Applications/Postman.app/Contents/Resources/app.icns",
+              "name" : "Postman"
+            },
+            {
+              "bundleIdentifier" : "com.mitchellh.ghostty",
+              "iconPath" : "/Applications/Ghostty.app/Contents/Resources/Ghostty.icns",
+              "name" : "Ghostty"
+            },
+            {
+              "bundleIdentifier" : "com.tinyapp.TablePlus",
+              "iconPath" : "/Applications/TablePlus.app/Contents/Resources/AppIcon.icns",
+              "name" : "TablePlus"
+            },
+            {
+              "bundleIdentifier" : "com.vscodium",
+              "iconPath" : "/Applications/VSCodium.app/Contents/Resources/VSCodium.icns",
+              "name" : "VSCodium"
+            }
+          ],
+          "display" : "Mi Monitor",
+          "id" : "0E9B4D60-3E1F-45CF-A1E4-ED32A39BFFFF",
+          "name" : "Code",
+          "openAppsOnActivation" : false,
+          "symbolIconName" : "apple.terminal"
+        },
+        {
+          "appToFocus" : {
+            "bundleIdentifier" : "com.tinyspeck.slackmacgap",
+            "iconPath" : "/Applications/Slack.app/Contents/Resources/electron.icns",
+            "name" : "Slack"
+          },
+          "apps" : [
+            {
+              "bundleIdentifier" : "com.apple.mail",
+              "iconPath" : "/System/Applications/Mail.app/Contents/Resources/ApplicationIcon.icns",
+              "name" : "Mail"
+            },
+            {
+              "bundleIdentifier" : "ch.protonmail.desktop",
+              "iconPath" : "/Applications/Proton Mail.app/Contents/Resources/electron.icns",
+              "name" : "Proton Mail"
+            },
+            {
+              "bundleIdentifier" : "com.tinyspeck.slackmacgap",
+              "iconPath" : "/Applications/Slack.app/Contents/Resources/electron.icns",
+              "name" : "Slack"
+            },
+            {
+              "bundleIdentifier" : "us.zoom.xos",
+              "iconPath" : "/Applications/zoom.us.app/Contents/Resources/ZPLogo.icns",
+              "name" : "zoom.us"
+            }
+          ],
+          "display" : "Mi Monitor",
+          "id" : "3E003AEA-4CCB-4B02-BCBD-CC03F8084AF7",
+          "name" : "Messages",
+          "openAppsOnActivation" : false,
+          "symbolIconName" : "message"
+        },
+        {
+          "apps" : [
+            {
+              "bundleIdentifier" : "net.shinyfrog.bear",
+              "iconPath" : "/Applications/Bear.app/Contents/Resources/AppIcon-26.icns",
+              "name" : "Bear"
+            },
+            {
+              "bundleIdentifier" : "com.culturedcode.ThingsMac",
+              "iconPath" : "/Applications/Things3.app/Contents/Resources/AppIcon.icns",
+              "name" : "Things"
+            },
+            {
+              "bundleIdentifier" : "com.apple.iCal",
+              "iconPath" : "/System/Applications/Calendar.app/Contents/Resources/AppIcon.icns",
+              "name" : "Calendar"
+            }
+          ],
+          "display" : "Built-in Retina Display",
+          "id" : "9A157F36-BA14-4B76-A42A-140B0349A8CC",
+          "name" : "Planning",
+          "openAppsOnActivation" : false,
+          "symbolIconName" : "list.bullet.rectangle"
+        }
+      ]
+    }
+  ]
+}
