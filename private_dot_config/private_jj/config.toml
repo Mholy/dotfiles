@@ -13,3 +13,12 @@ log = "present(@) | ancestors(immutable_heads().., 2) | present(trunk())"
 
 [remotes.origin]
 auto-track-bookmarks = "glob:*"
+
+[templates]
+draft_commit_description = '''
+concat(
+  builtin_draft_commit_description,
+  "\nJJ: ignore-rest\n",
+  diff.git(),
+)
+'''

@@ -1,11 +1,15 @@
 # theme = dark:"Monokai Pro Machine",light:"Monokai Pro Light"
-theme = "Ocean"
+theme = "iTerm2 Solarized Dark"
 font-family = "Iosevka Nerd Font Mono"
 font-size = 15
 font-feature = ss05
 maximize = true
 window-padding-x = 5
 window-padding-y = 5
+window-save-state = always
 mouse-hide-while-typing
 macos-option-as-alt = true
-# keybind = global:ctrl+cmd+enter=toggle_quick_terminal
+
+# Keybindings
+## General
+keybind = global:alt+enter=toggle_quick_terminal

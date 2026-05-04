@@ -3,95 +3,43 @@
     {
       "actions" : [
         {
-          "iconPath" : "inset.filled.rectangle",
-          "key" : "f",
-          "label" : "Maximize",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/maximize"
+          "key" : "tab",
+          "type" : "application",
+          "value" : "/Applications/Things3.app"
         },
         {
-          "iconPath" : "inset.filled.lefthalf.righthalf.rectangle",
-          "key" : "h",
-          "label" : "Left Half",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/left-half"
-        },
-        {
-          "iconPath" : "inset.filled.righthalf.lefthalf.rectangle",
-          "key" : "l",
-          "label" : "Right Half",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/right-half"
-        },
-        {
-          "iconPath" : "arrowshape.left",
-          "key" : "[",
-          "label" : "Previous Display",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/previous-display"
-        },
-        {
-          "iconPath" : "arrowshape.right",
-          "key" : "]",
-          "label" : "Next Display",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/next-display"
-        }
-      ],
-      "iconPath" : "inset.filled.leadinghalf.toptrailing.bottomtrailing.rectangle",
-      "key" : "w",
-      "label" : "WM",
-      "type" : "group"
-    },
-    {
-      "actions" : [
-        {
-          "iconPath" : "plus.app",
-          "key" : "e",
-          "label" : "Assign app",
-          "type" : "command",
-          "value" : "flashspace assign-app"
-        },
-        {
-          "iconPath" : "xmark.app",
           "key" : "q",
-          "label" : "Unassign app",
-          "type" : "command",
-          "value" : "flashspace unassign-app"
+          "label" : "Quick Entry",
+          "type" : "url",
+          "value" : "things:///add?show-quick-entry=true"
+        },
+        {
+          "actions" : [
+            {
+              "iconPath" : "note.text",
+              "key" : "n",
+              "label" : "Replace Notes",
+              "type" : "url",
+              "value" : "things:///add?show-quick-entry=true&use-clipboard=replace-notes"
+            },
+            {
+              "iconPath" : "checklist.unchecked",
+              "key" : "t",
+              "label" : "Replace Title",
+              "type" : "url",
+              "value" : "things:///add?show-quick-entry=true&use-clipboard=replace-title"
+            }
+          ],
+          "iconPath" : "document.on.clipboard.fill",
+          "key" : "c",
+          "label" : "Use Clipboard",
+          "type" : "group"
         }
       ],
-      "iconPath" : "/Applications/FlashSpace.app",
-      "key" : "f",
-      "label" : "Flashspace",
+      "iconPath" : "/Applications/Things3.app",
+      "key" : "t",
+      "label" : "Things",
       "type" : "group"
-    },
-    {
-      "iconPath" : "/Applications/FlashSpace.app",
-      "key" : "1",
-      "label" : "Search",
-      "type" : "command",
-      "value" : "flashspace workspace --number 1"
-    },
-    {
-      "iconPath" : "/Applications/FlashSpace.app",
-      "key" : "2",
-      "label" : "Code",
-      "type" : "command",
-      "value" : "flashspace workspace --number 2"
-    },
-    {
-      "iconPath" : "/Applications/FlashSpace.app",
-      "key" : "3",
-      "label" : "Messages",
-      "type" : "command",
-      "value" : "flashspace workspace --number 3"
-    },
-    {
-      "iconPath" : "/Applications/FlashSpace.app",
-      "key" : "4",
-      "label" : "Planning",
-      "type" : "command",
-      "value" : "flashspace workspace --number 4"
     },
     {
       "actions" : [
@@ -150,53 +98,6 @@
       "type" : "group"
     },
     {
-      "actions" : [
-        {
-          "key" : "tab",
-          "type" : "application",
-          "value" : "/Applications/Things3.app"
-        },
-        {
-          "key" : "q",
-          "label" : "Quick Entry",
-          "type" : "url",
-          "value" : "things:///add?show-quick-entry=true"
-        },
-        {
-          "actions" : [
-            {
-              "iconPath" : "note.text",
-              "key" : "n",
-              "label" : "Replace Notes",
-              "type" : "url",
-              "value" : "things:///add?show-quick-entry=true&use-clipboard=replace-notes"
-            },
-            {
-              "iconPath" : "checklist.unchecked",
-              "key" : "t",
-              "label" : "Replace Title",
-              "type" : "url",
-              "value" : "things:///add?show-quick-entry=true&use-clipboard=replace-title"
-            }
-          ],
-          "iconPath" : "document.on.clipboard.fill",
-          "key" : "c",
-          "label" : "Use Clipboard",
-          "type" : "group"
-        }
-      ],
-      "iconPath" : "/Applications/Things3.app",
-      "key" : "t",
-      "label" : "Things",
-      "type" : "group"
-    },
-    {
-      "iconPath" : "/Applications/Antinote.app",
-      "key" : "n",
-      "type" : "application",
-      "value" : "/Applications/Antinote.app"
-    },
-    {
       "iconPath" : "document.on.clipboard",
       "key" : "c",
       "label" : "Clipboard",
@@ -204,28 +105,176 @@
       "value" : "raycast://extensions/raycast/clipboard-history/clipboard-history"
     },
     {
+      "iconPath" : "text.page",
+      "key" : "v",
+      "label" : "Snippets",
+      "type" : "url",
+      "value" : "raycast://extensions/raycast/snippets/search-snippets"
+    },
+    {
       "actions" : [
         {
-          "key" : "tab",
-          "type" : "application",
-          "value" : "/Applications/Daily.app"
+          "key" : "c",
+          "label" : "Center",
+          "type" : "url",
+          "value" : "hammerspoon://paperwm?action=center_window"
+        },
+        {
+          "key" : "w",
+          "label" : "Full",
+          "type" : "url",
+          "value" : "hammerspoon://paperwm?action=full_width"
+        },
+        {
+          "key" : "r",
+          "label" : "Cycle Width",
+          "type" : "url",
+          "value" : "hammerspoon://paperwm?action=cycle_width"
+        },
+        {
+          "key" : "=",
+          "label" : "Increase Width",
+          "type" : "url",
+          "value" : "hammerspoon://paperwm?action=increase_width"
+        },
+        {
+          "key" : "-",
+          "label" : "Decrease Width",
+          "type" : "url",
+          "value" : "hammerspoon://paperwm?action=decrease_width"
+        },
+        {
+          "key" : "v",
+          "label" : "Split With Left",
+          "type" : "url",
+          "value" : "hammerspoon://paperwm?action=split_screen"
+        },
+        {
+          "key" : "f",
+          "label" : "Float",
+          "type" : "url",
+          "value" : "hammerspoon://paperwm?action=toggle_floating"
+        },
+        {
+          "key" : "q",
+          "label" : "Swap Left",
+          "type" : "url",
+          "value" : "hammerspoon://paperwm?action=swap_left"
         },
         {
           "key" : "e",
-          "label" : "Enable",
-          "type" : "command",
-          "value" : "osascript -e 'tell application \"Daily\" to set registration mode \"ask\"'"
+          "label" : "Swap Right",
+          "type" : "url",
+          "value" : "hammerspoon://paperwm?action=swap_right"
         },
         {
-          "key" : "z",
-          "label" : "Disable",
-          "type" : "command",
-          "value" : "osascript -e 'tell application \"Daily\" to set registration mode \"off\"'"
+          "key" : ",",
+          "label" : "Space Left",
+          "type" : "url",
+          "value" : "hammerspoon://paperwm?action=switch_space_l"
+        },
+        {
+          "key" : ".",
+          "label" : "Space Right",
+          "type" : "url",
+          "value" : "hammerspoon://paperwm?action=switch_space_r"
+        },
+        {
+          "key" : "\\",
+          "label" : "Refresh",
+          "type" : "url",
+          "value" : "hammerspoon://paperwm?action=refresh_windows"
+        },
+        {
+          "actions" : [
+            {
+              "key" : "h",
+              "label" : "Left",
+              "type" : "url",
+              "value" : "hammerspoon://paperwm?action=move_window_l"
+            },
+            {
+              "key" : "l",
+              "label" : "Right",
+              "type" : "url",
+              "value" : "hammerspoon://paperwm?action=move_window_r"
+            },
+            {
+              "key" : "j",
+              "label" : "Down",
+              "type" : "url",
+              "value" : "hammerspoon://paperwm?action=move_window_d"
+            },
+            {
+              "key" : "k",
+              "label" : "Up",
+              "type" : "url",
+              "value" : "hammerspoon://paperwm?action=move_window_u"
+            },
+            {
+              "key" : "1",
+              "label" : "1",
+              "type" : "url",
+              "value" : "hammerspoon://paperwm?action=move_window_1"
+            },
+            {
+              "key" : "2",
+              "label" : "2",
+              "type" : "url",
+              "value" : "hammerspoon://paperwm?action=move_window_2"
+            },
+            {
+              "key" : "3",
+              "label" : "3",
+              "type" : "url",
+              "value" : "hammerspoon://paperwm?action=move_window_3"
+            },
+            {
+              "key" : "4",
+              "label" : "4",
+              "type" : "url",
+              "value" : "hammerspoon://paperwm?action=move_window_4"
+            },
+            {
+              "key" : "5",
+              "label" : "5",
+              "type" : "url",
+              "value" : "hammerspoon://paperwm?action=move_window_5"
+            }
+          ],
+          "key" : "m",
+          "label" : "Move",
+          "type" : "group"
+        },
+        {
+          "actions" : [
+            {
+              "actions" : [
+                {
+                  "key" : "e",
+                  "label" : "Enable",
+                  "type" : "url",
+                  "value" : "hammerspoon://paperwm?action=mode_center_on"
+                },
+                {
+                  "key" : "d",
+                  "label" : "Disable",
+                  "type" : "url",
+                  "value" : "hammerspoon://paperwm?action=mode_center_off"
+                }
+              ],
+              "key" : "c",
+              "label" : "Center Mode",
+              "type" : "group"
+            }
+          ],
+          "key" : "/",
+          "label" : "Config",
+          "type" : "group"
         }
       ],
-      "iconPath" : "/Applications/Daily.app",
-      "key" : "d",
-      "label" : "Daily",
+      "key" : "w",
+      "label" : "WM",
       "type" : "group"
     }
   ],
