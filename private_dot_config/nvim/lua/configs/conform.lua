@@ -1,5 +1,5 @@
 local function prettier()
-  return { "prettierd", "prettier", stop_after_first = true }
+  return { "prettier", stop_after_first = true }
 end
 
 local options = {

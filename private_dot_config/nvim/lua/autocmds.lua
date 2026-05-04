@@ -53,9 +53,25 @@ end, {
 usercmd("LgLog", function()
   local current_file = vim.fn.expand "%:p"
 
-  require("nvchad.term").new {
+  require("nvchad.term").toggle {
     pos = "bo vsp",
     size = 1,
     cmd = "lazygit -f " .. current_file,
+    id = "lgFileLog" .. current_file,
   }
 end, { desc = "Open Lazygit file log" })
+
+-- Copy Context - grab code with file:line context for AI
+usercmd("CopyContext", function(opts)
+  local filepath = vim.fn.expand "%"
+  local start_line = opts.line1
+  local end_line = opts.line2
+  local lines = vim.fn.getline(start_line, end_line)
+  local code = type(lines) == "table" and table.concat(lines, "\n") or lines
+
+  local location = start_line == end_line and filepath .. ":" .. start_line
+    or filepath .. ":" .. start_line .. "-" .. end_line
+
+  vim.fn.setreg("+", location .. "\n" .. code)
+  print("📋 " .. location)
+end, { range = true })

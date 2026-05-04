@@ -4,20 +4,22 @@ local map = vim.keymap.set
 local nomap = vim.keymap.del
 
 -- General
-nomap("n", "<C-s>")
-
--- navigation
 nomap("i", "<C-j>")
 nomap("i", "<C-k>")
 nomap("i", "<C-h>")
 nomap("i", "<C-l>")
 
-nomap("n", "<C-n>") -- NvimTree
+-- NvimTree
+nomap("n", "<C-n>")
+
 nomap("n", "<leader>b") -- buffer new
+nomap("n", "<leader>x") -- buffer close
 nomap("n", "<leader>h") -- Term
 nomap("n", "<leader>v") -- Term
 
-map({ "n", "i", "v" }, "<D-s>", "<cmd>w<CR>", { desc = "general save file" })
+-- nomap("n", "<C-s>") -- save file
+-- map({ "n", "i", "v" }, "<D-s>", "<cmd>w<CR>", { desc = "general save file" })
+
 map({ "n" }, "<leader>tt", function()
   require("base46").toggle_theme()
 
@@ -28,14 +30,19 @@ end, { desc = "general light/dark" })
 
 -- Buffers
 map("n", "<leader>bn", "<cmd>enew<CR>", { desc = "buffer new" })
+map({ "n" }, "<leader>bt", "<cmd>tabnew<CR>", { desc = "buffer new tab" })
+
+map({ "n", "t" }, "<C-x>", function()
+  require("nvchad.tabufline").close_buffer()
+end, { desc = "buffer close all" })
 
 map({ "n" }, "<leader>X", function()
   require("nvchad.tabufline").closeAllBufs()
 end, { desc = "buffer close all" })
 
-map({ "n" }, "<leader>bt", "<cmd>tabnew<CR>", { desc = "buffer new tab" })
-
 -- Terminal
+map("t", "<C-\\>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
+
 map({ "n" }, "<leader>th", function()
   require("nvchad.term").toggle { pos = "sp", id = "hToggleTerm" }
 end, { desc = "terminal toggle horizontal" })
@@ -44,7 +51,7 @@ map({ "n" }, "<leader>tv", function()
   require("nvchad.term").toggle { pos = "vsp", id = "vToggleTerm" }
 end, { desc = "terminal toggle vertical" })
 
-map({ "n" }, "<leader>tg", function()
+map({ "n" }, "<leader>l", function()
   require("nvchad.term").toggle {
     pos = "bo vsp",
     id = "lgToggleTerm",
@@ -116,5 +123,9 @@ map("n", "gS", function()
   }
 end, { desc = "LSP Workspace symbols" })
 
+map("n", "gr", "<cmd> Telescope lsp_references <CR>", { desc = "LSP Incoming calls" })
 map("n", "go", "<cmd> Telescope lsp_outgoing_calls <CR>", { desc = "LSP Outgoing calls" })
 map("n", "gi", "<cmd> Telescope lsp_incoming_calls <CR>", { desc = "LSP Incoming calls" })
+
+-- autocmds
+map({ "n", "v" }, "<leader>ai", ":CopyContext<CR>", { desc = "Copy Context for AI" })

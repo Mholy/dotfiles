@@ -1,6 +1,20 @@
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 
+vim.filetype.add {
+  pattern = {
+    -- Give the proper file type to ansible yaml configuration files.
+    -- This depends on the LSP config: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ansiblels
+    [".*ya?ml"] = function(path, _)
+      local ansible_patterns = { "ansible.cfg", "inventory.ini", "inventory.yaml", "inventory.yml" }
+      local ansible_cfg = vim.fs.find(ansible_patterns, { upward = true, type = "file", path = path })
+      -- print(vim.inspect(ansible_cfg))
+
+      return vim.tbl_isempty(ansible_cfg) and "yaml" or "yaml.ansible"
+    end,
+  },
+}
+
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
