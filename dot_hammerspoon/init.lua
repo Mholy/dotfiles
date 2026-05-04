@@ -22,16 +22,20 @@ PaperWM.window_filter:rejectApp("Antinote")
 
 PaperWM.center_mouse = true
 PaperWM.infinite_loop_window = false
-PaperWM.window_ratios = { 1 / 4, 1 / 3, 1 / 2, 2 / 3, 3 / 4 }
+PaperWM.window_ratios = { 1 / 4, 1 / 3, 1 / 2, 2 / 3, 3 / 4, 0.9 }
 PaperWM.default_width = 0.5
 PaperWM.app_widths = {
 	["Zen"] = 0.9,
 	["Slack"] = 0.9,
 	["Bear"] = 0.9,
-	["Chromium"] = 3 / 4,
-	["Ghostty"] = 1 / 3,
-	["Claude"] = 1 / 4,
-	["ChatGPT"] = 1 / 4,
+	["Chromium"] = 0.9,
+	["VSCodium"] = 0.9,
+	["Zed"] = 0.9,
+	["Figma"] = 0.9,
+	["Mail"] = 2 / 3,
+	["Ghostty"] = 1 / 2,
+	["Claude"] = 1 / 3,
+	["ChatGPT"] = 1 / 3,
 }
 -- PaperWM.swipe_fingers = 3
 -- PaperWM.swipe_gain = 1.0
