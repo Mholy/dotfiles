@@ -3,6 +3,7 @@ COMPLETION_DIR = "{{config_root}}/.config/mise/completions"
 
 [tools]
 node = { version = "lts", postinstall = "corepack enable" }
+"npm:skills" = "latest"
 prettier = "latest"
 snyk = "latest"
 
