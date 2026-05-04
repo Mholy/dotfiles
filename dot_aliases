@@ -2,13 +2,9 @@
 alias ..="j .."
 alias ...="j ../.."
 
+# nvim
 alias nv="nvim"
 alias nvd="neovide --fork --no-tabs"
-
-alias kt="klog print --with-totals --today"
-alias ky="klog print --with-totals --yesterday"
-alias kw="klog print --with-totals --this-week"
-alias kc="klog today --now --follow"
 
 # git
 alias lg="lazygit"
@@ -42,4 +38,9 @@ alias ncu-prod="ncu --dep prod"
 alias yless="jless --yaml"
 
 # jj
-alias jjui="export DEBUG= && jjui"
+alias jjui="unset DEBUG && jjui"
+
+# rg
+alias rg="rg --column --line-number --no-heading --color=always --smart-case"
+alias rga="rg --no-ignore --hidden"
+alias rge="rga --glob '!{.git,node_modules}/*'"
