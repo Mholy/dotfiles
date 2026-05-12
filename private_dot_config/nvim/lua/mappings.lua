@@ -43,31 +43,55 @@ end, { desc = "buffer close all" })
 -- Terminal
 map("t", "<C-\\>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
 
+-- Horizontal
 map({ "n" }, "<leader>th", function()
   require("nvchad.term").toggle { pos = "sp", id = "hToggleTerm" }
 end, { desc = "terminal toggle horizontal" })
 
+-- Vertical
 map({ "n" }, "<leader>tv", function()
   require("nvchad.term").toggle { pos = "vsp", id = "vToggleTerm" }
 end, { desc = "terminal toggle vertical" })
 
+-- Lazygit
 map({ "n" }, "<leader>l", function()
   require("nvchad.term").toggle {
-    pos = "bo vsp",
+    pos = "bo sp",
     id = "lgToggleTerm",
     size = 1,
     cmd = "lazygit",
   }
 end, { desc = "terminal toggle lazygit" })
 
+-- jjui
 map({ "n" }, "<leader>tj", function()
   require("nvchad.term").toggle {
-    pos = "vsp",
+    pos = "bo sp",
     id = "jjToggleTerm",
     size = 1,
     cmd = "unset DEBUG && jjui",
   }
 end, { desc = "terminal toggle jjui" })
+
+-- Claude Code
+map({ "n" }, "<leader>cl", function()
+  require("nvchad.term").toggle {
+    pos = "bo sp",
+    id = "claudeToggleTerm",
+    size = 0.5,
+    cmd = "claude",
+  }
+end, { desc = "terminal toggle claude" })
+
+-- Markdown Preview
+map({ "n" }, "<leader>md", function()
+  require("nvchad.term").toggle {
+    pos = "bo vsp",
+    id = "glowToggleTerm",
+    size = 0.5,
+    cmd = "glow -p " .. vim.fn.shellescape(vim.fn.expand "%:p"),
+  }
+end, { desc = "markdown preview toggle" })
 
 -- Telescope
 map("n", "<leader>fr", "<cmd> Telescope resume <CR>", { desc = "telescope resume" })
