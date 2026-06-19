@@ -56,7 +56,7 @@ end, { desc = "terminal toggle vertical" })
 -- Lazygit
 map({ "n" }, "<leader>l", function()
   require("nvchad.term").toggle {
-    pos = "bo sp",
+    pos = "bo vsp",
     id = "lgToggleTerm",
     size = 1,
     cmd = "lazygit",
@@ -66,17 +66,17 @@ end, { desc = "terminal toggle lazygit" })
 -- jjui
 map({ "n" }, "<leader>tj", function()
   require("nvchad.term").toggle {
-    pos = "bo sp",
+    pos = "bo vsp",
     id = "jjToggleTerm",
     size = 1,
-    cmd = "unset DEBUG && jjui",
+    cmd = "jjui",
   }
 end, { desc = "terminal toggle jjui" })
 
 -- Claude Code
 map({ "n" }, "<leader>cl", function()
   require("nvchad.term").toggle {
-    pos = "bo sp",
+    pos = "bo vsp",
     id = "claudeToggleTerm",
     size = 0.5,
     cmd = "claude",
@@ -85,7 +85,7 @@ end, { desc = "terminal toggle claude" })
 
 -- Markdown Preview
 map({ "n" }, "<leader>md", function()
-  require("nvchad.term").toggle {
+  require("nvchad.term").new {
     pos = "bo vsp",
     id = "glowToggleTerm",
     size = 0.5,

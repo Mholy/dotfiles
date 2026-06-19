@@ -9,6 +9,24 @@ o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,term
 o.title = true
 o.titlestring = "%t (%{fnamemodify(getcwd(),':~')})"
 
+local opt = vim.opt
+
+local function escape(str)
+  -- You need to escape these characters to work correctly
+  local escape_chars = [[;,."|\]]
+  return vim.fn.escape(str, escape_chars)
+end
+
+local ru = [[ёйцукенгшщзхъфывапролджэячсмить]]
+local en = [[`qwertyuiop[]asdfghjkl;'zxcvbnm]]
+local ru_shift = [[ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮË]]
+local en_shift = [[QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>~]]
+
+opt.langmap = vim.fn.join({
+  escape(ru_shift) .. ";" .. escape(en_shift),
+  escape(ru) .. ";" .. escape(en),
+}, ",")
+
 local g = vim.g
 
 g.codeium_disable_bindings = 1
@@ -16,17 +34,10 @@ g.codeium_disable_bindings = 1
 -- Hello, is this Neovide?
 if g.neovide then
   -- Display
-  o.guifont = "Iosevka_SS05,Iosevka_Nerd_Font:h15:#h-none"
+  o.guifont = "Codelia_Ligatures:h14"
   g.neovide_text_gamma = 0.8
   g.neovide_text_contrast = 0.1
-  g.neovide_fullscreen = true
-  g.neovide_padding_top = 0
-  g.neovide_padding_bottom = 0
-  g.neovide_padding_right = 0
-  g.neovide_padding_left = 0
-  g.neovide_floating_blur_amount_x = 0
-  g.neovide_floating_blur_amount_y = 0
-  g.neovide_floating_shadow = false
+  -- g.neovide_fullscreen = true
 
   -- Functionality
   g.neovide_refresh_rate = 120

@@ -557,4 +557,20 @@ return {
       end, { desc = "Haunting Send to Clipboard (all)" })
     end,
   },
+
+  {
+    "M4dPac/autoswitcher.nvim",
+    event = "InsertEnter",
+    config = function()
+      require("autoswitcher").setup {
+        cmd_get_layout = "macism",
+        args_get_layout = "",
+
+        cmd_set_layout = "macism",
+        args_set_layout = "",
+
+        default_layout_on_leave = "com.apple.keylayout.ABC",
+      }
+    end,
+  },
 }

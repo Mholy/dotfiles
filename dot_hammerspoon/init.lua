@@ -13,6 +13,7 @@ PaperWM.window_gap = 0
 -- ignore a specific app
 PaperWM.window_filter:rejectApp("SomaFM")
 PaperWM.window_filter:rejectApp("Antinote")
+PaperWM.window_filter:rejectApp("Itsypad")
 
 -- ignore a specific window of an app
 -- PaperWM.window_filter:setAppFilter("iTunes", { rejectTitles = "MiniPlayer" })
@@ -22,7 +23,7 @@ PaperWM.window_filter:rejectApp("Antinote")
 
 PaperWM.center_mouse = true
 PaperWM.infinite_loop_window = false
-PaperWM.window_ratios = { 1 / 4, 1 / 3, 1 / 2, 2 / 3, 3 / 4, 0.9 }
+PaperWM.window_ratios = { 1 / 3, 1 / 2, 2 / 3, 0.9 }
 PaperWM.default_width = 0.5
 PaperWM.app_widths = {
 	["Zen"] = 0.9,

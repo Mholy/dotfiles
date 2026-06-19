@@ -7,7 +7,51 @@
         {
           "apps" : [
             {
-              "autoOpen" : true,
+              "bundleIdentifier" : "me.proton.pass.electron",
+              "iconPath" : "/Applications/Proton Pass.app/Contents/Resources/electron.icns",
+              "name" : "Proton Pass"
+            },
+            {
+              "bundleIdentifier" : "com.liguangming.Shadowrocket",
+              "iconPath" : "/Applications/Shadowrocket.app/Contents/Resources/AppIcon.icns",
+              "name" : "Shadowrocket"
+            },
+            {
+              "bundleIdentifier" : "com.jordanbaird.Ice",
+              "iconPath" : "/Applications/Ice.app/Contents/Resources/AppIcon.icns",
+              "name" : "Ice"
+            },
+            {
+              "bundleIdentifier" : "com.bombich.ccc",
+              "iconPath" : "/Applications/Carbon Copy Cloner.app/Contents/Resources/CCC Glass Icon.icns",
+              "name" : "Carbon Copy Cloner"
+            },
+            {
+              "bundleIdentifier" : "com.apple.AppStore",
+              "iconPath" : "/System/Applications/App Store.app/Contents/Resources/AppIcon.icns",
+              "name" : "App Store"
+            },
+            {
+              "bundleIdentifier" : "com.apple.systempreferences",
+              "iconPath" : "/System/Applications/System Settings.app/Contents/Resources/PrefApp.icns",
+              "name" : "System Settings"
+            },
+            {
+              "bundleIdentifier" : "com.vu.Chronoid",
+              "iconPath" : "/Applications/Chronoid.app/Contents/Resources/AppIcon.icns",
+              "name" : "Chronoid"
+            },
+            {
+              "bundleIdentifier" : "ru.yandex.desktop.music",
+              "iconPath" : "/Applications/Yandex Music.app/Contents/Resources/icon.icns",
+              "name" : "Yandex Music"
+            },
+            {
+              "bundleIdentifier" : "com.somafm.somafmmac",
+              "iconPath" : "/Applications/SomaFM.app/Contents/Resources/AppIcon.icns",
+              "name" : "SomaFM"
+            },
+            {
               "bundleIdentifier" : "app.zen-browser.zen",
               "iconPath" : "/Applications/Zen Browser.app/Contents/Resources/firefox.icns",
               "name" : "Zen"
@@ -15,9 +59,46 @@
           ],
           "display" : "Mi Monitor",
           "id" : "115A355F-C2FA-42BD-AFCC-5A3C1B1819A5",
-          "name" : "Search",
+          "name" : "Browser",
           "openAppsOnActivation" : true,
+          "shortcut" : "cmd+ctrl+1",
           "symbolIconName" : "magnifyingglass"
+        },
+        {
+          "apps" : [
+            {
+              "autoOpen" : true,
+              "bundleIdentifier" : "com.mitchellh.ghostty",
+              "iconPath" : "/Applications/Ghostty.app/Contents/Resources/Ghostty.icns",
+              "name" : "Ghostty"
+            },
+            {
+              "bundleIdentifier" : "com.openai.chat",
+              "iconPath" : "/Applications/ChatGPT.app/Contents/Resources/AppIcon.icns",
+              "name" : "ChatGPT"
+            },
+            {
+              "bundleIdentifier" : "com.apple.ActivityMonitor",
+              "iconPath" : "/System/Applications/Utilities/Activity Monitor.app/Contents/Resources/AppIcon.icns",
+              "name" : "Activity Monitor"
+            },
+            {
+              "bundleIdentifier" : "ai.elementlabs.lmstudio",
+              "iconPath" : "/Applications/LM Studio.app/Contents/Resources/icon.icns",
+              "name" : "LM Studio"
+            },
+            {
+              "bundleIdentifier" : "io.tailscale.ipn.macsys",
+              "iconPath" : "/Applications/Tailscale.app/Contents/Resources/AppIcon.icns",
+              "name" : "Tailscale"
+            }
+          ],
+          "display" : "Mi Monitor",
+          "id" : "0E9B4D60-3E1F-45CF-A1E4-ED32A39BFFFF",
+          "name" : "Terminal",
+          "openAppsOnActivation" : true,
+          "shortcut" : "cmd+ctrl+2",
+          "symbolIconName" : "apple.terminal"
         },
         {
           "apps" : [
@@ -37,11 +118,6 @@
               "name" : "Postman"
             },
             {
-              "bundleIdentifier" : "com.mitchellh.ghostty",
-              "iconPath" : "/Applications/Ghostty.app/Contents/Resources/Ghostty.icns",
-              "name" : "Ghostty"
-            },
-            {
               "bundleIdentifier" : "com.tinyapp.TablePlus",
               "iconPath" : "/Applications/TablePlus.app/Contents/Resources/AppIcon.icns",
               "name" : "TablePlus"
@@ -50,20 +126,65 @@
               "bundleIdentifier" : "com.vscodium",
               "iconPath" : "/Applications/VSCodium.app/Contents/Resources/VSCodium.icns",
               "name" : "VSCodium"
+            },
+            {
+              "bundleIdentifier" : "org.mozilla.firefoxdeveloperedition",
+              "iconPath" : "/Applications/Firefox Developer Edition.app/Contents/Resources/firefox.icns",
+              "name" : "Firefox Developer Edition"
+            },
+            {
+              "bundleIdentifier" : "com.DanPristupov.Fork",
+              "iconPath" : "/Applications/Fork.app/Contents/Resources/AppIcon.icns",
+              "name" : "Fork"
+            },
+            {
+              "bundleIdentifier" : "org.gnome.Meld",
+              "iconPath" : "/Applications/Meld.app/Contents/Resources/Meld.icns",
+              "name" : "Meld"
+            },
+            {
+              "bundleIdentifier" : "com.sublimemerge",
+              "iconPath" : "/Applications/Sublime Merge.app/Contents/Resources/Sublime Merge.icns",
+              "name" : "Sublime Merge"
+            },
+            {
+              "bundleIdentifier" : "dev.zed.Zed",
+              "iconPath" : "/Applications/Zed.app/Contents/Resources/Zed.icns",
+              "name" : "Zed"
+            },
+            {
+              "bundleIdentifier" : "com.TablePro",
+              "iconPath" : "/Applications/TablePro.app/Contents/Resources/AppIcon.icns",
+              "name" : "TablePro"
+            },
+            {
+              "bundleIdentifier" : "com.1password.1password",
+              "iconPath" : "/Applications/1Password.app/Contents/Resources/icon.icns",
+              "name" : "1Password"
             }
           ],
           "display" : "Mi Monitor",
-          "id" : "0E9B4D60-3E1F-45CF-A1E4-ED32A39BFFFF",
-          "name" : "Code",
+          "id" : "FCB5559F-F10C-49ED-B11B-B97C5F1B7F61",
+          "name" : "Development",
           "openAppsOnActivation" : false,
-          "symbolIconName" : "apple.terminal"
+          "shortcut" : "cmd+ctrl+3",
+          "symbolIconName" : "ellipsis.curlybraces"
         },
         {
-          "appToFocus" : {
-            "bundleIdentifier" : "com.tinyspeck.slackmacgap",
-            "iconPath" : "/Applications/Slack.app/Contents/Resources/electron.icns",
-            "name" : "Slack"
-          },
+          "apps" : [
+            {
+              "bundleIdentifier" : "com.apple.iCal",
+              "iconPath" : "/System/Applications/Calendar.app/Contents/Resources/AppIcon.icns",
+              "name" : "Calendar"
+            }
+          ],
+          "display" : "Mi Monitor",
+          "id" : "F387494E-29B9-4E9F-8CB8-0ACD672BE055",
+          "name" : "Productivity",
+          "openAppsOnActivation" : false,
+          "shortcut" : "cmd+ctrl+4"
+        },
+        {
           "apps" : [
             {
               "bundleIdentifier" : "com.apple.mail",
@@ -84,20 +205,32 @@
               "bundleIdentifier" : "us.zoom.xos",
               "iconPath" : "/Applications/zoom.us.app/Contents/Resources/ZPLogo.icns",
               "name" : "zoom.us"
+            },
+            {
+              "bundleIdentifier" : "com.apple.finder",
+              "iconPath" : "/System/Library/CoreServices/Finder.app/Contents/Resources/Finder.icns",
+              "name" : "Finder"
+            },
+            {
+              "bundleIdentifier" : "org.pqrs.Karabiner-EventViewer",
+              "iconPath" : "/Applications/Karabiner-EventViewer.app/Contents/Resources/app.icns",
+              "name" : "Karabiner-EventViewer"
             }
           ],
           "display" : "Mi Monitor",
           "id" : "3E003AEA-4CCB-4B02-BCBD-CC03F8084AF7",
           "name" : "Messages",
           "openAppsOnActivation" : false,
+          "shortcut" : "cmd+ctrl+5",
           "symbolIconName" : "message"
         },
         {
           "apps" : [
             {
-              "bundleIdentifier" : "net.shinyfrog.bear",
-              "iconPath" : "/Applications/Bear.app/Contents/Resources/AppIcon-26.icns",
-              "name" : "Bear"
+              "autoOpen" : true,
+              "bundleIdentifier" : "md.obsidian",
+              "iconPath" : "/Applications/Obsidian.app/Contents/Resources/icon.icns",
+              "name" : "Obsidian"
             },
             {
               "bundleIdentifier" : "com.culturedcode.ThingsMac",
@@ -105,16 +238,17 @@
               "name" : "Things"
             },
             {
-              "bundleIdentifier" : "com.apple.iCal",
-              "iconPath" : "/System/Applications/Calendar.app/Contents/Resources/AppIcon.icns",
-              "name" : "Calendar"
+              "bundleIdentifier" : "com.raycast.macos",
+              "iconPath" : "/Applications/Raycast.app/Contents/Resources/AppIcon-Release.icns",
+              "name" : "Raycast"
             }
           ],
-          "display" : "Built-in Retina Display",
-          "id" : "9A157F36-BA14-4B76-A42A-140B0349A8CC",
-          "name" : "Planning",
-          "openAppsOnActivation" : false,
-          "symbolIconName" : "list.bullet.rectangle"
+          "display" : "Mi Monitor",
+          "id" : "5944593A-A504-435F-9E77-AABE3FB6B77A",
+          "name" : "Notes",
+          "openAppsOnActivation" : true,
+          "shortcut" : "cmd+ctrl+6",
+          "symbolIconName" : "note.text"
         }
       ]
     }

@@ -1,8 +1,10 @@
-# theme = dark:"Monokai Pro Machine",light:"Monokai Pro Light"
 theme = "iTerm2 Solarized Dark"
-font-family = "Iosevka Nerd Font Mono"
-font-size = 15
-font-feature = ss05
+# theme = dark:"Monokai Pro Machine",light:"Monokai Pro Light"
+# theme = dark:"iTerm2 Solarized Dark",light:"Modus Operandi"
+# font-family = "Iosevka Nerd Font Mono"
+font-family = "Codelia Ligatures"
+font-size = 14
+# font-feature = ss05
 maximize = true
 window-padding-x = 5
 window-padding-y = 5
@@ -12,4 +14,4 @@ macos-option-as-alt = true
 
 # Keybindings
 ## General
-keybind = global:alt+enter=toggle_quick_terminal
+# keybind = global:alt+enter=toggle_quick_terminal

@@ -3,48 +3,7 @@
     {
       "actions" : [
         {
-          "key" : "tab",
-          "type" : "application",
-          "value" : "/Applications/Things3.app"
-        },
-        {
-          "key" : "q",
-          "label" : "Quick Entry",
-          "type" : "url",
-          "value" : "things:///add?show-quick-entry=true"
-        },
-        {
-          "actions" : [
-            {
-              "iconPath" : "note.text",
-              "key" : "n",
-              "label" : "Replace Notes",
-              "type" : "url",
-              "value" : "things:///add?show-quick-entry=true&use-clipboard=replace-notes"
-            },
-            {
-              "iconPath" : "checklist.unchecked",
-              "key" : "t",
-              "label" : "Replace Title",
-              "type" : "url",
-              "value" : "things:///add?show-quick-entry=true&use-clipboard=replace-title"
-            }
-          ],
-          "iconPath" : "document.on.clipboard.fill",
-          "key" : "c",
-          "label" : "Use Clipboard",
-          "type" : "group"
-        }
-      ],
-      "iconPath" : "/Applications/Things3.app",
-      "key" : "t",
-      "label" : "Things",
-      "type" : "group"
-    },
-    {
-      "actions" : [
-        {
-          "key" : "tab",
+          "key" : "g",
           "label" : "Show",
           "type" : "url",
           "value" : "shottr://show"
@@ -63,9 +22,9 @@
         },
         {
           "key" : "a",
-          "label" : "Area",
+          "label" : "Append",
           "type" : "url",
-          "value" : "shottr://grab/area"
+          "value" : "shottr://grab/append"
         },
         {
           "key" : "s",
@@ -74,19 +33,13 @@
           "value" : "shottr://grab/scrolling"
         },
         {
-          "key" : "t",
+          "key" : "d",
           "label" : "Delayed",
           "type" : "url",
           "value" : "shottr://grab/delayed"
         },
         {
           "key" : "v",
-          "label" : "Append",
-          "type" : "url",
-          "value" : "shottr://grab/append"
-        },
-        {
-          "key" : "o",
           "label" : "OCR",
           "type" : "url",
           "value" : "shottr://ocr"
@@ -98,183 +51,25 @@
       "type" : "group"
     },
     {
-      "iconPath" : "document.on.clipboard",
-      "key" : "c",
+      "iconPath" : "document.on.clipboard.fill",
+      "key" : "v",
       "label" : "Clipboard",
       "type" : "url",
       "value" : "raycast://extensions/raycast/clipboard-history/clipboard-history"
     },
     {
-      "iconPath" : "text.page",
-      "key" : "v",
-      "label" : "Snippets",
+      "iconPath" : "/Applications/Things3.app",
+      "key" : "t",
+      "label" : "Things quick entry",
       "type" : "url",
-      "value" : "raycast://extensions/raycast/snippets/search-snippets"
+      "value" : "things:///add?show-quick-entry=true"
     },
     {
       "actions" : [
-        {
-          "key" : "c",
-          "label" : "Center",
-          "type" : "url",
-          "value" : "hammerspoon://paperwm?action=center_window"
-        },
-        {
-          "key" : "w",
-          "label" : "Full",
-          "type" : "url",
-          "value" : "hammerspoon://paperwm?action=full_width"
-        },
-        {
-          "key" : "r",
-          "label" : "Cycle Width",
-          "type" : "url",
-          "value" : "hammerspoon://paperwm?action=cycle_width"
-        },
-        {
-          "key" : "=",
-          "label" : "Increase Width",
-          "type" : "url",
-          "value" : "hammerspoon://paperwm?action=increase_width"
-        },
-        {
-          "key" : "-",
-          "label" : "Decrease Width",
-          "type" : "url",
-          "value" : "hammerspoon://paperwm?action=decrease_width"
-        },
-        {
-          "key" : "v",
-          "label" : "Split With Left",
-          "type" : "url",
-          "value" : "hammerspoon://paperwm?action=split_screen"
-        },
-        {
-          "key" : "f",
-          "label" : "Float",
-          "type" : "url",
-          "value" : "hammerspoon://paperwm?action=toggle_floating"
-        },
-        {
-          "key" : "q",
-          "label" : "Swap Left",
-          "type" : "url",
-          "value" : "hammerspoon://paperwm?action=swap_left"
-        },
-        {
-          "key" : "e",
-          "label" : "Swap Right",
-          "type" : "url",
-          "value" : "hammerspoon://paperwm?action=swap_right"
-        },
-        {
-          "key" : ",",
-          "label" : "Space Left",
-          "type" : "url",
-          "value" : "hammerspoon://paperwm?action=switch_space_l"
-        },
-        {
-          "key" : ".",
-          "label" : "Space Right",
-          "type" : "url",
-          "value" : "hammerspoon://paperwm?action=switch_space_r"
-        },
-        {
-          "key" : "\\",
-          "label" : "Refresh",
-          "type" : "url",
-          "value" : "hammerspoon://paperwm?action=refresh_windows"
-        },
-        {
-          "actions" : [
-            {
-              "key" : "h",
-              "label" : "Left",
-              "type" : "url",
-              "value" : "hammerspoon://paperwm?action=move_window_l"
-            },
-            {
-              "key" : "l",
-              "label" : "Right",
-              "type" : "url",
-              "value" : "hammerspoon://paperwm?action=move_window_r"
-            },
-            {
-              "key" : "j",
-              "label" : "Down",
-              "type" : "url",
-              "value" : "hammerspoon://paperwm?action=move_window_d"
-            },
-            {
-              "key" : "k",
-              "label" : "Up",
-              "type" : "url",
-              "value" : "hammerspoon://paperwm?action=move_window_u"
-            },
-            {
-              "key" : "1",
-              "label" : "1",
-              "type" : "url",
-              "value" : "hammerspoon://paperwm?action=move_window_1"
-            },
-            {
-              "key" : "2",
-              "label" : "2",
-              "type" : "url",
-              "value" : "hammerspoon://paperwm?action=move_window_2"
-            },
-            {
-              "key" : "3",
-              "label" : "3",
-              "type" : "url",
-              "value" : "hammerspoon://paperwm?action=move_window_3"
-            },
-            {
-              "key" : "4",
-              "label" : "4",
-              "type" : "url",
-              "value" : "hammerspoon://paperwm?action=move_window_4"
-            },
-            {
-              "key" : "5",
-              "label" : "5",
-              "type" : "url",
-              "value" : "hammerspoon://paperwm?action=move_window_5"
-            }
-          ],
-          "key" : "m",
-          "label" : "Move",
-          "type" : "group"
-        },
-        {
-          "actions" : [
-            {
-              "actions" : [
-                {
-                  "key" : "e",
-                  "label" : "Enable",
-                  "type" : "url",
-                  "value" : "hammerspoon://paperwm?action=mode_center_on"
-                },
-                {
-                  "key" : "d",
-                  "label" : "Disable",
-                  "type" : "url",
-                  "value" : "hammerspoon://paperwm?action=mode_center_off"
-                }
-              ],
-              "key" : "c",
-              "label" : "Center Mode",
-              "type" : "group"
-            }
-          ],
-          "key" : "/",
-          "label" : "Config",
-          "type" : "group"
-        }
+
       ],
-      "key" : "w",
-      "label" : "WM",
+      "key" : "q",
+      "label" : "Memos",
       "type" : "group"
     }
   ],

@@ -1,20 +1,13 @@
-# general
-alias ..="j .."
-alias ...="j ../.."
+# config
+alias ec="$EDITOR ~/.zshrc"
+alias ea="$EDITOR ~/.aliases"
+alias rc="source ~/.zshrc"
 
 # nvim
 alias nv="nvim"
-alias nvd="neovide --fork --no-tabs"
 
 # git
 alias lg="lazygit"
-alias gs="git status"
-alias ga="git add"
-alias gc="git commit"
-alias gp="git push"
-alias gpa="git push --all"
-alias gpl="git pull"
-alias gpla="git pull --all"
 
 # files
 alias cat="bat"
@@ -26,21 +19,10 @@ alias ls='eza --group-directories-first --git'
 alias l='ls --long --header'
 alias ll='ls --long --header --all'
 
-# brew
-alias brew-uses="brew uses --installed"
-
-# npm
-alias ncu="ncu -i --format group"
-alias ncu-minor="ncu --target minor"
-alias ncu-prod="ncu --dep prod"
-
 # jless
 alias yless="jless --yaml"
 
-# jj
-alias jjui="unset DEBUG && jjui"
-
 # rg
 alias rg="rg --column --line-number --no-heading --color=always --smart-case"
-alias rga="rg --no-ignore --hidden"
-alias rge="rga --glob '!{.git,node_modules}/*'"
+alias rga="rg --hidden"
+alias rgA="rg --no-ignore --hidden"
