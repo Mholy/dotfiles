@@ -7,10 +7,3 @@ encryption = "age"
 [merge]
     command = "smerge"
     args = ["mergetool", "{{ "{{" }} .Target {{ "}}" }}", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Source {{ "}}" }}", "-o", "{{ "{{" }} .Source {{ "}}" }}"]
-{{- $osid := .chezmoi.os -}}
-{{- if hasKey .chezmoi.osRelease "id" -}}
-{{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
-{{- end -}}
-[data]
-    osid = {{ $osid | quote }}
-
