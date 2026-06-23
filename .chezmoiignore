@@ -8,7 +8,9 @@ key.txt.age
 {{- end }}
 
 {{- if ne .osid "darwin" }}
-# Not macOS
+# Only for macOS
 .hammerspoon
 .aerospace.toml
+cli/,ccc-reset.sh
+cli/,mount-toaster-backup.sh
 {{- end }}
