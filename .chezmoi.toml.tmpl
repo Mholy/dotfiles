@@ -13,3 +13,13 @@ encryption = "age"
     args = ["mergetool", "{{ "{{" }} .Target {{ "}}" }}", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Source {{ "}}" }}", "-o", "{{ "{{" }} .Source {{ "}}" }}"]
 [data]
     osid = {{ $osid | quote }}
+
+[data.gitconfig.cw]
+    enable = {{ promptBoolOnce . "gitconfig.cw.enable" "Enable CW gitconfig (~/.gitconfig-cw)" }}
+    name   = {{ promptStringOnce . "gitconfig.cw.name" "CW git user.name" | quote }}
+    email  = {{ promptStringOnce . "gitconfig.cw.email" "CW git user.email" | quote }}
+
+[data.gitconfig.quintegro]
+    enable = {{ promptBoolOnce . "gitconfig.quintegro.enable" "Enable Quintegro gitconfig (~/.gitconfig-quintegro)" }}
+    name   = {{ promptStringOnce . "gitconfig.quintegro.name" "Quintegro git user.name" | quote }}
+    email  = {{ promptStringOnce . "gitconfig.quintegro.email" "Quintegro git user.email" | quote }}

@@ -1,12 +1,14 @@
 key.txt.age
 
+{{- if not (default false .gitconfig.cw.enable) }}
+.gitconfig-cw
+{{- end }}
+{{- if not (default false .gitconfig.quintegro.enable) }}
+.gitconfig-quintegro
+{{- end }}
+
 {{- if ne .osid "darwin" }}
 # Not macOS
 .hammerspoon
 .aerospace.toml
-{{- end }}
-
-{{- if not .withQuintegro }}
-.gitconfig-cw
-.gitconfig-quintegro
 {{- end }}
