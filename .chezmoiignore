@@ -1,7 +1,12 @@
 key.txt.age
 
-{{ if ne .osid "darwin" }}
+{{- if ne .osid "darwin" }}
 # Not macOS
 .hammerspoon
 .aerospace.toml
-{{ end }}
+{{- end }}
+
+{{- if not .withQuintegro }}
+.gitconfig-cw
+.gitconfig-quintegro
+{{- end }}
