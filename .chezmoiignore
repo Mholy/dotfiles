@@ -13,4 +13,5 @@ key.txt.age
 .aerospace.toml
 cli/,ccc-reset.sh
 cli/,mount-toaster-backup.sh
+.config/karabiner/
 {{- end }}
