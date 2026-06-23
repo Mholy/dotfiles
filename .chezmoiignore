@@ -1,1 +1,7 @@
 key.txt.age
+
+{{ if ne .osid "darwin" }}
+# Not macOS
+.hammerspoon
+.aerospace.toml
+{{ end }}
