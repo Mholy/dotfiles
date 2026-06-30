@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "enabledPlugins": {},
+  "effortLevel": "medium",
+  "autoUpdatesChannel": "stable",
+  "voice": {
+    "enabled": false,
+    "mode": "hold"
+  },
+  "skipWorkflowUsageWarning": true,
+  "theme": "auto",
+  "preferredNotifChannel": "ghostty",
+  "autoCompactEnabled": false,
+  "teammateMode": "auto",
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true,
+  "useAutoModeDuringPlan": false,
+  "voiceEnabled": false,
+  "remoteControlAtStartup": true,
+  "skillListingBudgetFraction": 0.05
+}
