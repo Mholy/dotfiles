@@ -4,11 +4,19 @@ encryption = "age"
     recipient = "age19dwad3lymtpkqr5h5m2vsj4mx2a4mufyk7jhle8le0hkxq20adxszyn9vw"
 
 [data.gitconfig.cw]
-    enable = {{ promptBoolOnce . "gitconfig.cw.enable" "Enable CW gitconfig (~/.gitconfig-cw)" }}
-    name   = {{ promptStringOnce . "gitconfig.cw.name" "CW git user.name" | quote }}
-    email  = {{ promptStringOnce . "gitconfig.cw.email" "CW git user.email" | quote }}
+    enable = {{ promptBoolOnce . "gitconfig.cw.enable" "Enable CW gitconfig (~/.gitconfig-cw)" false }}
+{{- with promptStringOnce . "gitconfig.cw.name" "CW git user.name" }}
+    name   = {{ . | quote }}
+{{- end }}
+{{- with promptStringOnce . "gitconfig.cw.email" "CW git user.email" }}
+    email  = {{ . | quote }}
+{{- end }}
 
 [data.gitconfig.quintegro]
-    enable = {{ promptBoolOnce . "gitconfig.quintegro.enable" "Enable Quintegro gitconfig (~/.gitconfig-quintegro)" }}
-    name   = {{ promptStringOnce . "gitconfig.quintegro.name" "Quintegro git user.name" | quote }}
-    email  = {{ promptStringOnce . "gitconfig.quintegro.email" "Quintegro git user.email" | quote }}
+    enable = {{ promptBoolOnce . "gitconfig.quintegro.enable" "Enable Quintegro gitconfig (~/.gitconfig-quintegro)" false }}
+{{- with promptStringOnce . "gitconfig.quintegro.name" "Quintegro git user.name" }}
+    name   = {{ . | quote }}
+{{- end }}
+{{- with promptStringOnce . "gitconfig.quintegro.email" "Quintegro git user.email" }}
+    email  = {{ . | quote }}
+{{- end }}
