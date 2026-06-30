@@ -17,4 +17,5 @@ key.txt.age
 .config/ghostty/config
 .config/cmux
 .config/leaderkey
+.config/raycast
 {{- end }}
