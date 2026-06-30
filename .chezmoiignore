@@ -1,5 +1,6 @@
 key.txt.age
 
+# Git
 {{- if not (default false .gitconfig.cw.enable) }}
 .gitconfig-cw
 {{- end }}
@@ -7,8 +8,8 @@ key.txt.age
 .gitconfig-quintegro
 {{- end }}
 
+# Keep only for toaster mac
 {{- if eq .chezmoi.hostname "toaster" }}
-# Only for toaster
 .hammerspoon
 .aerospace.toml
 cli/,ccc-reset.sh
@@ -16,4 +17,5 @@ cli/,mount-toaster-backup.sh
 .config/karabiner/
 .config/mise/config.toml
 .config/starship.toml
+.config/ghostty/config
 {{- end }}
