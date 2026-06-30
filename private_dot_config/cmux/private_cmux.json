@@ -1,0 +1,54 @@
+{
+  "$schema": "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux.schema.json",
+  "actions": {
+    "lg": {
+      "command": "lg",
+      "description": "Open LazyGit in a new tab",
+      "icon": {
+        "name": "arrow.triangle.branch",
+        "type": "symbol"
+      },
+      "keywords": ["git", "lazygit", "lg"],
+      "target": "newTabInCurrentPane",
+      "title": "Open LazyGit",
+      "type": "command"
+    },
+    "neovim": {
+      "command": "nv",
+      "description": "Open NeoVim in a new tab",
+      "icon": {
+        "name": "pencil.and.outline",
+        "type": "symbol"
+      },
+      "keywords": ["neovim", "nvim", "nv", "editor"],
+      "palette": true,
+      "target": "newTabInCurrentPane",
+      "title": "Open in NeoVim",
+      "type": "command"
+    },
+    "claude": {
+      "type": "agent",
+      "agent": "claude",
+      "title": "Claude",
+      "subtitle": "Start Claude Code in this workspace",
+      "target": "newTabInCurrentPane",
+      "icon": { "type": "image", "path": "./icons/claude.svg" }
+    }
+  },
+  "customSidebars": {
+    "renderer": "inProcess"
+  },
+  "schemaVersion": 1,
+  "ui": {
+    "surfaceTabBar": {
+      "buttons": [
+        "cmux.newTerminal",
+        "cmux.newBrowser",
+        "cmux.splitRight",
+        "cmux.splitDown",
+        "lg",
+        "claude"
+      ]
+    }
+  }
+}

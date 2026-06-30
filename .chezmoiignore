@@ -15,4 +15,5 @@ key.txt.age
 .config/karabiner/
 .config/mise/config.toml
 .config/ghostty/config
+.config/cmux
 {{- end }}
