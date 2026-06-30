@@ -9,7 +9,7 @@ key.txt.age
 {{- end }}
 
 # Keep only for toaster mac
-{{- if eq .chezmoi.hostname "toaster" }}
+{{- if ne .chezmoi.hostname "toaster" }}
 .hammerspoon
 .aerospace.toml
 cli/,ccc-reset.sh
