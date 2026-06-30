@@ -12,8 +12,6 @@ key.txt.age
 {{- if ne .chezmoi.hostname "toaster" }}
 .hammerspoon
 .aerospace.toml
-cli/,ccc-reset.sh
-cli/,mount-toaster-backup.sh
 .config/karabiner/
 .config/mise/config.toml
 .config/ghostty/config
