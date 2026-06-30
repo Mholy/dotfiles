@@ -1,0 +1,70 @@
+[user]
+	useConfigOnly = true
+	name =
+	email =
+
+[includeIf "gitdir:~/code/work/quintegro/**"]
+  path = ~/.gitconfig-quintegro
+
+[includeIf "gitdir:~/code/work/cw/**"]
+  path = ~/.gitconfig-cw
+
+[core]
+  pager = delta
+  excludesfile = ~/.gitignore_global
+
+[init]
+	defaultBranch = main
+
+[interactive]
+  diffFilter = delta --color-only --features=interactive
+
+[pull]
+  rebase = true
+
+[push]
+	autoSetupRemote = true
+  followTags = true
+
+[diff]
+  tool = codium
+
+[difftool]
+  prompt = false
+
+[merge]
+  tool = codium
+  conflictstyle = diff3
+
+[rebase]
+  updateRefs = true
+
+[difftool "difftastic"]
+    cmd = difft $LOCAL $REMOTE
+
+[mergetool "nvimdiff"]
+  path = nvim
+  conflictstyle = diff3
+  colorMoved = default
+
+[difftool "codium"]
+  cmd = codium --wait --diff $LOCAL $REMOTE
+  trustExitCode = true
+
+[mergetool "codium"]
+  cmd = codium --wait --merge $LOCAL $REMOTE $BASE $MERGED
+  trustExitCode = true
+
+[delta]
+  features = decorations
+
+[delta "interactive"]
+  keep-plus-minus-markers = false
+
+[delta "decorations"]
+  commit-decoration-style = auto ol
+  file-style = omit
+  hunk-header-decoration-style = auto box
+  hunk-header-file-style = auto
+  hunk-header-line-number-style = auto
+  hunk-header-style = file line-number syntax
