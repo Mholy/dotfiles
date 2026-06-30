@@ -1,18 +1,7 @@
-{{- $osid := .chezmoi.os -}}
-{{- if hasKey .chezmoi.osRelease "id" -}}
-{{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
-{{- end -}}
 encryption = "age"
 [age]
     identity = "~/key.txt"
     recipient = "age19dwad3lymtpkqr5h5m2vsj4mx2a4mufyk7jhle8le0hkxq20adxszyn9vw"
-[git]
-    autoCommit = true
-[merge]
-    command = "smerge"
-    args = ["mergetool", "{{ "{{" }} .Target {{ "}}" }}", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Source {{ "}}" }}", "-o", "{{ "{{" }} .Source {{ "}}" }}"]
-[data]
-    osid = {{ $osid | quote }}
 
 [data.gitconfig.cw]
     enable = {{ promptBoolOnce . "gitconfig.cw.enable" "Enable CW gitconfig (~/.gitconfig-cw)" }}
