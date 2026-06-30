@@ -6,11 +6,47 @@ gui:
   mouseEvents: false
   # expandFocusedSidePanel: true
 os:
-  edit: '{ [ -z "$NVIM" ] && nvim -- {{filename}}; } || { nvim --server "$NVIM" --remote-send "<C-x>" && nvim --server "$NVIM" --remote {{filename}}; }'
-  editAtLine: '{ [ -z "$NVIM" ] && nvim +{{line}} -- {{filename}}; } || { nvim --server "$NVIM" --remote-send "<C-x>" && nvim --server "$NVIM" --remote {{filename}} && nvim --server "$NVIM" --remote-send ":{{line}}<CR>"; }'
-  editAtLineAndWait: "nvim +{{line}} {{filename}}"
-  openDirInEditor: '{ [ -z "$NVIM" ] && nvim -- {{dir}}; } || { nvim --server "$NVIM" --remote-send "<C-x>" && nvim --server "$NVIM" --remote-tab {{dir}}; }'
-  editInTerminal: false
+  editPreset: nvim-remote
+  # edit: '{ [ -z "$NVIM" ] && nvim -- {{filename}}; } || { nvim --server "$NVIM" --remote-send "<C-x>" && nvim --server "$NVIM" --remote {{filename}}; }'
+  # editAtLine: '{ [ -z "$NVIM" ] && nvim +{{line}} -- {{filename}}; } || { nvim --server "$NVIM" --remote-send "<C-x>" && nvim --server "$NVIM" --remote {{filename}} && nvim --server "$NVIM" --remote-send ":{{line}}<CR>"; }'
+  # editAtLineAndWait: "nvim +{{line}} {{filename}}"
+  # openDirInEditor: '{ [ -z "$NVIM" ] && nvim -- {{dir}}; } || { nvim --server "$NVIM" --remote-send "<C-x>" && nvim --server "$NVIM" --remote-tab {{dir}}; }'
+  # editInTerminal: false
+customCommands:
+  - key: "<c-h>"
+    context: "files"
+    description: "hunk diff"
+    output: terminal
+    prompts:
+      - type: "menu"
+        title: "Run hunk diff on..."
+        key: "Scope"
+        options:
+          - name: "All files"
+            value: ""
+          - name: "Only staged"
+            value: " --staged"
+    command: "hunk diff{{.Form.Scope}}"
+  - key: "<c-h>"
+    context: "commits"
+    description: "hunk show commit"
+    output: terminal
+    command: "git show -m {{.SelectedLocalCommit.Hash}} | hunk patch"
+  - key: "<c-h>"
+    context: "subCommits"
+    description: "hunk show commit"
+    output: terminal
+    command: "git show -m {{.SelectedSubCommit.Hash}} | hunk patch"
+  - key: "<c-h>"
+    context: "reflogCommits"
+    description: "hunk show commit"
+    output: terminal
+    command: "git show -m {{.SelectedReflogCommit.Hash}} | hunk patch"
+  - key: "<c-h>"
+    context: "stash"
+    description: "hunk stash show"
+    output: terminal
+    command: "hunk stash show {{.SelectedStashEntry.RefName}}"
 git:
   mainBranches:
     - main
@@ -18,16 +54,3 @@ git:
   pagers:
     - externalDiffCommand: difft --color=always --syntax-highlight=on --tab-width=2
     - pager: delta --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
-customCommands:
-  - key: t
-    command: tig show {{.SelectedSubCommit.Sha}}
-    context: subCommits
-    description: tig commit (`t` again to browse files at revision)
-  - key: t
-    command: tig show {{.SelectedLocalBranch.Name}}
-    context: localBranches
-    description: tig branch (`t` again to browse files at revision)
-  - key: t
-    command: tig show {{.SelectedRemoteBranch.RemoteName}}/{{.SelectedRemoteBranch.Name}}
-    context: remoteBranches
-    description: tig branch (`t` again to browse files at revision)
