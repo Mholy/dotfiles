@@ -16,6 +16,5 @@ cli/,ccc-reset.sh
 cli/,mount-toaster-backup.sh
 .config/karabiner/
 .config/mise/config.toml
-.config/starship.toml
 .config/ghostty/config
 {{- end }}
