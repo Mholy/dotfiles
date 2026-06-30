@@ -16,4 +16,5 @@ key.txt.age
 .config/mise/config.toml
 .config/ghostty/config
 .config/cmux
+.config/leaderkey
 {{- end }}

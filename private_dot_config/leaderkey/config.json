@@ -1,0 +1,77 @@
+{
+  "actions" : [
+    {
+      "actions" : [
+        {
+          "key" : "g",
+          "label" : "Show",
+          "type" : "url",
+          "value" : "shottr://show"
+        },
+        {
+          "key" : "f",
+          "label" : "Fullscreen",
+          "type" : "url",
+          "value" : "shottr://grab/fullscreen"
+        },
+        {
+          "key" : "w",
+          "label" : "Window",
+          "type" : "url",
+          "value" : "shottr://grab/window"
+        },
+        {
+          "key" : "a",
+          "label" : "Append",
+          "type" : "url",
+          "value" : "shottr://grab/append"
+        },
+        {
+          "key" : "s",
+          "label" : "Scrolling",
+          "type" : "url",
+          "value" : "shottr://grab/scrolling"
+        },
+        {
+          "key" : "d",
+          "label" : "Delayed",
+          "type" : "url",
+          "value" : "shottr://grab/delayed"
+        },
+        {
+          "key" : "v",
+          "label" : "OCR",
+          "type" : "url",
+          "value" : "shottr://ocr"
+        }
+      ],
+      "iconPath" : "/Applications/Shottr.app",
+      "key" : "s",
+      "label" : "Shottr",
+      "type" : "group"
+    },
+    {
+      "iconPath" : "document.on.clipboard.fill",
+      "key" : "v",
+      "label" : "Clipboard",
+      "type" : "url",
+      "value" : "raycast://extensions/raycast/clipboard-history/clipboard-history"
+    },
+    {
+      "iconPath" : "/Applications/Things3.app",
+      "key" : "t",
+      "label" : "Things quick entry",
+      "type" : "url",
+      "value" : "things:///add?show-quick-entry=true"
+    },
+    {
+      "actions" : [
+
+      ],
+      "key" : "q",
+      "label" : "Memos",
+      "type" : "group"
+    }
+  ],
+  "type" : "group"
+}
