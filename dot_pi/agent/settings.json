@@ -1,0 +1,15 @@
+{
+  "lastChangelogVersion": "0.79.4",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.4-mini",
+  "defaultThinkingLevel": "low",
+  "hideThinkingBlock": true,
+  "enableInstallTelemetry": false,
+  "treeFilterMode": "default",
+  "packages": [
+    "npm:@gotgenes/pi-permission-system",
+    "npm:@juicesharp/rpiv-web-tools",
+    "npm:@juicesharp/rpiv-ask-user-question"
+  ],
+  "theme": "dark"
+}
