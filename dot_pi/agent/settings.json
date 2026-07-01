@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.79.4",
+  "lastChangelogVersion": "0.80.2",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.4-mini",
   "defaultThinkingLevel": "low",
@@ -11,5 +11,5 @@
     "npm:@juicesharp/rpiv-web-tools",
     "npm:@juicesharp/rpiv-ask-user-question"
   ],
-  "theme": "dark"
+  "theme": "light/dark"
 }
