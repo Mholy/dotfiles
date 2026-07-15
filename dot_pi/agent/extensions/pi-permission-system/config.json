@@ -1,0 +1,23 @@
+{
+  "$schema": "https://raw.githubusercontent.com/gotgenes/pi-permission-system/main/schemas/permissions.schema.json",
+  "permission": {
+    "*": "ask",
+    "read": "allow",
+    "grep": "allow",
+    "find": "allow",
+    "ls": "allow",
+    "grep": "allow",
+    "web_search": "allow",
+    "ask_user_question": "allow",
+    "bash": {
+      "rm -rf *": "deny",
+      "sudo *": "ask",
+      "doas *": "ask",
+      "eza*": "allow",
+      "rg *": "allow",
+      "fd *": "allow",
+      "bat*": "allow",
+      "dust*": "allow"
+    }
+  }
+}
